@@ -1,0 +1,247 @@
+/* ==========================================================================
+   MODERNIZED PROJECTS SECTION - MAX-WIDTH 1200px
+   ========================================================================== */
+
+.projects {
+  padding: 10px 0;
+  background-color: #f9fbff;
+  display: flex;
+  justify-content: center; // Центруємо весь розділ
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px; // Суворе обмеження ширини
+  margin: 0 auto; // Центрування контейнера
+  padding: 0 20px; // Відступи від країв екрану на мобільних
+  box-sizing: border-box;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 60px;
+
+  .preTitle {
+    display: block;
+    color: var(--primary, #0066ff);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  .mainTitle {
+    font-size: clamp(30px, 5vw, 42px);
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+
+  .description {
+    max-width: 600px;
+    margin: 0 auto;
+    color: #666;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+}
+
+/* СІТКА (FLEXBOX) - 3 В РЯД */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; // Центрує картки, якщо їх менше 3-х
+  align-items: stretch; // Вирівнює всі картки по висоті
+  margin: 0 -15px -30px; // Відступи для компенсації падінгів
+}
+
+.cardLink {
+  display: flex;
+  padding: 15px; // Відступ між картками
+  box-sizing: border-box;
+  text-decoration: none;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* ДЕСКТОП: Рівно 3 картки в ряд (1200px / 3) */
+  flex: 0 0 33.333%;
+  max-width: 33.333%;
+
+  /* ПЛАНШЕТ: 2 картки в ряд */
+  @media (max-width: 1024px) {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  /* МОБІЛЬНИЙ: 1 картка в ряд */
+  @media (max-width: 768px) {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  &:hover {
+    transform: translateY(-10px);
+  }
+}
+
+/* КАРТКА */
+.card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 24px;
+  padding: 40px 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Все в центрі
+  text-align: center;
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+
+  &:hover {
+    box-shadow: 0 20px 40px rgba(0, 102, 255, 0.08);
+    border-color: rgba(0, 102, 255, 0.2);
+  }
+
+  &.highlighted {
+    border: 1px solid rgba(0, 102, 255, 0.3);
+    background: #fcfdfe;
+  }
+}
+
+/* ВЕРХНЯ ЧАСТИНА (ЛОГО / ТИТУЛ) */
+.cardTop {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f0f0f0;
+  width: 100%;
+
+  .projectTitle {
+    font-size: 22px;
+    font-weight: 900;
+    color: #000;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+  }
+
+  .projectSubtitle {
+    font-size: 13px;
+    color: #888;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+}
+
+/* КОНТЕНТ */
+.cardBody {
+  flex-grow: 1; // Заповнює простір, щоб футери були на одному рівні
+  width: 100%;
+}
+
+.serviceBlock {
+  margin-bottom: 25px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.serviceHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+
+  .iconWrapper {
+    width: 40px;
+    height: 40px;
+    background: #f0f5ff;
+    color: var(--primary, #0066ff);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .serviceTitle {
+    font-size: 14px;
+    font-weight: 800;
+    color: #222;
+    text-transform: uppercase;
+  }
+}
+
+/* СПИСОК (Блок по центру, текст всередині ліворуч) */
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  text-align: left;
+
+  li {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 8px;
+    padding-left: 18px;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 6px;
+      height: 1.5px;
+      background: #ccc;
+    }
+  }
+}
+
+/* ФУТЕР КАРТКИ */
+.cardFooter {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #f0f0f0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--primary, #0066ff);
+  font-weight: 700;
+  font-size: 14px;
+
+  .footerIcon {
+    transition: transform 0.3s ease;
+  }
+}
+
+/* КНОПКА ЗАВАНТАЖИТИ ЩЕ */
+.loadMoreContainer {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.loadMoreBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 40px;
+  background: #ffffff;
+  color: #1a1a1a;
+  border: 1px solid #e0e0e0;
+  border-radius: 100px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: var(--primary, #0066ff);
+    color: #fff;
+    border-color: var(--primary, #0066ff);
+  }
+}

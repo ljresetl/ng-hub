@@ -1,0 +1,115 @@
+[
+  {
+    "id": "stranky",
+    "title": "ngstranky.cz",
+    "subtitle": "stránky nové generace",
+    "services": [
+      {
+        "id": "creation",
+        "iconName": "Laptop",
+        "title": "TVORBA, SPRÁVA WWW STRÁNEK A ESHOPŮ",
+        "features": [
+          "Redakční systém pro snadnou správu",
+          "Moderní vzhled & Responsive design",
+          "Velké množství funkcí",
+          "SEO — optimalizace pro vyhledávání"
+        ]
+      },
+      {
+        "id": "marketing",
+        "iconName": "TrendingUp",
+        "title": "ZÍSKÁNÍ ZÁKAZNÍKŮ — ONLINE MARKETING",
+        "features": [
+          "PPC kampaně — platíte za návštěvníka",
+          "Propagace na sociálních sítích",
+          "Předběhnutí konkurence ve vyhledávačích",
+          "Marketingové analýzy"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "emailing",
+    "title": "ngemailing.cz",
+    "subtitle": "emailing nové generace",
+    "isHighlighted": true,
+    "services": [
+      {
+        "id": "marketing-direct",
+        "iconName": "Mail",
+        "title": "EMAIL MARKETING A DIRECT EMAILING",
+        "features": [
+          "Bezkonkurenční cena.",
+          "Aplikace je zcela v češtině.",
+          "Rychlá orientace v systému.",
+          "Vysoká doručitelnost kampaní."
+        ]
+      },
+      {
+        "id": "new-gen",
+        "iconName": "Users",
+        "title": "EMAILING NOVÉ GENERACE",
+        "features": [
+          "Nejefektivnější forma propagace.",
+          "Všechny pokročilé funkce pro všechny.",
+          "Autorespondery šetřící váš čas.",
+          "Pohodlná segmentace."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "kuprealitu",
+    "title": "kuprealitu.cz",
+    "subtitle": "inzerce realit zdarma",
+    "services": [
+      {
+        "id": "inzerce",
+        "iconName": "Rocket",
+        "title": "INZERCE REALIT ZDARMA RYCHLE — PŘEHLEDNĚ",
+        "features": [
+          "Jednoduché vyhledávání",
+          "Snadná administrace",
+          "Interaktivní mapa",
+          "Responzivní design"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "webdevcompass",
+    "title": "webdevcompass.com",
+    "subtitle": "váš průvodce vývojem",
+    "services": [
+      {
+        "id": "dev-guide",
+        "iconName": "Laptop",
+        "title": "MODERNÍ WEB DEVELOPMENT",
+        "features": [
+          "Konzultace architektury webu",
+          "Optimalizace výkonu a Core Web Vitals",
+          "Nasazení moderních technologií",
+          "Školení vývojových týmů"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "amondrex",
+    "title": "amondrexcf.com",
+    "subtitle": "mezinárodní obchod a logistika",
+    "services": [
+      {
+        "id": "logistics",
+        "iconName": "TrendingUp",
+        "title": "GLOBÁLNÍ OBCHODNÍ ŘEŠENÍ",
+        "features": [
+          "Efektivní správa dodavatelského řetězce",
+          "Mezinárodní logistické služby",
+          "B2B obchodní partnerství",
+          "Analýza globálního trhu"
+        ]
+      }
+    ]
+  }
+]

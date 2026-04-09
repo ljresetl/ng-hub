@@ -1,0 +1,157 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  align-items: center; // Вирівнювання контейнера по вертикалі
+  border-bottom: 1px solid #eee;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between; // Розносить лого та наву в різні боки
+  align-items: center; // Вирівнює всі елементи по одній лінії
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #333;
+  display: flex;
+  align-items: center; // Щоб текст всередині лого теж був по центру
+
+  span {
+    color: #0070f3;
+    margin-left: 5px;
+  }
+}
+
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  @media (max-width: 992px) {
+    // Збільшив поріг для довгих пунктів меню
+    display: none;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  font-size: 14px;
+  transition: 0.2s;
+
+  &:hover {
+    color: #0070f3;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.searchBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  color: #333;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    color: #0070f3;
+  }
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 1200;
+
+  @media (max-width: 992px) {
+    display: flex;
+  }
+
+  span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #0070f3;
+    transition: 0.3s;
+    border-radius: 2px;
+  }
+}
+
+.burgerActive {
+  span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  span:nth-child(2) {
+    opacity: 0;
+  }
+  span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 280px;
+  height: 100vh;
+  background: #fff;
+  z-index: 1100;
+  transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 100px 30px;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+
+  &.menuVisible {
+    right: 0;
+  }
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1050;
+  backdrop-filter: blur(2px);
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  .link {
+    font-size: 18px;
+  }
+}

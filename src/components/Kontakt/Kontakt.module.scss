@@ -1,0 +1,257 @@
+.contact {
+  padding: 100px 0;
+  background-color: #fdfdfd;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 70px;
+  h2 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin: 0;
+  }
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+    .line {
+      width: 40px;
+      height: 2px;
+      background: #00aeef;
+    }
+    .icon {
+      color: #00aeef;
+      font-weight: bold;
+    }
+  }
+  p {
+    max-width: 650px;
+    margin: 0 auto;
+    color: #777;
+    line-height: 1.6;
+    font-size: 17px;
+  }
+}
+
+.content {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 1fr;
+  align-items: stretch; // Однаковий розмір колонок на десктопі
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+  }
+}
+
+// СУЧАСНА ФОРМА
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  background: #ffffff;
+  padding: 50px;
+  border-radius: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
+  height: 100%;
+
+  .inputGroup {
+    position: relative;
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px 0;
+      font-size: 16px;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid #e0e0e0;
+      outline: none;
+      transition: all 0.3s;
+      color: #333;
+
+      // Логіка плаваючого лейблу
+      &:focus ~ label,
+      &:not(:placeholder-shown) ~ label {
+        transform: translateY(-25px) scale(0.85);
+        color: #00aeef;
+      }
+      &:focus ~ .focusLine {
+        width: 100%;
+      }
+    }
+
+    label {
+      position: absolute;
+      left: 0;
+      top: 12px;
+      font-size: 16px;
+      color: #999;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-origin: left top;
+    }
+
+    .focusLine {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #00aeef;
+      transition: width 0.4s ease;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: none;
+    }
+  }
+
+  // Робимо так, щоб форма заповнювала висоту
+  .inputGroup:last-of-type {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    textarea {
+      flex-grow: 1;
+    }
+  }
+
+  .submitBtn {
+    background: #00aeef;
+    color: white;
+    border: none;
+    padding: 18px 45px;
+    border-radius: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.3s;
+    box-shadow: 0 10px 20px rgba(0, 174, 239, 0.2);
+
+    &:hover {
+      background: #0093ca;
+      transform: translateY(-3px);
+    }
+    &:active {
+      transform: translateY(-1px);
+    }
+  }
+}
+
+// ІНФОРМАЦІЯ
+.info {
+  display: grid;
+  gap: 25px;
+  grid-template-columns: 1fr;
+  height: 100%;
+  text-align: center; // Центр на мобілці
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr; // Планшет: два в ряд
+    text-align: left;
+  }
+}
+
+.infoBlock {
+  background: white;
+  padding: 40px;
+  border-radius: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .infoTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+
+    .mainIcon {
+      color: #00aeef;
+      width: 32px;
+      height: 32px;
+    }
+    h3 {
+      font-size: 17px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin: 0;
+    }
+  }
+
+  .details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    color: #666;
+
+    .companyName {
+      font-weight: 800;
+      color: #111;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .contactsRow,
+    .linksRow {
+      margin-top: auto; // Контакти завжди внизу картки
+      padding-top: 20px;
+      p {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 8px 0;
+      }
+    }
+
+    .ids {
+      margin: 15px 0;
+      padding: 10px 0;
+      border-top: 1px dashed #eee;
+      border-bottom: 1px dashed #eee;
+      display: flex;
+      flex-direction: column;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .box {
+      margin-top: 20px;
+      background: #f8f9fa;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      text-align: center;
+    }
+  }
+}

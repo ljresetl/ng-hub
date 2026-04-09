@@ -1,0 +1,11 @@
+[
+  { "id": 1, "name": "RENOMIA", "domain": "renomia.com", "webUrl": "https://www.renomia.cz/" },
+  { "id": 2, "name": "AXA", "domain": "axa.com", "webUrl": "https://www.axa.cz/" },
+  { "id": 3, "name": "BMTO TECH", "domain": "bmto.cz", "webUrl": "https://www.bmto.cz/" },
+  { "id": 4, "name": "SURI", "domain": "suri.cz", "webUrl": "https://www.suri.cz/" },
+  { "id": 5, "name": "SROVNATOR", "domain": "srovnator.cz", "webUrl": "https://www.srovnator.cz/" },
+  { "id": 6, "name": "GREEN PEAK", "domain": "greenpeak.cz", "webUrl": "#" },
+  { "id": 7, "name": "4 PROJEKT", "domain": "4projekt.cz", "webUrl": "https://www.4projekt.cz/" },
+  { "id": 8, "name": "FUTURENTO", "domain": "futurento.cz", "webUrl": "https://futurento.cz/" },
+  { "id": 9, "name": "POVINNE RUCENI", "domain": "povinneruceni.com", "webUrl": "https://www.povinneruceni.com/" }
+]

@@ -1,3 +1,5 @@
+[![PageSpeed Performance](/public/Screenshot_20260411-005139.png)](https://ngconsulting.cz)
+
 🚀 Technická optimalizace a refresh webu NG Consulting
 Web: ngconsulting.cz
 Výsledek: Zvýšení skóre PageSpeed z „červené zóny“ na špičkových 94/100/100/100.

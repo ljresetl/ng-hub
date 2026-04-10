@@ -1,26 +1,22 @@
 import type { Metadata } from "next";
-import { Montserrat, Inter } from "next/font/google"; // Імпортуємо шрифти
+import { Montserrat, Inter } from "next/font/google";
 import '../styles/globals.scss';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 
-<link rel="preload" href="/1024.avif" as="image" fetchpriority="high" />
-<link rel="preload" href="/1024G.avif" as="image" fetchpriority="high" />
-  
-
-// Налаштування Montserrat для заголовків
+// Налаштування Montserrat
 const montserrat = Montserrat({
   subsets: ["latin", "latin-ext"],
   weight: ["700", "800", "900"],
-  variable: "--font-montserrat", // Змінна для CSS
+  variable: "--font-montserrat",
   display: "swap",
 });
 
-// Налаштування Inter для основного тексту
+// Налаштування Inter
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
   weight: ["400", "500", "600"],
-  variable: "--font-inter", // Змінна для CSS
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -29,33 +25,23 @@ export const metadata: Metadata = {
     default: "NG Consulting | Moderní webová řešení a digitální marketing",
     template: "%s | NG Consulting"
   },
-  description: "Pomáháme firmám růst v digitálním světě skrze moderní technologie, tvorbu webů a strategický marketing. Vaše digitální budoucnost začíná zde.",
+  description: "Pomáháme firmám růst v digitálním světě skrze moderní technologie, tvorbu webů a strategický marketing.",
+  keywords: ["tvorba webu", "digitální marketing", "NG Consulting", "SEO"],
   
-  keywords: [
-    "tvorba webu", 
-    "digitální marketing", 
-    "NG Consulting", 
-    "vývoj aplikací", 
-    "SEO optimalizace",
-    "Jablonec nad Nisou",
-    "webdesign"
-  ],
-
+  // Додаємо preload через metadata для кращого SEO та LCP
+  alternates: {
+    canonical: "https://ngconsulting.cz",
+  },
+  
   openGraph: {
     title: "NG Consulting | Moderní webová řešení",
-    description: "Tvoříme weby, které prodávají. Profesionální přístup k vašemu digitálnímu růstu.",
-    url: "https://ngconsulting.cz", // Офіційний домен
+    description: "Tvoříme weby, které prodávají.",
+    url: "https://ngconsulting.cz",
     siteName: "NG Consulting",
     locale: "cs_CZ",
     type: "website",
   },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "NG Consulting | Digitální agentura",
-    description: "Moderní webová řešení a marketing.",
-  },
-
+  
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
@@ -69,6 +55,24 @@ export default function RootLayout({
 }) {
   return (
     <html lang="cs" className={`${montserrat.variable} ${inter.variable}`}>
+      <head>
+        {/* ПРІОРИТЕТНЕ ЗАВАНТАЖЕННЯ ЗОБРАЖЕНЬ (LCP FIX) */}
+        {/* Це змушує браузер почати качати фото ще до того, як завантажиться JS-код анімації */}
+        <link 
+          rel="preload" 
+          href="/1024.avif" 
+          as="image" 
+          type="image/avif" 
+          fetchPriority="high" 
+        />
+        <link 
+          rel="preload" 
+          href="/1024G.avif" 
+          as="image" 
+          type="image/avif" 
+          fetchPriority="high" 
+        />
+      </head>
       <body style={{ fontFamily: "var(--font-inter), sans-serif" }}>
         <Header /> 
         <main>{children}</main>

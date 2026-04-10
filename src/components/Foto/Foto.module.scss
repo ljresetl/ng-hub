@@ -2,107 +2,87 @@
   position: relative;
   width: 100%;
   background-color: #fff;
-  overflow: hidden; // Щоб нічого не вилазило
 }
 
 .container {
   width: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 .houseCanvas {
   position: relative;
   width: 100%;
   
-  // --- ВИПРАВЛЕННЯ ДЛЯ ЯКОСТІ ФОТО ---
-  
-  // 1. Пропорція: Робимо її більш високою (квадратною),
-  // щоб картинка не розтягувалася по вертикалі.
-  aspect-ratio: 1 / 1.1; 
-  
-  // 2. Вибір фото (залиш як було)
+  // Вибір фото
   --hero-bg: url('/400M.avif');
-  
   @media (min-width: 768px) {
     --hero-bg: url('/1024.avif');
-    // На десктопі панорама (вузька)
-    aspect-ratio: 16 / 5;
   }
-  
+
   background-image: var(--hero-bg);
   
-  // 3. Масштабування (ЦЕ НАЙВАЖЛИВІШЕ):
-  // Використовуємо object-fit: cover; через background-size
-  background-size: cover; 
-  background-position: center; // Центруємо картинку
-  background-repeat: no-repeat;
+  // --- НАЛАШТУВАННЯ "ЦІЛОЇ" ФОТОГРАФІЇ ---
   
-  // 4. Покращення чіткості для екранів Retina (iPhone/Android):
-  // Ми підказуємо браузеру не згладжувати пікселі надто сильно.
-  image-rendering: -webkit-optimize-contrast; 
-  image-rendering: crisp-edges;
+  // 1. Змінюємо cover на contain, щоб фото влізло ПОВНІСТЮ
+  background-size: contain; 
+  background-repeat: no-repeat;
+  background-position: center top; // Притискаємо до верху
+
+  // 2. Пропорції (ВАЖЛИВО):
+  // Щоб не було обрізаних країв, aspect-ratio має точно 
+  // відповідати пропорціям твого файлу 400M.avif.
+  // Якщо фото квадратне — 1/1. Якщо горизонтальне — 16/9.
+  aspect-ratio: 1 / 1; 
+
+  @media (min-width: 768px) {
+    aspect-ratio: 16 / 5;
+    background-position: center;
+  }
 }
 
-// Решта стилів залишаються без змін, вони гарні
 .textOverlay {
   position: absolute;
   inset: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  // Переносимо текст нижче, щоб він не перекривав обличчя або важливі деталі
+  justify-content: flex-end; 
   align-items: center;
-  z-index: 5;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.6) 100%);
-  padding: 0 20px;
+  padding-bottom: 20px;
+  
+  // М'яке затемнення внизу для читабельності тексту
+  background: linear-gradient(to top, rgba(255,255,255,0.8) 0%, transparent 40%);
 
   @media (min-width: 768px) {
-    justify-content: flex-end;
     padding-bottom: 5%;
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.4), transparent 70%);
   }
 }
 
 .textContainer {
-  width: 100%;
   text-align: center;
+  padding: 0 15px;
 }
 
 .title {
-  font-size: clamp(14px, 5vw, 36px);
+  font-size: clamp(16px, 6vw, 36px);
   font-weight: 900;
-  text-transform: uppercase;
   color: #111;
-  margin: 0 0 8px 0;
+  margin-bottom: 5px;
 }
 
 .subtitle {
-  font-size: clamp(10px, 3vw, 20px);
+  font-size: clamp(12px, 3.5vw, 18px);
   font-weight: 500;
   color: #333;
-  margin: 0 0 24px 0;
-}
-
-.ctaWrapper {
-  display: flex;
-  justify-content: center;
+  margin-bottom: 15px;
 }
 
 .ctaButton {
   display: inline-block;
-  padding: 12px 28px;
+  padding: 10px 24px;
   background-color: #000;
   color: #fff;
-  font-size: clamp(10px, 2.5vw, 16px);
-  font-weight: 700;
-  text-transform: uppercase;
   text-decoration: none;
+  font-weight: 700;
   border-radius: 4px;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: #fff;
-    color: #000;
-    border: 2px solid #000;
-  }
+  font-size: 14px;
 }

@@ -25,6 +25,16 @@ Projekt je navržen s důrazem na maximální jednoduchost aktualizace dat:
 - **Dynamické projekty a reference:** Sekce "Naše projekty" a "Reference" jsou řízeny externími JSON konfiguračními soubory.
 - **Okamžitá aktualizace:** Stačí přidat nový záznam do JSON souboru a nová karta projektu nebo logo reference se **automaticky a okamžitě** zobrazí na webu bez nutnosti měnit kód komponentů.
 - **Placeholdery:** Systém podporuje snadné vkládání projektů ve fázi přípravy (status: "coming-soon"), což odpovídá požadavkům na budoucí rozvoj.
+
+- > [!NOTE]
+> **Vysvětlení stability výkonu (PageSpeed Insights):**
+> Aktuální skóre se pohybuje v rozmezí **94–98/100**. Drobné kolísání je přirozené a závisí na externích faktorech:
+> 1. **Odezva serveru (TTFB):** Rychlost sítě a aktuální vytížení CDN (Vercel).
+> 2. **Třetí strany:** Načítání externích skriptů nebo fontů.
+> 3. **Metrika LCP:** Závisí na rychlosti vykreslení hlavního vizuálu (Hero sekce) u uživatele.
+> 
+> Projekt byl optimalizován tak, aby i při přidání dalších referencí a projektů **neklesl pod hranici 90 bodů (zelená zóna)**, což zajišťuje špičkové SEO a uživatelskou zkušenost.
+> 
 - 
 📊 Výsledky měření
 

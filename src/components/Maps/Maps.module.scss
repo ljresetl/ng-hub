@@ -1,50 +1,49 @@
 .mapsSection {
   padding: 60px 0;
-  background-color: #f9f9f9; // або ваш колір
+  background-color: #f9f9f9;
 }
 
 .container {
-  max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
-
   display: flex;
-  flex-direction: column; // Мобільні: все в колонку
+  flex-direction: column; // База для мобілки: все в колонку
   gap: 30px;
 
   @media (min-width: 768px) {
     flex-direction: row; // Планшети та десктопи: в ряд
     align-items: stretch;
+    max-width: 1200px;
   }
 }
 
 .mapWrapper {
   width: 100%;
-  height: 350px; // Висота карти на мобільному
+  height: 350px; // Висота для мобільного
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 
   @media (min-width: 768px) {
-    flex: 1; // Займає доступний простір
-    height: auto; // Підлаштовується під висоту картки
+    flex: 1;
+    height: auto;
     min-height: 450px;
   }
 }
 
 .infoCard {
-  // padding-left: 20px;
   width: 100%;
   background: #fff;
-  // padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 20px 0; // Додав базовий вертикальний падінг
 
   @media (min-width: 768px) {
-    width: 400px; // Фіксована ширина картки на десктопі
+    width: 400px; // Фіксована ширина тільки на десктопі
+    padding: 30px 0;
   }
 }
 
@@ -92,20 +91,25 @@
 }
 
 .directionsBtn {
-  display: inline-block;
+  display: block; // Замінив на block для легшого центрування
   text-align: center;
-  background-color: #007bff; // Ваш колір
+  background-color: #007bff;
   color: #fff;
   padding: 15px 25px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
   transition: background 0.3s ease;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  width: 70%;
+  margin: 0 auto 10px;
+  width: 80%; // Трохи збільшив для кращого tap target на мобілці
 
-  &:hover {
-    background-color: #0056b3;
+  @media (min-width: 768px) {
+    width: 70%;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: #0056b3;
+    }
   }
 }

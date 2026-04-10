@@ -1,7 +1,13 @@
 "use client";
+
 import React from "react";
-import Image from "next/image";
 import styles from "./Foto.module.scss";
+
+// Тексти виносимо в константи, щоб код був чистішим
+const HERO_TITLE = "Vaše digitální symfonie.";
+const HERO_SUBTITLE = "My dirigujeme – vy si vychutnáváte výsledek.";
+const CTA_BUTTON_TEXT = "Způsobit revoluci"; // "Спричинити революцію"
+const CTA_BUTTON_LINK = "#contact"; // Зазвичай веде до форми контакту
 
 const Foto: React.FC = () => {
   return (
@@ -9,34 +15,27 @@ const Foto: React.FC = () => {
       <div className={styles.container}>
         <div className={styles.houseCanvas}>
           
-          {/* Ця картинка потрібна ТІЛЬКИ для Google, щоб LCP був зеленим */}
-          {/* Вона завантажиться першою, але буде захована під кубиками */}
-          <div className={styles.lcpImage}>
-            <Image 
-              src="/400M.avif" 
-              alt="Background" 
-              fill 
-              priority 
-              sizes="100vw"
-              style={{ objectFit: 'cover' }}
-            />
-          </div>
-
-          <div className={styles.bricksWrapper}>
-            {[...Array(24)].map((_, i) => (
-              <div key={i} className={styles.brick} />
-            ))}
-          </div>
-
+          {/* ОБОВ'ЯЗКОВО: Переконайся, що в твоїй темі */}
+          {/* Header та Footer рендеряться в DOM для PageSpeed */}
+          
           <div className={styles.textOverlay}>
             <div className={styles.textContainer}>
-              <h1 className={styles.line1}>Vaše digitální symfonie.</h1>
-              <p className={styles.line2}>My dirigujeme – vy si vychutnáváte výsledek.</p>
+              <h1 className={styles.title}>{HERO_TITLE}</h1>
+              <p className={styles.subtitle}>{HERO_SUBTITLE}</p>
+              
+              {/* НОВА КНОПКА ЗАКЛИКУ ДО ДІЇ */}
+              <div className={styles.ctaWrapper}>
+                <a href={CTA_BUTTON_LINK} className={styles.ctaButton}>
+                  {CTA_BUTTON_TEXT}
+                </a>
+              </div>
             </div>
           </div>
+          
         </div>
       </div>
     </section>
   );
 };
+
 export default Foto;

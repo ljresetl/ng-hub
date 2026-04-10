@@ -9,7 +9,7 @@ const montserrat = Montserrat({
   subsets: ["latin", "latin-ext"],
   weight: ["700", "800", "900"],
   variable: "--font-montserrat",
-  display: "swap", // Це запобігає блокуванню відображення тексту
+  display: "swap", 
 });
 
 // Налаштування Inter
@@ -52,9 +52,7 @@ export default function RootLayout({
   return (
     <html lang="cs" className={`${montserrat.variable} ${inter.variable}`}>
       <head>
-        {/* Додаємо Preconnect, щоб PageSpeed не сварився на затримку з'єднання */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Рядки preconnect видалено, щоб уникнути помилок про невикористані джерела */}
       </head>
       <body className={inter.className}>
         <Header /> 

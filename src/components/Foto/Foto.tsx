@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image"; // Імпортуємо Image
 import TextAnimation from "./TextAnimation";
 import styles from "./Foto.module.scss";
 
@@ -13,13 +14,15 @@ const Foto: React.FC = () => {
       <div className={styles.container}>
         <div className={styles.houseCanvas}>
           
-          {/* Одна статична картинка з пріоритетом завантаження */}
-          <img 
+          {/* Використовуємо Next.js Image для автоматичної оптимізації */}
+          <Image 
             src="/1024.avif" 
             alt="NG Consulting Hero" 
+            fill // Заповнює батьківський контейнер
+            priority // Найвищий пріоритет (LCP Fix)
             className={styles.heroImg}
-            // fetchPriority допомагає Google зрозуміти, що це головний елемент (LCP)
-            fetchPriority="high" 
+            sizes="100vw" // Каже браузеру, що картинка на весь екран
+            quality={75} // Трохи зменшуємо якість для швидкості (непомітно для ока)
           />
 
           <div className={styles.textOverlay}>

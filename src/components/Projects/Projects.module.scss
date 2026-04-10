@@ -38,7 +38,7 @@
   .starIcon {
     width: 22px;
     height: 22px;
-    color: #0088cc; // Посилений контраст
+    color: #0077b5; // Більш насичений синій для контрасту
     display: block;
   }
 }
@@ -58,7 +58,7 @@
   width: 100%;
   max-width: 380px;
   background: #fff;
-  border: 1px solid #ddd; // Більш чітка рамка для контрасту
+  border: 1px solid #cccccc; // Більш темна рамка замість #eee
   border-radius: 16px;
   padding: 30px;
   text-align: left;
@@ -83,9 +83,9 @@
 
 .cardSubtitle {
   font-size: 14px;
-  color: #0088cc; // Посилений контраст
+  color: #0077b5; // Посилений контраст для синього тексту
   margin-bottom: 25px;
-  font-weight: 700; // Додано жирності для кращої читабельності
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -111,7 +111,7 @@
 .serviceIcon {
   width: 24px;
   height: 24px;
-  color: #0088cc; // Посилений контраст
+  color: #0077b5; // Посилений контраст для іконок
   flex-shrink: 0;
 
   svg {
@@ -125,7 +125,7 @@
 .tag {
   font-size: 13px;
   font-weight: 700;
-  color: #222; // Темніший для контрасту
+  color: #222;
   text-transform: uppercase;
 }
 
@@ -136,7 +136,7 @@
 
   li {
     font-size: 13px;
-    color: #555; // Темніший сірий для контрасту (AA-compliant)
+    color: #4a4a4a; // Більш темний сірий (замість #666) для читабельності
     margin-bottom: 5px;
     position: relative;
 
@@ -144,7 +144,7 @@
       content: "•";
       position: absolute;
       left: -15px;
-      color: #0088cc; // Посилений контраст
+      color: #0077b5;
       font-weight: bold;
     }
   }
@@ -152,9 +152,9 @@
 
 .link {
   margin-top: auto;
-  font-weight: 700;
+  font-weight: 800; // Трохи товстіший шрифт для контрасту
   font-size: 14px;
-  color: #0088cc; // Посилений контраст
+  color: #0077b5; // Посилений контраст
   text-transform: uppercase;
   display: inline-flex;
   align-items: center;
@@ -190,7 +190,7 @@
 
   @media (hover: hover) {
     &:hover {
-      background: #0088cc; // Посилений контраст
+      background: #0077b5;
       transform: scale(1.05);
     }
   }

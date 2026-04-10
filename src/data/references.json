@@ -7,5 +7,15 @@
   { "id": 6, "name": "GREEN PEAK", "domain": "greenpeak.cz", "webUrl": "#" },
   { "id": 7, "name": "4 PROJEKT", "domain": "4projekt.cz", "webUrl": "https://www.4projekt.cz/" },
   { "id": 8, "name": "FUTURENTO", "domain": "futurento.cz", "webUrl": "https://futurento.cz/" },
-  { "id": 9, "name": "POVINNE RUCENI", "domain": "povinneruceni.com", "webUrl": "https://www.povinneruceni.com/" }
+  { "id": 9, "name": "POVINNE RUCENI", "domain": "povinneruceni.com", "webUrl": "https://www.povinneruceni.com/" },
+  { "id": 10, "name": "PROJECT ALPHA", "domain": "alpha-consult.cz", "webUrl": "#" },
+  { "id": 11, "name": "E-COMMERCE HUB", "domain": "nexthub.cz", "webUrl": "#" },
+  { "id": 12, "name": "FINANCE PRO", "domain": "financepro.cz", "webUrl": "#" },
+  { "id": 13, "name": "AUTO INSURE", "domain": "autoinsure.cz", "webUrl": "#" },
+  { "id": 14, "name": "DIGITAL FLOW", "domain": "dflow.cz", "webUrl": "#" },
+  { "id": 15, "name": "SMART CITY", "domain": "smartcity-ng.cz", "webUrl": "#" },
+  { "id": 16, "name": "LEGAL TECH", "domain": "legalportal.cz", "webUrl": "#" },
+  { "id": 17, "name": "REAL ESTATE X", "domain": "rex-reality.cz", "webUrl": "#" },
+  { "id": 18, "name": "HEALTH LINE", "domain": "healthline.cz", "webUrl": "#" },
+  { "id": 19, "name": "ECO ENERGY", "domain": "eco-energy.cz", "webUrl": "#" }
 ]

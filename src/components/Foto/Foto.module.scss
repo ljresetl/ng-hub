@@ -1,30 +1,24 @@
 .hero {
   position: relative;
   width: 100%;
-  // Мобільна фотка за замовчуванням
+  // Мобільне фото
   --hero-bg: url('/400M.avif');
 
   @media (min-width: 768px) {
-    // Десктопна фотка для великих екранів
+    // Десктопне фото
     --hero-bg: url('/1024.avif');
   }
-}
-
-.container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 .houseCanvas {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 11; // Формат для мобілок
+  aspect-ratio: 16 / 11;
   overflow: hidden;
-  background-color: #ffffff;
+  background-color: #fff;
 
   @media (min-width: 768px) {
-    aspect-ratio: 16 / 5; // Формат для ПК
+    aspect-ratio: 16 / 5;
   }
 }
 
@@ -33,14 +27,13 @@
   inset: 0;
   display: flex;
   flex-wrap: wrap;
-  z-index: 1;
+  // Важливо: translateZ прискорює рендер через відеокарту
+  transform: translateZ(0);
 }
 
 .brick {
   background-repeat: no-repeat;
-  // Покращує чіткість країв кубиків
-  outline: 1px solid transparent; 
-  backface-visibility: hidden;
+  will-change: opacity, transform;
 }
 
 .textOverlay {
@@ -52,29 +45,22 @@
   padding-bottom: 12%;
   z-index: 10;
   pointer-events: none;
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
-
-  @media (min-width: 768px) {
-    padding-bottom: 5%;
-  }
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.4), transparent 60%);
 }
 
 .textContainer {
-  width: 100%;
   text-align: center;
 }
 
 .line1 {
   font-size: clamp(10px, 3.5vw, 32px);
   font-weight: 900;
-  color: #111;
   text-transform: uppercase;
-  margin: 0;
+  color: #111;
 }
 
 .line2 {
   font-size: clamp(8px, 2.5vw, 18px);
   font-weight: 500;
   color: #333;
-  margin: 4px 0 0 0;
 }

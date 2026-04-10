@@ -6,83 +6,119 @@
 
 .container {
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .houseCanvas {
   position: relative;
   width: 100%;
   
-  // Вибір фото
-  --hero-bg: url('/1024 (3).avif');
-  @media (min-width: 768px) {
-    --hero-bg: url('/1024.avif');
-  }
-
-  background-image: var(--hero-bg);
-  
-  // --- НАЛАШТУВАННЯ "ЦІЛОЇ" ФОТОГРАФІЇ ---
-  
-  // 1. Змінюємо cover на contain, щоб фото влізло ПОВНІСТЮ
-  background-size: contain; 
-  background-repeat: no-repeat;
-  background-position: center top; // Притискаємо до верху
-
-  // 2. Пропорції (ВАЖЛИВО):
-  // Щоб не було обрізаних країв, aspect-ratio має точно 
-  // відповідати пропорціям твого файлу 400M.avif.
-  // Якщо фото квадратне — 1/1. Якщо горизонтальне — 16/9.
-  aspect-ratio: 1 / 1; 
+  // ПРОПОРЦІЯ: На мобілці робимо 1:1.1, щоб бачити більше фото
+  aspect-ratio: 1 / 1.1; 
+  overflow: hidden;
+  background-color: #f0f0f0; // Світлий фон, поки вантажиться фото
 
   @media (min-width: 768px) {
+    // На десктопі робимо вузьку панораму
     aspect-ratio: 16 / 5;
-    background-position: center;
   }
+}
+
+// Контейнери для розділення фото
+.mobileOnly {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.desktopOnly {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+
+.bgImage {
+  // Цей параметр змушує фото заповнювати контейнер повністю
+  object-fit: cover; 
+  object-position: center;
+  
+  // Для кращої чіткості на смартфонах
+  image-rendering: -webkit-optimize-contrast;
 }
 
 .textOverlay {
   position: absolute;
   inset: 0;
+  z-index: 5; // Поверх фото
   display: flex;
   flex-direction: column;
-  // Переносимо текст нижче, щоб він не перекривав обличчя або важливі деталі
-  justify-content: flex-end; 
+  justify-content: center; // Центруємо контент вертикально
   align-items: center;
-  padding-bottom: 20px;
+  padding: 20px;
   
-  // М'яке затемнення внизу для читабельності тексту
-  background: linear-gradient(to top, rgba(255,255,255,0.8) 0%, transparent 40%);
+  // М'який градієнт для читабельності тексту
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.6) 100%);
 
   @media (min-width: 768px) {
-    padding-bottom: 5%;
+    justify-content: flex-end;
+    padding-bottom: 50px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.5), transparent 60%);
   }
 }
 
 .textContainer {
+  width: 100%;
   text-align: center;
-  padding: 0 15px;
 }
 
 .title {
-  font-size: clamp(16px, 6vw, 36px);
+  font-size: clamp(20px, 8vw, 36px);
   font-weight: 900;
   color: #111;
-  margin-bottom: 5px;
+  text-transform: uppercase;
+  margin: 0 0 10px 0;
+  line-height: 1.1;
 }
 
 .subtitle {
   font-size: clamp(12px, 3.5vw, 18px);
   font-weight: 500;
   color: #333;
-  margin-bottom: 15px;
+  margin: 0 0 25px 0;
+}
+
+.ctaWrapper {
+  display: flex;
+  justify-content: center;
 }
 
 .ctaButton {
   display: inline-block;
-  padding: 10px 24px;
+  padding: 14px 32px;
   background-color: #000;
   color: #fff;
-  text-decoration: none;
-  font-weight: 700;
-  border-radius: 4px;
   font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+  border: 2px solid #000;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: transparent;
+    color: #000;
+  }
 }

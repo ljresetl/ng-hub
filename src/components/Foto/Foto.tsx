@@ -4,6 +4,9 @@ import React from "react";
 import Image from "next/image";
 import styles from "./Foto.module.scss";
 
+const HERO_TEXT_1 = "Vaše digitální symfonie.";
+const HERO_TEXT_2 = "My dirigujeme – vy si vychutnáváte výsledek.";
+
 const Foto: React.FC = () => {
   return (
     <section className={styles.hero}>
@@ -36,8 +39,13 @@ const Foto: React.FC = () => {
 
           <div className={styles.textOverlay}>
             <div className={styles.textContainer}>
-              <h1 className={styles.line1}>Vaše digitální symfonie.</h1>
-              <p className={styles.line2}>My dirigujeme – vy si vychutnáváte výsledek.</p>
+              {/* Додано класи з анімацією появи */}
+              <h1 className={`${styles.line1} ${styles.animateFadeIn}`}>
+                {HERO_TEXT_1}
+              </h1>
+              <p className={`${styles.line2} ${styles.animateFadeInDelayed}`}>
+                {HERO_TEXT_2}
+              </p>
             </div>
           </div>
         </div>

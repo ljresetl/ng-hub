@@ -1,13 +1,17 @@
 .footer {
   padding: 20px 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1); // опціонально, для розділення
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   background-color: transparent;
 }
 
 .container {
-  max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  
+  // Обмежуємо ширину тільки для великих екранів
+  @media (min-width: 1200px) {
+    max-width: 1200px;
+  }
 }
 
 .text {
@@ -15,7 +19,7 @@
   font-size: 14px;
   letter-spacing: 1px;
   color: #666;
-  text-align: center; // центрування по горизонталі
+  text-align: center;
   font-weight: 500;
 }
 
@@ -25,7 +29,10 @@
   font-weight: 700;
   transition: color 0.3s ease;
 
-  &:hover {
-    color: #007bff; // колір при наведенні
+  // Ефект наведення тільки для десктопів
+  @media (hover: hover) {
+    &:hover {
+      color: #007bff;
+    }
   }
 }

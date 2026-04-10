@@ -27,3 +27,10 @@ Projekt byl úspěšně optimalizován a nasazen. Na výsledky se můžete podí
 
 **Autor projektu:** [WebDevCompass](https://www.webdevcompass.com/)
 **Odkaz na web:** [ngconsulting.cz](https://ngconsulting.cz)
+
+
+### 🔗 Rozcestník projektů
+Web slouží jako centrální uzel pro ekosystém NG Consulting. 
+- Implementována struktura pro snadné přidávání dalších projektů (placeholders).
+- Přímé napojení na klíčové služby: ngstranky.cz, ngemailing.cz.
+- 

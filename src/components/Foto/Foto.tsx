@@ -10,27 +10,27 @@ const Foto: React.FC = () => {
       <div className={styles.container}>
         <div className={styles.houseCanvas}>
           
-          {/* Мобільне фото: 400M.avif */}
+          {/* МОБІЛЬНЕ ФОТО: завантажується тільки на малих екранах */}
           <div className={styles.mobileImg}>
             <Image 
               src="/400M.avif" 
               alt="NG Consulting Mobile" 
               fill
               priority
-              quality={75}
-              sizes="100vw"
+              quality={80}
+              sizes="(max-width: 767px) 100vw, 1px"
             />
           </div>
 
-          {/* Десктопне фото: 1024.avif */}
+          {/* ДЕСКТОПНЕ ФОТО: завантажується тільки на великих екранах */}
           <div className={styles.desktopImg}>
             <Image 
               src="/1024.avif" 
               alt="NG Consulting Desktop" 
               fill
               priority
-              quality={80}
-              sizes="100vw"
+              quality={85}
+              sizes="(min-width: 768px) 100vw, 1px"
             />
           </div>
 

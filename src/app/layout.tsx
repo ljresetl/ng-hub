@@ -50,15 +50,7 @@ export default function RootLayout({
   return (
     <html lang="cs" className={`${montserrat.variable} ${inter.variable}`}>
       <head>
-        {/* ПРАВКА 1: Залишаємо preload ТІЛЬКИ для першої картинки. 
-            Завантаження другої (1024G) паралельно — це помилка, вона краде швидкість у першої! */}
-        <link 
-          rel="preload" 
-          href="/1024.avif" 
-          as="image" 
-          type="image/avif" 
-          fetchPriority="high" 
-        />
+
       </head>
       {/* ПРАВКА 2: Прибираємо inline style з body, якщо можна. 
           Або хоча б переконуємось, що немає Layout Shift */}

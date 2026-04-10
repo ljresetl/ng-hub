@@ -18,16 +18,18 @@ const Foto: React.FC = () => {
   const bricksArray = Array.from({ length: COLUMNS * ROWS }, (_, i) => i);
 
   useEffect(() => {
-    // 1. Перша затримка: 4 секунди перше фото стоїть нерухомо для Google та користувача
+    // 1. Перша затримка для Google: 4 секунди перше фото стоїть нерухомо
     const initialTimer = setTimeout(() => {
       setIsInitial(false);
-      setIndex(1); // Перемикаємо на друге фото (1024G.avif)
+      setIndex(1);
     }, 4000);
 
-    // 2. Далі запускаємо нескінченний цикл зміни фото кожні 6 секунд
+    // 2. Цикл зміни фото
     const interval = setInterval(() => {
+      // Спочатку "скидаємо" фото (ефект вильоту)
+      // AnimatePresence з mode="wait" автоматично почекає завершення exit анімації
       setIndex((prev) => (prev + 1) % images.length);
-    }, 6000);
+    }, 6000); // Загальний цикл
 
     return () => {
       clearTimeout(initialTimer);
@@ -40,16 +42,23 @@ const Foto: React.FC = () => {
       <div className={styles.container}>
         <div className={styles.houseCanvas}>
           
+          {/* mode="wait" забезпечує, що старе фото повністю зникне, 
+              перш ніж почне з'являтися нове. Це створює момент "порожнечі" */}
           <AnimatePresence mode="wait">
             <motion.div 
               key={index} 
               className={styles.bricksWrapper}
+              // Додаємо невелику затримку появи самого контейнера (0.5 сек), 
+              // щоб між розльотом і зльотом була пауза
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ delay: 0.5 }} 
             >
               {bricksArray.map((i) => {
                 const col = i % COLUMNS;
                 const row = Math.floor(i / COLUMNS);
                 
-                // Формули розкиду для ефекту вибуху/збирання
                 const initialX = (i * 173 % 2000) - 1000; 
                 const initialY = (i * 247 % 2000) - 1000;
                 const initialRotate = (i * 133 % 360);
@@ -58,7 +67,6 @@ const Foto: React.FC = () => {
                   <motion.div
                     key={i}
                     className={styles.brick}
-                    // Якщо це самий перший запуск — показуємо без анімації (для SEO)
                     initial={isInitial ? { opacity: 1, x: 0, y: 0, rotate: 0 } : { 
                       x: initialX, 
                       y: initialY, 
@@ -66,7 +74,6 @@ const Foto: React.FC = () => {
                       rotate: initialRotate
                     }}
                     animate={{ x: 0, y: 0, opacity: 1, rotate: 0 }}
-                    // Коли фото зникає — воно розлітається
                     exit={{ 
                       x: initialX * 0.5, 
                       y: initialY * 0.5, 
@@ -74,7 +81,7 @@ const Foto: React.FC = () => {
                       rotate: initialRotate / 2
                     }}
                     transition={{
-                      duration: 1.5,
+                      duration: 1.2, // Трохи швидше складання
                       delay: i * 0.005,
                       ease: [0.22, 1, 0.36, 1],
                     }}

@@ -20,11 +20,12 @@
 .houseCanvas {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 7; 
+  // ЗМІНЕНО: Було 16/7. 16/5 зробить секцію значно нижчою на десктопі.
+  aspect-ratio: 16 / 5; 
   display: flex;
   flex-wrap: wrap;
   background-color: rgba(0, 0, 0, 0.03);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.01);
   overflow: hidden;
 }
 
@@ -62,44 +63,44 @@
 
   background: radial-gradient(
     circle,
-    rgba(255, 255, 255, 0.6) 0%,
-    rgba(255, 255, 255, 0) 75%
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0) 80%
   );
 }
 
 .heroText {
-  font-size: clamp(22px, 4vw, 54px); 
+  // ЗМІНЕНО: Трохи зменшено шрифт для десктопа (було до 54px)
+  font-size: clamp(20px, 3.5vw, 42px); 
   font-weight: 900;
   text-align: center;
   color: #111;
   line-height: 1.1;
-  max-width: 850px; 
+  max-width: 800px; 
   width: 90%;
   font-family: var(--heading-font, "Montserrat", sans-serif);
   text-transform: uppercase;
   letter-spacing: -0.02em;
 }
 
-// Адаптивність
+// АДАПТИВНІСТЬ
 @media (max-width: 1024px) {
   .houseCanvas {
-    aspect-ratio: 16 / 9; 
+    aspect-ratio: 16 / 6; 
   }
 }
 
 @media (max-width: 768px) {
   .houseCanvas {
-    // ЗМІНЕНО: aspect-ratio 3/1 робить фото вужчим (нижчим). 
-    // Прибрано min-height, щоб вона не заважала зменшенню.
-    aspect-ratio: 3 / 1.5; 
-    min-height: 250px; // Можеш регулювати це значення або видалити
+    // ЗМІНЕНО: Робимо картинку низькою на мобільних
+    aspect-ratio: 16 / 10; 
+    min-height: 200px; // Мінімальна висота, щоб текст вліз
   }
   
   .heroText {
     max-width: 90%;
     line-height: 1.1;
-    // ЗМІНЕНО: зменшено діапазон шрифту. Було (20px, 6vw, 28px)
-    font-size: clamp(16px, 5vw, 22px); 
+    // ЗМІНЕНО: Ще трохи зменшили шрифт для мобілок
+    font-size: clamp(15px, 5vw, 20px); 
   }
 }
 

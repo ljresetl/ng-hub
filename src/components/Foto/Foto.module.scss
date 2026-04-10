@@ -13,37 +13,31 @@
 .houseCanvas {
   position: relative;
   width: 100%;
-  // Мобільна пропорція (квадратна/вертикальна)
+  // Мобільна пропорція
   aspect-ratio: 1 / 1.1; 
   overflow: hidden;
 
   @media (min-width: 768px) {
-    // Десктопна пропорція (широка)
+    // Десктопна пропорція
     aspect-ratio: 16 / 5;
   }
 }
 
-// ЛОГІКА ПЕРЕМИКАННЯ:
+// Керування відображенням фото
 .mobileImg {
-  display: block; // Показуємо на мобілці
+  display: block;
   width: 100%;
   height: 100%;
   position: relative;
-
-  @media (min-width: 768px) {
-    display: none; // Ховаємо на десктопі
-  }
+  @media (min-width: 768px) { display: none; }
 }
 
 .desktopImg {
-  display: none; // Ховаємо на мобілці
+  display: none;
   width: 100%;
   height: 100%;
   position: relative;
-
-  @media (min-width: 768px) {
-    display: block; // Показуємо на десктопі
-  }
+  @media (min-width: 768px) { display: block; }
 }
 
 .textOverlay {
@@ -56,9 +50,7 @@
   z-index: 5;
   background: linear-gradient(to top, rgba(255, 255, 255, 0.4), transparent 60%);
 
-  @media (min-width: 768px) {
-    padding-bottom: 5%;
-  }
+  @media (min-width: 768px) { padding-bottom: 5%; }
 }
 
 .textContainer {
@@ -78,4 +70,34 @@
   font-size: clamp(8px, 3vw, 18px);
   font-weight: 500;
   color: #333;
+}
+
+// --- НОВА CSS АНІМАЦІЯ ПОЯВИ ТЕКСТУ ---
+
+// Базова анімація (плавна поява знизу)
+@keyframes fadeInSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px); // Починається трохи нижче
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); // Кінцева позиція
+  }
+}
+
+// Клас для першого рядка (з'являється через 1с)
+.animateFadeIn {
+  opacity: 0; // За замовчуванням прихований
+  animation: fadeInSlideUp 0.7s ease-out forwards;
+  animation-delay: 1.0s; // Затримка
+  will-change: opacity, transform; // Оптимізація для браузера
+}
+
+// Клас для другого рядка (з'являється через 1.3с)
+.animateFadeInDelayed {
+  opacity: 0; // За замовчуванням прихований
+  animation: fadeInSlideUp 0.7s ease-out forwards;
+  animation-delay: 1.3s; // Більша затримка
+  will-change: opacity, transform;
 }

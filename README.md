@@ -19,6 +19,13 @@ Barevná paleta: Modernizovány odstíny vedlejších prvků (labely, podnadpisy
 Optimalizace zdrojů: Odstraněny požadavky blokující vykreslování stránky (render-blocking).
 Práce s písmy: Nastaveno korektní načítání přes next/font s nulovým Layout Shiftem (přeblikávání textu).
 Čistý kód: Úplná eliminace zbytečných těžkých knihoven ve prospěch nativních prohlížečových řešení (IntersectionObserver).
+
+### 🛠️ Snadná správa obsahu (Scalability)
+Projekt je navržen s důrazem na maximální jednoduchost aktualizace dat:
+- **Dynamické projekty a reference:** Sekce "Naše projekty" a "Reference" jsou řízeny externími JSON konfiguračními soubory.
+- **Okamžitá aktualizace:** Stačí přidat nový záznam do JSON souboru a nová karta projektu nebo logo reference se **automaticky a okamžitě** zobrazí na webu bez nutnosti měnit kód komponentů.
+- **Placeholdery:** Systém podporuje snadné vkládání projektů ve fázi přípravy (status: "coming-soon"), což odpovídá požadavkům na budoucí rozvoj.
+- 
 📊 Výsledky měření
 
 ![PageSpeed Score](public/Screenshot_20260411-003530.png)

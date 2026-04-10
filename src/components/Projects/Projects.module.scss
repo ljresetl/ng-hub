@@ -4,12 +4,10 @@
 }
 
 .container {
-  // База для мобілки: повна ширина
   margin: 0 auto;
   padding: 0 20px;
   text-align: center;
 
-  // Тільки для великих екранів
   @media (min-width: 1200px) {
     max-width: 1200px;
   }
@@ -40,19 +38,19 @@
   .starIcon {
     width: 22px;
     height: 22px;
-    color: #00aaff;
+    color: #0088cc; // Посилений контраст
     display: block;
   }
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr; // Одна колонка для мобілки
+  grid-template-columns: 1fr;
   gap: 25px;
   justify-items: center;
 
   @media (min-width: 768px) {
-    grid-template-columns: repeat(3, 1fr); // Три колонки для планшета/десктопа
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -60,7 +58,7 @@
   width: 100%;
   max-width: 380px;
   background: #fff;
-  border: 1px solid #eee;
+  border: 1px solid #ddd; // Більш чітка рамка для контрасту
   border-radius: 16px;
   padding: 30px;
   text-align: left;
@@ -68,7 +66,6 @@
   flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-  // Ефекти наведення тільки для пристроїв з мишкою
   @media (hover: hover) {
     &:hover {
       transform: translateY(-5px);
@@ -86,9 +83,9 @@
 
 .cardSubtitle {
   font-size: 14px;
-  color: #00aaff;
+  color: #0088cc; // Посилений контраст
   margin-bottom: 25px;
-  font-weight: 600;
+  font-weight: 700; // Додано жирності для кращої читабельності
   text-transform: uppercase;
 }
 
@@ -114,7 +111,7 @@
 .serviceIcon {
   width: 24px;
   height: 24px;
-  color: #00aaff;
+  color: #0088cc; // Посилений контраст
   flex-shrink: 0;
 
   svg {
@@ -128,7 +125,7 @@
 .tag {
   font-size: 13px;
   font-weight: 700;
-  color: #333;
+  color: #222; // Темніший для контрасту
   text-transform: uppercase;
 }
 
@@ -139,7 +136,7 @@
 
   li {
     font-size: 13px;
-    color: #666;
+    color: #555; // Темніший сірий для контрасту (AA-compliant)
     margin-bottom: 5px;
     position: relative;
 
@@ -147,7 +144,7 @@
       content: "•";
       position: absolute;
       left: -15px;
-      color: #00aaff;
+      color: #0088cc; // Посилений контраст
       font-weight: bold;
     }
   }
@@ -157,7 +154,7 @@
   margin-top: auto;
   font-weight: 700;
   font-size: 14px;
-  color: #00aaff;
+  color: #0088cc; // Посилений контраст
   text-transform: uppercase;
   display: inline-flex;
   align-items: center;
@@ -193,7 +190,7 @@
 
   @media (hover: hover) {
     &:hover {
-      background: #00aaff;
+      background: #0088cc; // Посилений контраст
       transform: scale(1.05);
     }
   }

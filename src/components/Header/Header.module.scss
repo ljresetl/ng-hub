@@ -14,7 +14,10 @@
   justify-content: space-between;
   margin: 0 auto;
   padding: 0 20px;
-  max-width: 1200px; // Обмежуємо ширину для десктопа
+
+  @media (min-width: 768px) {
+    max-width: 1200px;
+  }
 }
 
 .logo {
@@ -27,7 +30,7 @@
 }
 
 .nav {
-  // Мобільне меню (приховане за замовчуванням)
+  // Мобільне меню (базовий стан)
   display: none;
 
   &.navOpen {
@@ -52,14 +55,15 @@
     }
   }
 
-  // Десктоп та Планшет
+  // Десктоп та Планшет (тільки розширення)
   @media (min-width: 768px) {
     display: flex;
-    gap: 25px;
     position: static;
+    flex-direction: row; // Повертаємо в рядок
     padding: 0;
     width: auto;
     border: none;
+    gap: 25px;
   }
 }
 
@@ -88,7 +92,7 @@
   }
 
   @media (min-width: 768px) {
-    display: none; // Ховаємо бургер на планшетах/десктопах
+    display: none; // Приховуємо на великих екранах
   }
 }
 

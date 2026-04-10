@@ -6,9 +6,8 @@ import TextAnimation from "./TextAnimation";
 import styles from "./Foto.module.scss";
 
 const images = ["/1024.avif", "/1024G.avif"]; 
-const COLUMNS = 12; // Збільшив кількість для плавнішої хвилі
+const COLUMNS = 12; 
 const ROWS = 8;
-const HERO_TEXT = "Vaše digitální symfonie. My dirigujeme – vy si vychutnáváte výsledek.";
 
 const Foto: React.FC = () => {
   const [index, setIndex] = useState(0);
@@ -16,13 +15,11 @@ const Foto: React.FC = () => {
   const bricksArray = Array.from({ length: COLUMNS * ROWS }, (_, i) => i);
 
   useEffect(() => {
-    // 1. Статичне перше фото на 3 секунди
     const initialTimer = setTimeout(() => {
       setIsInitial(false);
       setIndex(1);
     }, 3000);
 
-    // 2. Цикл заміни кожні 4-5 секунд
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
     }, 5000);
@@ -39,31 +36,20 @@ const Foto: React.FC = () => {
         <div className={styles.houseCanvas}>
           
           <AnimatePresence>
-            <motion.div 
-              key={index} 
-              className={styles.bricksWrapper}
-            >
+            <motion.div key={index} className={styles.bricksWrapper}>
               {bricksArray.map((i) => {
                 const col = i % COLUMNS;
                 const row = Math.floor(i / COLUMNS);
-                
                 return (
                   <motion.div
                     key={i}
                     className={styles.brick}
-                    initial={isInitial ? { opacity: 1, x: 0 } : { 
-                      x: -50, // Трохи під'їжджає зліва
-                      opacity: 0 
-                    }}
+                    initial={isInitial ? { opacity: 1, x: 0 } : { x: -30, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
-                    exit={{ 
-                      x: 50, // Трохи від'їжджає вправо при зникненні
-                      opacity: 0 
-                    }}
+                    exit={{ x: 30, opacity: 0 }}
                     transition={{
                       duration: 0.8,
-                      // ГОЛОВНЕ: затримка базується на колонці (col), що створює рух зліва направо
-                      delay: col * 0.1, 
+                      delay: col * 0.08, 
                       ease: "easeInOut",
                     }}
                     style={{
@@ -79,8 +65,16 @@ const Foto: React.FC = () => {
             </motion.div>
           </AnimatePresence>
 
+          {/* ОНОВЛЕНО: Текст розділений на два блоки для контролю рядків */}
           <div className={styles.textOverlay}>
-            <TextAnimation text={HERO_TEXT} />
+            <div className={styles.textContainer}>
+              <div className={styles.line1}>
+                <TextAnimation text="Vaše digitální symfonie." />
+              </div>
+              <div className={styles.line2}>
+                <TextAnimation text="My dirigujeme – vy si vychutnáváte výsledek." />
+              </div>
+            </div>
           </div>
         </div>
       </div>

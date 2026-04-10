@@ -17,11 +17,12 @@
   }
 
   h2 {
-    font-size: 24px; // Менший шрифт для мобілки
+    font-size: 24px;
     font-weight: 900;
     font-family: var(--heading-font);
     color: #111;
     text-transform: uppercase;
+    margin: 0;
 
     @media (min-width: 768px) {
       font-size: 32px;
@@ -52,6 +53,7 @@
   overflow: hidden;
   user-select: none;
   gap: 20px;
+  // Плавне зникнення по краях
   mask-image: linear-gradient(
     to right,
     transparent,
@@ -60,7 +62,6 @@
     transparent
   );
 
-  // Плеєр зупиняється тільки на десктопах з мишкою
   @media (hover: hover) {
     &:hover .marqueeGroup {
       animation-play-state: paused;
@@ -83,7 +84,7 @@
 }
 
 .logoSlide {
-  width: 200px; // Трохи менші картки для мобілки
+  width: 200px;
   flex-shrink: 0;
 
   @media (min-width: 768px) {
@@ -96,12 +97,14 @@
   align-items: center;
   justify-content: center;
   background: #ffffff;
-  height: 100px; // Висота для мобілки
+  height: 100px;
   padding: 15px 20px;
   border-radius: 16px;
   text-decoration: none;
-  border: 1px solid #f2f2f2;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  
+  // --- КОНТРАСТНІСТЬ ТА ТІНІ ---
+  border: 1px solid #e0e0e0; // Чіткіша рамка
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); // Глибша тінь
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
   @media (min-width: 768px) {
@@ -111,19 +114,17 @@
 
   @media (hover: hover) {
     &:hover {
-      border-color: rgba(0, 174, 239, 0.3);
+      border-color: #00aeef;
       transform: translateY(-5px) scale(1.03);
-      box-shadow: 0 12px 30px rgba(0, 174, 239, 0.12);
+      box-shadow: 0 15px 35px rgba(0, 174, 239, 0.15);
 
       .brandName {
         color: #00aeef;
-        filter: drop-shadow(0 2px 4px rgba(0, 174, 239, 0.2));
       }
-
+      
       .brandDot {
-        transform: scale(1.8);
+        transform: scale(1.5);
         background: #00aeef;
-        box-shadow: 0 0 8px rgba(0, 174, 239, 0.5);
       }
     }
   }
@@ -140,11 +141,13 @@
 .brandName {
   font-family: var(--heading-font);
   font-weight: 800;
-  font-size: 18px; // Компактніше на мобільних
+  font-size: 18px;
   line-height: 1.1;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #d8d8d8;
+  
+  // --- КОНТРАСТ ТЕКСТУ ---
+  color: #333; // Темний колір для читабельності
   transition: all 0.4s ease;
 
   @media (min-width: 768px) {
@@ -153,13 +156,14 @@
 }
 
 .brandDot {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: #e0e0e0;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: #00aeef; // Акцентна крапка одразу
+  transition: all 0.4s ease;
 }
 
+// АНІМАЦІЇ
 @keyframes scroll-left {
   from { transform: translateX(0); }
   to { transform: translateX(calc(-100% - 20px)); }

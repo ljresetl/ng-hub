@@ -2,6 +2,12 @@
   position: relative;
   width: 100%;
   background-color: #fff;
+  // Шляхи до фото (мають лежати в public)
+  --hero-bg: url('/400M.avif'); // Мобільне
+
+  @media (min-width: 768px) {
+    --hero-bg: url('/1024.avif'); // Десктопне
+  }
 }
 
 .container {
@@ -14,7 +20,7 @@
   position: relative;
   width: 100%;
   // Мобільна пропорція
-  aspect-ratio: 1 / 1.1; 
+  aspect-ratio: 16 / 11; 
   overflow: hidden;
 
   @media (min-width: 768px) {
@@ -23,21 +29,50 @@
   }
 }
 
-// Керування відображенням фото
-.mobileImg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  @media (min-width: 768px) { display: none; }
+// СІТКА КУБИКІВ:
+.bricksWrapper {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  // 6 стовпців, 4 рядки = 24 кубики
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  z-index: 1;
 }
 
-.desktopImg {
-  display: none;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  @media (min-width: 768px) { display: block; }
+.brick {
+  background-image: var(--hero-bg);
+  background-repeat: no-repeat;
+  
+  // Кожен кубик має правильну частину картинки
+  @for $i from 0 through 23 {
+    $col: $i % 6;
+    $row: math.floor($i / 6);
+    &:nth-child(#{$i + 1}) {
+      background-size: 600% 400%; // Кількість колонок * 100%
+      background-position: #{$col * 100 / (6 - 1)}% #{$row * 100 / (4 - 1)}%;
+      
+      // ЧИСТА CSS АНІМАЦІЯ ПОЯВИ
+      animation: brickFadeIn 0.5s ease-out forwards;
+      // Ефект "хвилі" або випадковості
+      animation-delay: #{$col * 0.08s + $row * 0.06s + random() * 0.1s + 1.2s};
+      opacity: 0; // Починаємо прихованими
+      transform: scale(0.9);
+      will-change: opacity, transform; // Оптимізація
+    }
+  }
+}
+
+// Ключові кадри анімації складання
+@keyframes brickFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .textOverlay {
@@ -58,46 +93,28 @@
   text-align: center;
 }
 
+.line1, .line2 {
+  // Анімацію появи робимо через легкий CSS
+  opacity: 0;
+  animation: simpleFade 0.6s ease-out forwards;
+}
+
 .line1 {
   font-size: clamp(10px, 4vw, 32px);
   font-weight: 900;
-  color: #111;
   text-transform: uppercase;
-  margin-bottom: 4px;
+  color: #111;
+  animation-delay: 1.0s;
 }
 
 .line2 {
   font-size: clamp(8px, 3vw, 18px);
   font-weight: 500;
   color: #333;
+  animation-delay: 1.3s;
 }
 
-// --- НОВА CSS АНІМАЦІЯ ПОЯВИ ТЕКСТУ ---
-
-// Базова анімація (плавна поява знизу)
-@keyframes fadeInSlideUp {
-  0% {
-    opacity: 0;
-    transform: translateY(10px); // Починається трохи нижче
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0); // Кінцева позиція
-  }
-}
-
-// Клас для першого рядка (з'являється через 1с)
-.animateFadeIn {
-  opacity: 0; // За замовчуванням прихований
-  animation: fadeInSlideUp 0.7s ease-out forwards;
-  animation-delay: 1.0s; // Затримка
-  will-change: opacity, transform; // Оптимізація для браузера
-}
-
-// Клас для другого рядка (з'являється через 1.3с)
-.animateFadeInDelayed {
-  opacity: 0; // За замовчуванням прихований
-  animation: fadeInSlideUp 0.7s ease-out forwards;
-  animation-delay: 1.3s; // Більша затримка
-  will-change: opacity, transform;
+@keyframes simpleFade {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
 }

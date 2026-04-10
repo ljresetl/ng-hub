@@ -4,7 +4,6 @@ import '../styles/globals.scss';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 
-// Налаштування Montserrat
 const montserrat = Montserrat({
   subsets: ["latin", "latin-ext"],
   weight: ["700", "800", "900"],
@@ -12,7 +11,6 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-// Налаштування Inter
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
   weight: ["400", "500", "600"],
@@ -27,12 +25,9 @@ export const metadata: Metadata = {
   },
   description: "Pomáháme firmám růst v digitálním světě skrze moderní technologie, tvorbu webů a strategický marketing.",
   keywords: ["tvorba webu", "digitální marketing", "NG Consulting", "SEO"],
-  
-  // Додаємо preload через metadata для кращого SEO та LCP
   alternates: {
     canonical: "https://ngconsulting.cz",
   },
-  
   openGraph: {
     title: "NG Consulting | Moderní webová řešení",
     description: "Tvoříme weby, které prodávají.",
@@ -41,7 +36,6 @@ export const metadata: Metadata = {
     locale: "cs_CZ",
     type: "website",
   },
-  
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
@@ -56,8 +50,8 @@ export default function RootLayout({
   return (
     <html lang="cs" className={`${montserrat.variable} ${inter.variable}`}>
       <head>
-        {/* ПРІОРИТЕТНЕ ЗАВАНТАЖЕННЯ ЗОБРАЖЕНЬ (LCP FIX) */}
-        {/* Це змушує браузер почати качати фото ще до того, як завантажиться JS-код анімації */}
+        {/* ПРАВКА 1: Залишаємо preload ТІЛЬКИ для першої картинки. 
+            Завантаження другої (1024G) паралельно — це помилка, вона краде швидкість у першої! */}
         <link 
           rel="preload" 
           href="/1024.avif" 
@@ -65,15 +59,10 @@ export default function RootLayout({
           type="image/avif" 
           fetchPriority="high" 
         />
-        <link 
-          rel="preload" 
-          href="/1024G.avif" 
-          as="image" 
-          type="image/avif" 
-          fetchPriority="high" 
-        />
       </head>
-      <body style={{ fontFamily: "var(--font-inter), sans-serif" }}>
+      {/* ПРАВКА 2: Прибираємо inline style з body, якщо можна. 
+          Або хоча б переконуємось, що немає Layout Shift */}
+      <body className={inter.className}>
         <Header /> 
         <main>{children}</main>
         <Footer />

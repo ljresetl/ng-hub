@@ -5,30 +5,40 @@ import { motion } from "framer-motion";
 import TextAnimation from "./TextAnimation";
 import styles from "./Foto.module.scss";
 
-// Переконайся, що файл за цим шляхом існує в папці public
+// Шлях до основного банера
 const bannerSrc = "/1024.avif"; 
 
-const COLUMNS = 10;
-const ROWS = 8;
+// Оптимізована кількість: 8x6 = 48 вузлів (замість 80). 
+// Це значно пришвидшить мобільний рендер без втрати візуального ефекту.
+const COLUMNS = 8;
+const ROWS = 6;
 
 const HERO_TEXT = "Vaše digitální symfonie. My dirigujeme – vy si vychutnáváte výsledek.";
 
 const Foto: React.FC = () => {
-  // Створюємо стабільний масив індексів
   const bricksArray = Array.from({ length: COLUMNS * ROWS }, (_, i) => i);
 
   return (
     <section className={styles.hero}>
+      {/* Підказка браузеру завантажити картинку негайно (LCP Optimization) */}
+      <link rel="preload" href={bannerSrc} as="image" />
+
       <div className={styles.container}>
         <div className={styles.houseCanvas}>
+          
+          {/* Статична фонова картинка з низькою прозорістю для миттєвого відображення (LCP Fix) */}
+          <div 
+            className={styles.preloadBg} 
+            style={{ backgroundImage: `url(${bannerSrc})` }} 
+          />
+
           {/* АНІМАЦІЯ ФОТО (цеглинки) */}
           {bricksArray.map((index) => {
             const col = index % COLUMNS;
             const row = Math.floor(index / COLUMNS);
 
-            // Формули для початкового розкиду (стабільні псевдо-рандомні значення)
-            const initialX = (index * 173 % 2000) - 1000; 
-            const initialY = (index * 247 % 2000) - 1000;
+            const initialX = (index * 173 % 1600) - 800; 
+            const initialY = (index * 247 % 1600) - 800;
             const initialRotate = (index * 133 % 360);
 
             return (
@@ -48,9 +58,9 @@ const Foto: React.FC = () => {
                   rotate: 0 
                 }}
                 transition={{
-                  duration: 1.5,
-                  delay: index * 0.005, // Поступове збирання
-                  ease: [0.22, 1, 0.36, 1], // Плавний фініш
+                  duration: 1.2, // Швидша анімація краще для Speed Index
+                  delay: index * 0.006, 
+                  ease: [0.22, 1, 0.36, 1],
                 }}
                 style={{
                   width: `${100 / COLUMNS}%`,
@@ -58,6 +68,7 @@ const Foto: React.FC = () => {
                   backgroundImage: `url(${bannerSrc})`,
                   backgroundSize: `${COLUMNS * 100}% ${ROWS * 100}%`,
                   backgroundPosition: `${(col * 100) / (COLUMNS - 1)}% ${(row * 100) / (ROWS - 1)}%`,
+                  willChange: "transform, opacity", // Змушує відеокарту готуватися заздалегідь
                 }}
               />
             );

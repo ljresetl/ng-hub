@@ -6,7 +6,7 @@ import TextAnimation from "./TextAnimation";
 import styles from "./Foto.module.scss";
 
 const images = ["/1024.avif", "/1024G.avif"]; 
-const COLUMNS = 10;
+const COLUMNS = 12; // Збільшив кількість для плавнішої хвилі
 const ROWS = 8;
 const HERO_TEXT = "Vaše digitální symfonie. My dirigujeme – vy si vychutnáváte výsledek.";
 
@@ -16,14 +16,16 @@ const Foto: React.FC = () => {
   const bricksArray = Array.from({ length: COLUMNS * ROWS }, (_, i) => i);
 
   useEffect(() => {
+    // 1. Статичне перше фото на 3 секунди
     const initialTimer = setTimeout(() => {
       setIsInitial(false);
       setIndex(1);
-    }, 4000);
+    }, 3000);
 
+    // 2. Цикл заміни кожні 4-5 секунд
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
-    }, 6000);
+    }, 5000);
 
     return () => {
       clearTimeout(initialTimer);
@@ -36,47 +38,33 @@ const Foto: React.FC = () => {
       <div className={styles.container}>
         <div className={styles.houseCanvas}>
           
-          {/* Прибираємо mode="wait", щоб нове фото починало збиратися миттєво */}
           <AnimatePresence>
             <motion.div 
               key={index} 
               className={styles.bricksWrapper}
-              initial={{ opacity: 1 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              // transition для всього контейнера тепер мінімальний, 
-              // щоб не було затримки перед стартом кубиків
-              transition={{ duration: 0.5 }} 
             >
               {bricksArray.map((i) => {
                 const col = i % COLUMNS;
                 const row = Math.floor(i / COLUMNS);
                 
-                const initialX = (i * 173 % 2000) - 1000; 
-                const initialY = (i * 247 % 2000) - 1000;
-                const initialRotate = (i * 133 % 360);
-
                 return (
                   <motion.div
                     key={i}
                     className={styles.brick}
-                    initial={isInitial ? { opacity: 1, x: 0, y: 0, rotate: 0 } : { 
-                      x: initialX, 
-                      y: initialY, 
-                      opacity: 0,
-                      rotate: initialRotate
+                    initial={isInitial ? { opacity: 1, x: 0 } : { 
+                      x: -50, // Трохи під'їжджає зліва
+                      opacity: 0 
                     }}
-                    animate={{ x: 0, y: 0, opacity: 1, rotate: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
                     exit={{ 
-                      x: initialX * 0.5, 
-                      y: initialY * 0.5, 
-                      opacity: 0,
-                      rotate: initialRotate / 2
+                      x: 50, // Трохи від'їжджає вправо при зникненні
+                      opacity: 0 
                     }}
                     transition={{
-                      duration: 1.5,
-                      delay: i * 0.005,
-                      ease: [0.22, 1, 0.36, 1],
+                      duration: 0.8,
+                      // ГОЛОВНЕ: затримка базується на колонці (col), що створює рух зліва направо
+                      delay: col * 0.1, 
+                      ease: "easeInOut",
                     }}
                     style={{
                       width: `${100 / COLUMNS}%`,

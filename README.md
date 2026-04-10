@@ -18,4 +18,4 @@ Optimalizace zdrojů: Odstraněny požadavky blokující vykreslování stránky
 Práce s písmy: Nastaveno korektní načítání přes next/font s nulovým Layout Shiftem (přeblikávání textu).
 Čistý kód: Úplná eliminace zbytečných těžkých knihoven ve prospěch nativních prohlížečových řešení (IntersectionObserver).
 📊 Výsledky měření
-![PageSpeed Score](/Screenshot_20260411-003530.png)
+![PageSpeed Score](Screenshot_20260411-003530.png)

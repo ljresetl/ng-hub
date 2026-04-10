@@ -7,9 +7,9 @@ import styles from "./Foto.module.scss";
 const HERO_TEXT_1 = "Vaše digitální symfonie.";
 const HERO_TEXT_2 = "My dirigujeme – vy si vychutnáváte výsledek.";
 
-// 10x6 = 60 кубиків (оптимально для мобільних)
-const COLUMNS = 10; 
-const ROWS = 6;
+// 6x4 = 24 кубики. Це дуже мало для процесора, але достатньо для ефекту
+const COLUMNS = 6; 
+const ROWS = 4;
 
 const Foto: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
@@ -24,7 +24,6 @@ const Foto: React.FC = () => {
     <section className={styles.hero}>
       <div className={styles.container}>
         <div className={styles.houseCanvas}>
-          
           <AnimatePresence>
             {isClient && (
               <div className={styles.bricksWrapper}>
@@ -35,17 +34,16 @@ const Foto: React.FC = () => {
                     <motion.div
                       key={i}
                       className={styles.brick}
-                      initial={{ opacity: 0, scale: 0.85 }}
+                      initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{
-                        duration: 0.4,
-                        delay: col * 0.06 + row * 0.04,
+                        duration: 0.5,
+                        delay: col * 0.08 + row * 0.05, // Трохи повільніше, щоб було видно красу
                         ease: "easeOut",
                       }}
                       style={{
                         width: `${100 / COLUMNS}%`,
                         height: `${100 / ROWS}%`,
-                        // Використовуємо CSS змінні для автоматичної зміни фото
                         backgroundImage: `var(--hero-bg)`,
                         backgroundSize: `${COLUMNS * 100}% ${ROWS * 100}%`,
                         backgroundPosition: `${(col * 100) / (COLUMNS - 1)}% ${(row * 100) / (ROWS - 1)}%`,
@@ -60,17 +58,17 @@ const Foto: React.FC = () => {
           <div className={styles.textOverlay}>
             <div className={styles.textContainer}>
               <motion.h1 
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.3, duration: 0.8 }}
+                transition={{ delay: 1.0, duration: 0.8 }}
                 className={styles.line1}
               >
                 {HERO_TEXT_1}
               </motion.h1>
               <motion.p 
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.6, duration: 0.8 }}
+                transition={{ delay: 1.3, duration: 0.8 }}
                 className={styles.line2}
               >
                 {HERO_TEXT_2}

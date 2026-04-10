@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Image from "next/image"; // Імпортуємо Image
+import Image from "next/image";
 import TextAnimation from "./TextAnimation";
 import styles from "./Foto.module.scss";
 
@@ -14,15 +14,18 @@ const Foto: React.FC = () => {
       <div className={styles.container}>
         <div className={styles.houseCanvas}>
           
-          {/* Використовуємо Next.js Image для автоматичної оптимізації */}
+          {/* Використовуємо Image з Next.js. 
+            Пропс priority автоматично додає fetchPriority="high" і preload,
+            що виправляє твою помилку типізації та покращує LCP.
+          */}
           <Image 
             src="/1024.avif" 
             alt="NG Consulting Hero" 
-            fill // Заповнює батьківський контейнер
-            priority // Найвищий пріоритет (LCP Fix)
+            fill
+            priority
             className={styles.heroImg}
-            sizes="100vw" // Каже браузеру, що картинка на весь екран
-            quality={75} // Трохи зменшуємо якість для швидкості (непомітно для ока)
+            sizes="100vw"
+            quality={85}
           />
 
           <div className={styles.textOverlay}>

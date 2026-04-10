@@ -12,29 +12,42 @@ const ROWS = 8;
 const Foto: React.FC = () => {
   const [index, setIndex] = useState(0);
   const [isInitial, setIsInitial] = useState(true); 
+  const [canAnimate, setCanAnimate] = useState(false); // Новий стейт для стабілізації
+
   const bricksArray = Array.from({ length: COLUMNS * ROWS }, (_, i) => i);
 
   useEffect(() => {
+    // 1. Даємо браузеру 100мс просто відмалювати HTML, перш ніж JS почне "думати"
+    const stabilityTimer = setTimeout(() => {
+      setCanAnimate(true);
+    }, 100);
+
+    // 2. Перша заміна фото через 3 секунди
     const initialTimer = setTimeout(() => {
       setIsInitial(false);
       setIndex(1);
     }, 3000);
 
+    // 3. Цикл
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
     }, 5000);
 
     return () => {
+      clearTimeout(stabilityTimer);
       clearTimeout(initialTimer);
       clearInterval(interval);
     };
   }, []);
 
+  // Якщо ще не можна анімувати, рендеримо порожній контейнер (або нічого)
+  // Це зрізає TBT (Total Blocking Time) до нуля при старті.
+  if (!canAnimate) return <section className={styles.hero} />;
+
   return (
     <section className={styles.hero}>
       <div className={styles.container}>
         <div className={styles.houseCanvas}>
-          
           <AnimatePresence>
             <motion.div key={index} className={styles.bricksWrapper}>
               {bricksArray.map((i) => {
@@ -44,13 +57,14 @@ const Foto: React.FC = () => {
                   <motion.div
                     key={i}
                     className={styles.brick}
-                    initial={isInitial ? { opacity: 1, x: 0 } : { x: -30, opacity: 0 }}
+                    // Миттєвий показ при старті (LCP fix)
+                    initial={isInitial ? { opacity: 1, x: 0 } : { x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
-                    exit={{ x: 30, opacity: 0 }}
+                    exit={{ x: 20, opacity: 0 }}
                     transition={{
-                      duration: 0.8,
-                      delay: col * 0.08, 
-                      ease: "easeInOut",
+                      duration: 0.7,
+                      delay: col * 0.06, // Швидка хвиля
+                      ease: "easeOut",
                     }}
                     style={{
                       width: `${100 / COLUMNS}%`,
@@ -65,7 +79,6 @@ const Foto: React.FC = () => {
             </motion.div>
           </AnimatePresence>
 
-          {/* ОНОВЛЕНО: Текст розділений на два блоки для контролю рядків */}
           <div className={styles.textOverlay}>
             <div className={styles.textContainer}>
               <div className={styles.line1}>

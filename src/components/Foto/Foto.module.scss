@@ -6,96 +6,86 @@
 
 .container {
   width: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 .houseCanvas {
   position: relative;
   width: 100%;
   
-  // ПРОПОРЦІЯ: На мобілці робимо 1:1.1, щоб бачити більше фото
+  // ПРОПОРЦІЯ ДЛЯ МОБІЛКИ:
+  // Використовуй 1/1.1 або 1/1.2, щоб картинка була високою і чіткою
   aspect-ratio: 1 / 1.1; 
   overflow: hidden;
-  background-color: #f0f0f0; // Світлий фон, поки вантажиться фото
+  background-color: #f7f7f7; // Плейсхолдер
 
   @media (min-width: 768px) {
-    // На десктопі робимо вузьку панораму
+    // ПРОПОРЦІЯ ДЛЯ ДЕСКТОПА (Панорама)
     aspect-ratio: 16 / 5;
   }
 }
 
-// Контейнери для розділення фото
+// Контейнери для розділення відображення
 .mobileOnly {
   display: block;
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-
-  @media (min-width: 768px) {
-    display: none;
-  }
+  width: 100%;
+  height: 100%;
+  @media (min-width: 768px) { display: none; }
 }
 
 .desktopOnly {
   display: none;
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-
-  @media (min-width: 768px) {
-    display: block;
-  }
+  width: 100%;
+  height: 100%;
+  @media (min-width: 768px) { display: block; }
 }
 
+// Стилізація безпосередньо тегу img, який створює Next.js
 .bgImage {
-  // Цей параметр змушує фото заповнювати контейнер повністю
-  object-fit: cover; 
-  object-position: center;
+  // Цей рядок примусово робить фото чітким і заповнює контейнер без викривлень
+  object-fit: cover !important; 
+  object-position: center !important;
   
-  // Для кращої чіткості на смартфонах
+  // Покращення чіткості для Retina-дисплеїв
   image-rendering: -webkit-optimize-contrast;
 }
 
 .textOverlay {
   position: absolute;
   inset: 0;
-  z-index: 5; // Поверх фото
+  z-index: 10;
   display: flex;
   flex-direction: column;
-  justify-content: center; // Центруємо контент вертикально
+  justify-content: center;
   align-items: center;
   padding: 20px;
   
-  // М'який градієнт для читабельності тексту
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.6) 100%);
-
-  @media (min-width: 768px) {
-    justify-content: flex-end;
-    padding-bottom: 50px;
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.5), transparent 60%);
-  }
+  // Градієнт, щоб текст "відірвався" від фону
+  background: linear-gradient(
+    180deg, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.4) 100%
+  );
 }
 
 .textContainer {
-  width: 100%;
   text-align: center;
+  max-width: 90%;
 }
 
 .title {
-  font-size: clamp(20px, 8vw, 36px);
+  font-size: clamp(18px, 7vw, 36px);
   font-weight: 900;
   color: #111;
   text-transform: uppercase;
-  margin: 0 0 10px 0;
-  line-height: 1.1;
+  margin-bottom: 8px;
+  line-height: 1.2;
 }
 
 .subtitle {
   font-size: clamp(12px, 3.5vw, 18px);
   font-weight: 500;
   color: #333;
-  margin: 0 0 25px 0;
+  margin-bottom: 24px;
 }
 
 .ctaWrapper {
@@ -105,7 +95,7 @@
 
 .ctaButton {
   display: inline-block;
-  padding: 14px 32px;
+  padding: 12px 28px;
   background-color: #000;
   color: #fff;
   font-size: 14px;
@@ -113,12 +103,15 @@
   text-transform: uppercase;
   text-decoration: none;
   border-radius: 4px;
-  border: 2px solid #000;
-  transition: all 0.3s ease;
-  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 
-  &:hover {
-    background-color: transparent;
-    color: #000;
+  &:active {
+    transform: scale(0.95); // Ефект натискання на мобілці
+  }
+
+  @media (min-width: 768px) {
+    &:hover {
+      background-color: #333;
+    }
   }
 }

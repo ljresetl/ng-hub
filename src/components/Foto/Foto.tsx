@@ -1,13 +1,8 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import styles from "./Foto.module.scss";
-
-// Тексти виносимо в константи, щоб код був чистішим
-const HERO_TITLE = "Vaše digitální symfonie.";
-const HERO_SUBTITLE = "My dirigujeme – vy si vychutnáváte výsledek.";
-const CTA_BUTTON_TEXT = "Způsobit revoluci"; // "Спричинити революцію"
-const CTA_BUTTON_LINK = "#kontakt"; // Зазвичай веде до форми контакту
 
 const Foto: React.FC = () => {
   return (
@@ -15,18 +10,40 @@ const Foto: React.FC = () => {
       <div className={styles.container}>
         <div className={styles.houseCanvas}>
           
-          {/* ОБОВ'ЯЗКОВО: Переконайся, що в твоїй темі */}
-          {/* Header та Footer рендеряться в DOM для PageSpeed */}
-          
+          {/* МОБІЛЬНЕ ФОТО: пріоритет №1 */}
+          <div className={styles.mobileOnly}>
+            <Image 
+              src="/1024 (3).avif" // Переконайся, що назва в public 1 в 1 така сама
+              alt="NG Consulting Mobile"
+              fill
+              priority // Змушує браузер качати фото негайно
+              quality={85}
+              loading="eager"
+              sizes="(max-width: 767px) 100vw, 1px"
+              className={styles.bgImage}
+            />
+          </div>
+
+          {/* ДЕСКТОПНЕ ФОТО */}
+          <div className={styles.desktopOnly}>
+            <Image 
+              src="/1024.avif" 
+              alt="NG Consulting Desktop"
+              fill
+              priority
+              quality={90}
+              sizes="(min-width: 768px) 100vw, 1px"
+              className={styles.bgImage}
+            />
+          </div>
+
           <div className={styles.textOverlay}>
             <div className={styles.textContainer}>
-              <h1 className={styles.title}>{HERO_TITLE}</h1>
-              <p className={styles.subtitle}>{HERO_SUBTITLE}</p>
-              
-              {/* НОВА КНОПКА ЗАКЛИКУ ДО ДІЇ */}
+              <h1 className={styles.title}>Vaše digitální symfonie.</h1>
+              <p className={styles.subtitle}>My dirigujeme – vy si vychutnáváte výsledek.</p>
               <div className={styles.ctaWrapper}>
-                <a href={CTA_BUTTON_LINK} className={styles.ctaButton}>
-                  {CTA_BUTTON_TEXT}
+                <a href="#kontakt" className={styles.ctaButton}>
+                  Způsobit revoluci
                 </a>
               </div>
             </div>

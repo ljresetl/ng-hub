@@ -1,23 +1,23 @@
 .hero {
   position: relative;
   width: 100%;
-  background-color: #fff;
   --hero-bg: url('/400M.avif');
+  @media (min-width: 768px) { --hero-bg: url('/1024.avif'); }
+}
 
-  @media (min-width: 768px) {
-    --hero-bg: url('/1024.avif');
-  }
+.lcpImage {
+  position: absolute;
+  inset: 0;
+  z-index: 0; // Лежить під кубиками
 }
 
 .houseCanvas {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 11; 
+  aspect-ratio: 16 / 11;
   overflow: hidden;
-
-  @media (min-width: 768px) {
-    aspect-ratio: 16 / 5;
-  }
+  background-color: #fff;
+  @media (min-width: 768px) { aspect-ratio: 16 / 5; }
 }
 
 .bricksWrapper {
@@ -26,36 +26,33 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  z-index: 1;
+  z-index: 1; // Поверх LCP картинки
 }
 
 .brick {
   background-image: var(--hero-bg);
   background-repeat: no-repeat;
-  background-size: 600% 400%; 
+  background-size: 600% 400%;
   opacity: 0;
-  animation: brickFadeIn 0.5s ease-out forwards;
+  animation: brickFadeIn 0.4s ease-out forwards;
 }
 
-/* Ручна настройка позицій — це нудно писати, зате білд НЕ впаде */
+/* Швидка анімація для PageSpeed */
+.brick:nth-child(6n+1) { background-position-x: 0%; animation-delay: 0.1s; }
+.brick:nth-child(6n+2) { background-position-x: 20%; animation-delay: 0.15s; }
+.brick:nth-child(6n+3) { background-position-x: 40%; animation-delay: 0.2s; }
+.brick:nth-child(6n+4) { background-position-x: 60%; animation-delay: 0.25s; }
+.brick:nth-child(6n+5) { background-position-x: 80%; animation-delay: 0.3s; }
+.brick:nth-child(6n)   { background-position-x: 100%; animation-delay: 0.35s; }
 
-/* Рядки */
 .brick:nth-child(-n+6) { background-position-y: 0%; }
 .brick:nth-child(n+7):nth-child(-n+12) { background-position-y: 33.33%; }
 .brick:nth-child(n+13):nth-child(-n+18) { background-position-y: 66.66%; }
 .brick:nth-child(n+19):nth-child(-n+24) { background-position-y: 100%; }
 
-/* Стовпці */
-.brick:nth-child(6n+1) { background-position-x: 0%; animation-delay: 1.1s; }
-.brick:nth-child(6n+2) { background-position-x: 20%; animation-delay: 1.2s; }
-.brick:nth-child(6n+3) { background-position-x: 40%; animation-delay: 1.3s; }
-.brick:nth-child(6n+4) { background-position-x: 60%; animation-delay: 1.4s; }
-.brick:nth-child(6n+5) { background-position-x: 80%; animation-delay: 1.5s; }
-.brick:nth-child(6n)   { background-position-x: 100%; animation-delay: 1.6s; }
-
 @keyframes brickFadeIn {
-  from { opacity: 0; transform: scale(0.98); }
-  to { opacity: 1; transform: scale(1); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .textOverlay {
@@ -66,14 +63,11 @@
   justify-content: flex-end;
   padding-bottom: 12%;
   z-index: 5;
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.4), transparent 70%);
 }
 
-.textContainer { width: 100%; text-align: center; }
-
-.line1, .line2 { opacity: 0; animation: simpleFade 0.6s ease-out forwards; }
-.line1 { font-size: 24px; font-weight: 900; text-transform: uppercase; color: #111; animation-delay: 2.2s; }
-.line2 { font-size: 14px; font-weight: 500; color: #333; animation-delay: 2.5s; }
+.line1, .line2 { opacity: 0; animation: simpleFade 0.5s ease-out forwards; }
+.line1 { font-size: 24px; font-weight: 900; animation-delay: 0.6s; }
+.line2 { font-size: 14px; font-weight: 500; animation-delay: 0.8s; }
 
 @keyframes simpleFade {
   to { opacity: 1; transform: translateY(0); }

@@ -4,6 +4,7 @@ import '../styles/globals.scss';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 
+// Налаштування Montserrat (для заголовків)
 const montserrat = Montserrat({
   subsets: ["latin", "latin-ext"],
   weight: ["700", "800", "900"],
@@ -11,6 +12,7 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
+// Налаштування Inter (основний текст)
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
   weight: ["400", "500", "600"],
@@ -48,12 +50,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+    // Додаємо обидві змінні шрифтів до тегу html
     <html lang="cs" className={`${montserrat.variable} ${inter.variable}`}>
       <head>
-
+        {/* head залишаємо порожнім, Next.js сам вставить preload для Image priority */}
       </head>
-      {/* ПРАВКА 2: Прибираємо inline style з body, якщо можна. 
-          Або хоча б переконуємось, що немає Layout Shift */}
+      {/* Використовуємо inter.className для body. 
+          Це автоматично призначить Inter основним шрифтом сайту 
+          і запобіжить стрибкам тексту (Layout Shift).
+      */}
       <body className={inter.className}>
         <Header /> 
         <main>{children}</main>

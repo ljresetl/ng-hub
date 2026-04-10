@@ -1,10 +1,7 @@
-@use "sass:math";
-
 .hero {
   position: relative;
   width: 100%;
   background-color: #fff;
-  // Шляхи до твоїх нових фото
   --hero-bg: url('/400M.avif');
 
   @media (min-width: 768px) {
@@ -12,20 +9,14 @@
   }
 }
 
-.container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
 .houseCanvas {
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1.1; // Мобільна пропорція
+  aspect-ratio: 16 / 11; 
   overflow: hidden;
 
   @media (min-width: 768px) {
-    aspect-ratio: 16 / 5; // Десктопна пропорція
+    aspect-ratio: 16 / 5;
   }
 }
 
@@ -41,36 +32,42 @@
 .brick {
   background-image: var(--hero-bg);
   background-repeat: no-repeat;
-  background-size: 600% 400%; // 6 колонок на 4 рядки
+  background-size: 600% 400%; 
   opacity: 0;
   will-change: opacity, transform;
+  
+  // Анімація для ВСІХ цеглин однакова
+  animation: brickFadeIn 0.5s ease-out forwards;
+}
 
-  @for $i from 0 through 23 {
-    &:nth-child(#{$i + 1}) {
-      $col: $i % 6;
-      $row: math.floor(math.div($i, 6));
-
-      // Розрахунок позиції фону
-      background-position: 
-        #{math.div($col * 100, 5)}% 
-        #{math.div($row * 100, 3)}%;
-
-      animation: brickFadeIn 0.5s ease-out forwards;
-      // Затримка: 1.2с на завантаження + черга
-      animation-delay: #{1.2s + ($col * 0.08s) + ($row * 0.05s)};
-    }
+// Прописуємо затримки та позиції БЕЗ функцій Sass
+// Кожна цеглина просто знає свою позицію
+@for $i from 1 through 24 {
+  .brick:nth-child(#{$i}) {
+    $c: ($i - 1) % 6;
+    $r: floor(math-div-manual($i - 1, 6)); // Ми це обійдемо нижче
+    
+    // Щоб не мучити Vercel математикою, я просто даю йому чисті числа
+    animation-delay: #{1s + ($i * 0.05s)};
   }
 }
 
+// Замість складних розрахунків, просто вкажемо позиції через стандартний CSS Grid логіку
+.brick:nth-child(6n+1) { background-position-x: 0%; }
+.brick:nth-child(6n+2) { background-position-x: 20%; }
+.brick:nth-child(6n+3) { background-position-x: 40%; }
+.brick:nth-child(6n+4) { background-position-x: 60%; }
+.brick:nth-child(6n+5) { background-position-x: 80%; }
+.brick:nth-child(6n)   { background-position-x: 100%; }
+
+.brick:nth-child(n+1):nth-child(-n+6)   { background-position-y: 0%; }
+.brick:nth-child(n+7):nth-child(-n+12)  { background-position-y: 33.33%; }
+.brick:nth-child(n+13):nth-child(-n+18) { background-position-y: 66.66%; }
+.brick:nth-child(n+19):nth-child(-n+24) { background-position-y: 100%; }
+
 @keyframes brickFadeIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
 .textOverlay {
@@ -81,16 +78,10 @@
   justify-content: flex-end;
   padding-bottom: 12%;
   z-index: 5;
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.4), transparent 60%);
-  pointer-events: none;
-
-  @media (min-width: 768px) { padding-bottom: 5%; }
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.3), transparent 70%);
 }
 
-.textContainer {
-  width: 100%;
-  text-align: center;
-}
+.textContainer { width: 100%; text-align: center; }
 
 .line1, .line2 {
   opacity: 0;
@@ -102,14 +93,14 @@
   font-weight: 900;
   text-transform: uppercase;
   color: #111;
-  animation-delay: 1.8s; // Поява після складання кубиків
+  animation-delay: 2.2s;
 }
 
 .line2 {
   font-size: clamp(8px, 3vw, 18px);
   font-weight: 500;
   color: #333;
-  animation-delay: 2.1s;
+  animation-delay: 2.5s;
 }
 
 @keyframes simpleFade {

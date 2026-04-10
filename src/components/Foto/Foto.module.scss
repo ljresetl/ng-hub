@@ -11,20 +11,15 @@
 .houseCanvas {
   position: relative;
   width: 100%;
-  
-  // ПРОПОРЦІЯ ДЛЯ МОБІЛКИ:
-  // Використовуй 1/1.1 або 1/1.2, щоб картинка була високою і чіткою
   aspect-ratio: 1 / 1.1; 
   overflow: hidden;
-  background-color: #f7f7f7; // Плейсхолдер
+  background-color: #f7f7f7;
 
   @media (min-width: 768px) {
-    // ПРОПОРЦІЯ ДЛЯ ДЕСКТОПА (Панорама)
     aspect-ratio: 16 / 5;
   }
 }
 
-// Контейнери для розділення відображення
 .mobileOnly {
   display: block;
   width: 100%;
@@ -39,14 +34,22 @@
   @media (min-width: 768px) { display: block; }
 }
 
-// Стилізація безпосередньо тегу img, який створює Next.js
 .bgImage {
-  // Цей рядок примусово робить фото чітким і заповнює контейнер без викривлень
   object-fit: cover !important; 
   object-position: center !important;
-  
-  // Покращення чіткості для Retina-дисплеїв
   image-rendering: -webkit-optimize-contrast;
+}
+
+// АНІМАЦІЯ ПОЯВИ
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .textOverlay {
@@ -55,37 +58,44 @@
   z-index: 10;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end; // Переміщуємо текст ВНИЗ
   align-items: center;
-  padding: 20px;
+  padding: 40px 20px; // Збільшили нижній паддінг
   
-  // Градієнт, щоб текст "відірвався" від фону
+  // Темніший градієнт знизу для читабельності тексту
   background: linear-gradient(
     180deg, 
-    rgba(255, 255, 255, 0) 0%, 
-    rgba(255, 255, 255, 0.4) 100%
+    rgba(0, 0, 0, 0) 40%, 
+    rgba(0, 0, 0, 0.5) 100% 
   );
 }
 
 .textContainer {
   text-align: center;
   max-width: 90%;
+  
+  // Застосовуємо анімацію
+  opacity: 0; // Початковий стан
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: 0.5s; // Затримка, щоб фото встигло почати завантаження
 }
 
 .title {
-  font-size: clamp(18px, 7vw, 36px);
+  font-size: clamp(20px, 7vw, 36px);
   font-weight: 900;
-  color: #111;
+  color: #fff; // Змінив на білий, бо тепер текст на фоні градієнта внизу
   text-transform: uppercase;
   margin-bottom: 8px;
   line-height: 1.2;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3); // Тінь для чіткості
 }
 
 .subtitle {
-  font-size: clamp(12px, 3.5vw, 18px);
+  font-size: clamp(14px, 3.5vw, 18px);
   font-weight: 500;
-  color: #333;
+  color: #eee; // Світло-сірий
   margin-bottom: 24px;
+  text-shadow: 0 1px 5px rgba(0,0,0,0.3);
 }
 
 .ctaWrapper {
@@ -95,23 +105,25 @@
 
 .ctaButton {
   display: inline-block;
-  padding: 12px 28px;
-  background-color: #000;
-  color: #fff;
+  padding: 14px 32px;
+  background-color: #fff; // Кнопка тепер біла, щоб виділятися
+  color: #000;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
   text-decoration: none;
   border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   transition: transform 0.2s ease, background-color 0.2s ease;
 
   &:active {
-    transform: scale(0.95); // Ефект натискання на мобілці
+    transform: scale(0.95);
   }
 
   @media (min-width: 768px) {
     &:hover {
-      background-color: #333;
+      background-color: #f0f0f0;
+      transform: translateY(-2px);
     }
   }
 }

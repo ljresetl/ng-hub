@@ -1,34 +1,31 @@
 .footer {
-  padding: 10px 0;
-  background-color: #fff;
-  border-top: 1px solid #eee; // Тонка лінія зверху
+  padding: 20px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1); // опціонально, для розділення
+  background-color: transparent;
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center; // Центрування по горизонталі
-  justify-content: center;
-  text-align: center;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .text {
-  font-size: 14px;
-  color: #666;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase; // Робимо текст як на фото (капсом)
   margin: 0;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #666;
+  text-align: center; // центрування по горизонталі
+  font-weight: 500;
 }
 
 .link {
-  color: #0066ff; // Твій основний синій колір
+  color: #333;
   text-decoration: none;
   font-weight: 700;
-  transition: opacity 0.2s ease;
+  transition: color 0.3s ease;
 
   &:hover {
-    opacity: 0.7;
-    text-decoration: underline;
+    color: #007bff; // колір при наведенні
   }
 }

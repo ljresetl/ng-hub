@@ -7,6 +7,7 @@
       {
         "id": "creation",
         "iconName": "Laptop",
+        "iconSvg": "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='2' y='3' width='20' height='14' rx='2' ry='2'/><line x1='2' y1='20' x2='22' y2='20'/></svg>",
         "title": "TVORBA, SPRÁVA WWW STRÁNEK A ESHOPŮ",
         "features": [
           "Redakční systém pro snadnou správu",
@@ -18,6 +19,7 @@
       {
         "id": "marketing",
         "iconName": "TrendingUp",
+        "iconSvg": "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='23 6 13.5 15.5 8.5 10.5 1 18'/><polyline points='17 6 23 6 23 12'/></svg>",
         "title": "ZÍSKÁNÍ ZÁKAZNÍKŮ — ONLINE MARKETING",
         "features": [
           "PPC kampaně — platíte za návštěvníka",
@@ -37,6 +39,7 @@
       {
         "id": "marketing-direct",
         "iconName": "Mail",
+        "iconSvg": "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'/><polyline points='22,6 12,13 2,6'/></svg>",
         "title": "EMAIL MARKETING A DIRECT EMAILING",
         "features": [
           "Bezkonkurenční cena.",
@@ -48,6 +51,7 @@
       {
         "id": "new-gen",
         "iconName": "Users",
+        "iconSvg": "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2'/><circle cx='9' cy='7' r='4'/><path d='M23 21v-2a4 4 0 0 0-3-3.87'/><path d='M16 3.13a4 4 0 0 1 0 7.75'/></svg>",
         "title": "EMAILING NOVÉ GENERACE",
         "features": [
           "Nejefektivnější forma propagace.",
@@ -66,6 +70,7 @@
       {
         "id": "inzerce",
         "iconName": "Rocket",
+        "iconSvg": "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z'/><path d='m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z'/><path d='M9 12H4s.55-3.03 2-5c1.62-2.2 5-3 5-3'/><path d='M12 15v5s3.03-.55 5-2c2.2-1.62 3-5 3-5'/></svg>",
         "title": "INZERCE REALIT ZDARMA RYCHLE — PŘEHLEDNĚ",
         "features": [
           "Jednoduché vyhledávání",
@@ -84,6 +89,7 @@
       {
         "id": "dev-guide",
         "iconName": "Laptop",
+        "iconSvg": "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='2' y='3' width='20' height='14' rx='2' ry='2'/><line x1='2' y1='20' x2='22' y2='20'/></svg>",
         "title": "MODERNÍ WEB DEVELOPMENT",
         "features": [
           "Konzultace architektury webu",
@@ -97,17 +103,18 @@
   {
     "id": "amondrex",
     "title": "amondrexcf.com",
-    "subtitle": "mezinárodní obchod a logistika",
+    "subtitle": "charitativní fond pomoci armádě",
     "services": [
       {
-        "id": "logistics",
-        "iconName": "TrendingUp",
-        "title": "GLOBÁLNÍ OBCHODNÍ ŘEŠENÍ",
+        "id": "military-aid",
+        "iconName": "ShieldCheck",
+        "iconSvg": "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/><path d='m9 12 2 2 4-4'/></svg>",
+        "title": "LOGISTIKA A PŘÍMÁ POMOC VOJSKU",
         "features": [
-          "Efektivní správa dodavatelského řetězce",
-          "Mezinárodní logistické služby",
-          "B2B obchodní partnerství",
-          "Analýza globálního trhu"
+          "Zajištění taktického vybavení",
+          "Mezinárodní logistika pomoci",
+          "Transparentní financování sbírek",
+          "Efektivní distribuce přímo na frontu"
         ]
       }
     ]

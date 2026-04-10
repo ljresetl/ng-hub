@@ -4,7 +4,6 @@ import Projects from '@/components/Projects/Projects';
 import Kontakt from '@/components/Kontakt/Kontakt';
 import References from '@/components/References/References';
 import Maps from '@/components/Maps/Maps';
-import Footer from '@/components/Footer/Footer';
 
 export default function Home() {
   return (
@@ -15,7 +14,6 @@ export default function Home() {
 <References />
 <Kontakt />
       <Maps />
-      <Footer />
     </main>
   );
 }

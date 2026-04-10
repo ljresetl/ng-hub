@@ -1,51 +1,32 @@
 .hero {
   width: 100%;
-  padding-top: 70px; // Висота хедера
-  position: relative;
-  z-index: 1;
+  // padding: 20px 0; // Опціонально: відступи зверху/знизу
 }
 
 .container {
-  max-width: 1200px;
   margin: 0 auto;
   padding: 0;
 }
 
 .banner {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  position: relative;
-  overflow: hidden;
-  background: #f0f0f0;
-
-  // Пропорції (гумовий банер)
-  aspect-ratio: 4 / 3;
-  @media (min-width: 769px) {
-    aspect-ratio: 16 / 7;
-  }
-  @media (min-width: 1025px) {
-    aspect-ratio: 21 / 9;
-  }
-}
-
-.slide {
-  position: absolute;
-  inset: 0;
+  position: relative; // Обов'язково для fill у Image
   width: 100%;
-  height: 100%;
-  opacity: 0; // За замовчуванням невидимі
-  transition: opacity 1.5s ease-in-out; // Плавність переходу (1.5 секунди)
-  z-index: 1;
 
-  &.active {
-    opacity: 1; // Видимий тільки активний слайд
-    z-index: 2;
+  // Задаємо висоту
+  height: 300px; // Висота на мобільних
+
+  overflow: hidden; // Щоб картинка не вилазила за кути
+
+  @media (min-width: 768px) {
+    height: 450px; // Висота на планшетах/десктопах
+  }
+
+  @media (min-width: 1024px) {
+    height: 650px; // Висота на великих екранах
   }
 }
 
 .bannerImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  object-fit: cover; // Картинка заповнює блок, зберігаючи пропорції (обрізається)
+  object-position: center; // Центрування картинки
 }

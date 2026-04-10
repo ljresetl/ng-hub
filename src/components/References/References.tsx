@@ -45,7 +45,7 @@ const References: React.FC = () => {
 
   return (
     <section className={styles.references} id="references">
-      <div className="container">
+      <div className={styles.container}>
         <header className={styles.header}>
           <h2>Vybrané reference</h2>
           <div className={styles.line}></div>

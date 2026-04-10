@@ -12,19 +12,17 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      {isOpen && <div className={styles.overlay} onClick={closeMenu}></div>}
-
       <div className={styles.container}>
         <Link href="/" className={styles.logo} onClick={closeMenu}>
           NG <span>Consulting</span>
         </Link>
 
-        {/* Десктопна навігація */}
-        <nav className={styles.desktopNav}>
-          <Link href="#projects" className={styles.link}>PROJEKTY</Link>
-          <Link href="#references" className={styles.link}>REFERENCE</Link>
-          <Link href="#map" className={styles.link}>KDE NÁS NAJDETE</Link>
-          <Link href="#kontakt" className={styles.link}>KONTAKT</Link>
+        {/* Навігація (спільна для десктопа і мобілки) */}
+        <nav className={`${styles.nav} ${isOpen ? styles.navOpen : ''}`}>
+          <Link href="#projects" onClick={closeMenu}>PROJEKTY</Link>
+          <Link href="#references" onClick={closeMenu}>REFERENCE</Link>
+          <Link href="#map" onClick={closeMenu}>KDE NÁS NAJDETE</Link>
+          <Link href="#kontakt" onClick={closeMenu}>KONTAKT</Link>
         </nav>
 
         <div className={styles.actions}>
@@ -42,16 +40,6 @@ export default function Header() {
           >
             <span></span><span></span><span></span>
           </button>
-        </div>
-
-        {/* Мобільне меню */}
-        <div className={`${styles.mobileMenu} ${isOpen ? styles.menuVisible : ''}`}>
-          <nav className={styles.mobileNav}>
-            <Link href="#projects" className={styles.link} onClick={closeMenu}>PROJEKTY</Link>
-            <Link href="#references" className={styles.link} onClick={closeMenu}>REFERENCE</Link>
-            <Link href="#map" className={styles.link} onClick={closeMenu}>KDE NÁS NAJDETE</Link>
-            <Link href="#kontakt" className={styles.link} onClick={closeMenu}>KONTAKT</Link>
-          </nav>
         </div>
       </div>
     </header>

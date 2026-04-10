@@ -1,59 +1,49 @@
 .mapsSection {
-  position: relative;
-  width: 100%;
-  height: 500px; // Висота секції на мобільних
-  margin: 60px 0 0 80px; // Відступи зверху та знизу
-
-  @media (min-width: 1024px) {
-    height: 600px; // Висота на десктопі
-  }
+  padding: 60px 0;
+  background-color: #f9f9f9; // або ваш колір
 }
 
 .container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 
-.mapContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+  display: flex;
+  flex-direction: column; // Мобільні: все в колонку
+  gap: 30px;
 
-  iframe {
-    width: 100%;
-    height: 100%;
-    filter: grayscale(10%);
-    transition: filter 0.3s;
-    &:hover {
-      filter: grayscale(0%);
-    }
+  @media (min-width: 768px) {
+    flex-direction: row; // Планшети та десктопи: в ряд
+    align-items: stretch;
   }
 }
 
-.infoCardWrapper {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: flex-end; // Притискаємо картку вправо по сітці
-  pointer-events: none; // Щоб можна було клікати на карту крізь порожній простір
+.mapWrapper {
+  width: 100%;
+  height: 350px; // Висота карти на мобільному
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+  @media (min-width: 768px) {
+    flex: 1; // Займає доступний простір
+    height: auto; // Підлаштовується під висоту картки
+    min-height: 450px;
+  }
 }
 
 .infoCard {
-  pointer-events: auto; // Повертаємо клікабельність самій картці
-  background: #ffffff;
-  padding: 40px;
-  border-radius: 30px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-  width: 100%;
-  max-width: 380px;
-  margin-top: 40px; // Відступ зверху на мобільних
+  width: 90%;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-  @media (min-width: 1024px) {
-    margin-top: 60px; // Позиціонування на десктопі
+  @media (min-width: 768px) {
+    width: 400px; // Фіксована ширина картки на десктопі
   }
 }
 
@@ -61,54 +51,54 @@
   margin-bottom: 25px;
   h3 {
     font-size: 24px;
-    font-weight: 800;
-    margin: 0;
-    color: #111;
+    margin-bottom: 5px;
+    color: #333;
   }
   p {
-    color: #00aeef;
+    color: #666;
     font-size: 14px;
-    font-weight: 700;
-    margin: 4px 0 0 0;
   }
 }
 
 .details {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
   margin-bottom: 30px;
 }
 
 .item {
+  margin-bottom: 20px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
   .label {
     display: block;
-    font-size: 11px;
-    font-weight: 800;
-    color: #aaa;
+    font-weight: bold;
+    font-size: 14px;
     text-transform: uppercase;
-    margin-bottom: 4px;
+    color: #999;
+    margin-bottom: 5px;
   }
+
   p {
-    font-size: 15px;
-    color: #333;
     margin: 0;
+    color: #333;
+    line-height: 1.5;
   }
 }
 
 .directionsBtn {
-  display: block;
-  background-color: #00aeef;
-  color: #fff;
+  display: inline-block;
   text-align: center;
-  padding: 16px;
-  border-radius: 14px;
-  font-weight: 700;
+  background-color: #007bff; // Ваш колір
+  color: #fff;
+  padding: 15px 25px;
+  border-radius: 8px;
   text-decoration: none;
-  transition: all 0.3s;
+  font-weight: 600;
+  transition: background 0.3s ease;
 
   &:hover {
-    background-color: #0093ca;
-    transform: translateY(-2px);
+    background-color: #0056b3;
   }
 }

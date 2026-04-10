@@ -1,58 +1,34 @@
 .hero {
   position: relative;
   width: 100%;
+  background-color: #fff;
+  // Шляхи до твоїх нових фото (повинні бути в public)
   --hero-bg: url('/400M.avif');
-  @media (min-width: 768px) { --hero-bg: url('/1024.avif'); }
+
+  @media (min-width: 768px) {
+    --hero-bg: url('/1024.avif');
+  }
 }
 
-.lcpImage {
-  position: absolute;
-  inset: 0;
-  z-index: 0; // Лежить під кубиками
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .houseCanvas {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 11;
-  overflow: hidden;
-  background-color: #fff;
-  @media (min-width: 768px) { aspect-ratio: 16 / 5; }
-}
-
-.bricksWrapper {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  z-index: 1; // Поверх LCP картинки
-}
-
-.brick {
+  // Збільшив висоту для мобілок (1/1.2), щоб кнопка вмістилася
+  aspect-ratio: 1 / 1.2; 
   background-image: var(--hero-bg);
-  background-repeat: no-repeat;
-  background-size: 600% 400%;
-  opacity: 0;
-  animation: brickFadeIn 0.4s ease-out forwards;
-}
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
 
-/* Швидка анімація для PageSpeed */
-.brick:nth-child(6n+1) { background-position-x: 0%; animation-delay: 0.1s; }
-.brick:nth-child(6n+2) { background-position-x: 20%; animation-delay: 0.15s; }
-.brick:nth-child(6n+3) { background-position-x: 40%; animation-delay: 0.2s; }
-.brick:nth-child(6n+4) { background-position-x: 60%; animation-delay: 0.25s; }
-.brick:nth-child(6n+5) { background-position-x: 80%; animation-delay: 0.3s; }
-.brick:nth-child(6n)   { background-position-x: 100%; animation-delay: 0.35s; }
-
-.brick:nth-child(-n+6) { background-position-y: 0%; }
-.brick:nth-child(n+7):nth-child(-n+12) { background-position-y: 33.33%; }
-.brick:nth-child(n+13):nth-child(-n+18) { background-position-y: 66.66%; }
-.brick:nth-child(n+19):nth-child(-n+24) { background-position-y: 100%; }
-
-@keyframes brickFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  @media (min-width: 768px) {
+    aspect-ratio: 16 / 5; // Десктоп залишаємо вузьким
+  }
 }
 
 .textOverlay {
@@ -60,15 +36,68 @@
   inset: 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding-bottom: 12%;
+  justify-content: center; // Центруємо текст по вертикалі
+  align-items: center;
   z-index: 5;
+  // Легкий градієнт для читабельності тексту на фото
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.6) 100%);
+  padding: 0 20px;
+
+  @media (min-width: 768px) {
+    justify-content: flex-end;
+    padding-bottom: 5%;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.4), transparent 70%);
+  }
 }
 
-.line1, .line2 { opacity: 0; animation: simpleFade 0.5s ease-out forwards; }
-.line1 { font-size: 24px; font-weight: 900; animation-delay: 0.6s; }
-.line2 { font-size: 14px; font-weight: 500; animation-delay: 0.8s; }
+.textContainer {
+  width: 100%;
+  text-align: center;
+}
 
-@keyframes simpleFade {
-  to { opacity: 1; transform: translateY(0); }
+.title {
+  font-size: clamp(14px, 5vw, 36px);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #111;
+  margin: 0 0 8px 0; // Прибираємо стандартні маргіни
+}
+
+.subtitle {
+  font-size: clamp(10px, 3vw, 20px);
+  font-weight: 500;
+  color: #333;
+  margin: 0 0 24px 0; // Маргін вниз до кнопки
+}
+
+// --- СТИЛІ КНОПКИ ---
+
+.ctaWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: #000; // Чорна кнопка
+  color: #fff; // Білий текст
+  font-size: clamp(10px, 2.5vw, 16px);
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none; // Прибираємо підкреслення
+  border-radius: 4px; // Легке заокруглення
+  border: 2px solid transparent; // Для ховеру
+  transition: all 0.3s ease; // Плавна зміна при наведенні
+  cursor: pointer;
+
+  @media (min-width: 768px) {
+    padding: 16px 36px;
+  }
+
+  &:hover {
+    background-color: #fff; // Білий фон
+    color: #000; // Чорний текст
+    border-color: #000; // Чорна рамка
+  }
 }

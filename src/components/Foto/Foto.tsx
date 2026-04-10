@@ -11,7 +11,7 @@ const Foto: React.FC = () => {
         {/* Мобільна версія (показується на екранах до 768px) */}
         <div className={styles.mobileOnly}>
           <Image 
-            src="/hero-mobile.avif" 
+            src="/400M.avif" 
             alt="NG Consulting Mobile" 
             fill
             priority
@@ -23,7 +23,7 @@ const Foto: React.FC = () => {
         {/* Десктоп версія (показується на екранах від 768px) */}
         <div className={styles.desktopOnly}>
           <Image 
-            src="/hero-desktop.avif" 
+            src="/1024.avif" 
             alt="NG Consulting Desktop" 
             fill
             priority

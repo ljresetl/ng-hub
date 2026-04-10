@@ -7,7 +7,7 @@ import styles from "./Foto.module.scss";
 const HERO_TITLE = "Vaše digitální symfonie.";
 const HERO_SUBTITLE = "My dirigujeme – vy si vychutnáváte výsledek.";
 const CTA_BUTTON_TEXT = "Způsobit revoluci"; // "Спричинити революцію"
-const CTA_BUTTON_LINK = "#contact"; // Зазвичай веде до форми контакту
+const CTA_BUTTON_LINK = "#kontakt"; // Зазвичай веде до форми контакту
 
 const Foto: React.FC = () => {
   return (

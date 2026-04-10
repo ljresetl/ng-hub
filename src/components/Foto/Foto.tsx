@@ -5,9 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import TextAnimation from "./TextAnimation";
 import styles from "./Foto.module.scss";
 
-// Твої два фото
 const images = ["/1024.avif", "/1024G.avif"]; 
-
 const COLUMNS = 10;
 const ROWS = 8;
 const HERO_TEXT = "Vaše digitální symfonie. My dirigujeme – vy si vychutnáváte výsledek.";
@@ -18,18 +16,14 @@ const Foto: React.FC = () => {
   const bricksArray = Array.from({ length: COLUMNS * ROWS }, (_, i) => i);
 
   useEffect(() => {
-    // 1. Перша затримка для Google: 4 секунди перше фото стоїть нерухомо
     const initialTimer = setTimeout(() => {
       setIsInitial(false);
       setIndex(1);
     }, 4000);
 
-    // 2. Цикл зміни фото
     const interval = setInterval(() => {
-      // Спочатку "скидаємо" фото (ефект вильоту)
-      // AnimatePresence з mode="wait" автоматично почекає завершення exit анімації
       setIndex((prev) => (prev + 1) % images.length);
-    }, 6000); // Загальний цикл
+    }, 6000);
 
     return () => {
       clearTimeout(initialTimer);
@@ -42,18 +36,17 @@ const Foto: React.FC = () => {
       <div className={styles.container}>
         <div className={styles.houseCanvas}>
           
-          {/* mode="wait" забезпечує, що старе фото повністю зникне, 
-              перш ніж почне з'являтися нове. Це створює момент "порожнечі" */}
-          <AnimatePresence mode="wait">
+          {/* Прибираємо mode="wait", щоб нове фото починало збиратися миттєво */}
+          <AnimatePresence>
             <motion.div 
               key={index} 
               className={styles.bricksWrapper}
-              // Додаємо невелику затримку появи самого контейнера (0.5 сек), 
-              // щоб між розльотом і зльотом була пауза
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 1 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ delay: 0.5 }} 
+              // transition для всього контейнера тепер мінімальний, 
+              // щоб не було затримки перед стартом кубиків
+              transition={{ duration: 0.5 }} 
             >
               {bricksArray.map((i) => {
                 const col = i % COLUMNS;
@@ -81,7 +74,7 @@ const Foto: React.FC = () => {
                       rotate: initialRotate / 2
                     }}
                     transition={{
-                      duration: 1.2, // Трохи швидше складання
+                      duration: 1.5,
                       delay: i * 0.005,
                       ease: [0.22, 1, 0.36, 1],
                     }}

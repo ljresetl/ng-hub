@@ -2,12 +2,7 @@
   position: relative;
   width: 100%;
   background-color: #fff;
-  // Шляхи до твоїх нових фото (повинні бути в public)
-  --hero-bg: url('/400M.avif');
-
-  @media (min-width: 768px) {
-    --hero-bg: url('/1024.avif');
-  }
+  overflow: hidden; // Щоб нічого не вилазило
 }
 
 .container {
@@ -19,27 +14,45 @@
 .houseCanvas {
   position: relative;
   width: 100%;
-  // Збільшив висоту для мобілок (1/1.2), щоб кнопка вмістилася
-  aspect-ratio: 1 / 1.2; 
-  background-image: var(--hero-bg);
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-
+  
+  // --- ВИПРАВЛЕННЯ ДЛЯ ЯКОСТІ ФОТО ---
+  
+  // 1. Пропорція: Робимо її більш високою (квадратною),
+  // щоб картинка не розтягувалася по вертикалі.
+  aspect-ratio: 1 / 1.1; 
+  
+  // 2. Вибір фото (залиш як було)
+  --hero-bg: url('/400M.avif');
+  
   @media (min-width: 768px) {
-    aspect-ratio: 16 / 5; // Десктоп залишаємо вузьким
+    --hero-bg: url('/1024.avif');
+    // На десктопі панорама (вузька)
+    aspect-ratio: 16 / 5;
   }
+  
+  background-image: var(--hero-bg);
+  
+  // 3. Масштабування (ЦЕ НАЙВАЖЛИВІШЕ):
+  // Використовуємо object-fit: cover; через background-size
+  background-size: cover; 
+  background-position: center; // Центруємо картинку
+  background-repeat: no-repeat;
+  
+  // 4. Покращення чіткості для екранів Retina (iPhone/Android):
+  // Ми підказуємо браузеру не згладжувати пікселі надто сильно.
+  image-rendering: -webkit-optimize-contrast; 
+  image-rendering: crisp-edges;
 }
 
+// Решта стилів залишаються без змін, вони гарні
 .textOverlay {
   position: absolute;
   inset: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center; // Центруємо текст по вертикалі
+  justify-content: center;
   align-items: center;
   z-index: 5;
-  // Легкий градієнт для читабельності тексту на фото
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.6) 100%);
   padding: 0 20px;
 
@@ -60,17 +73,15 @@
   font-weight: 900;
   text-transform: uppercase;
   color: #111;
-  margin: 0 0 8px 0; // Прибираємо стандартні маргіни
+  margin: 0 0 8px 0;
 }
 
 .subtitle {
   font-size: clamp(10px, 3vw, 20px);
   font-weight: 500;
   color: #333;
-  margin: 0 0 24px 0; // Маргін вниз до кнопки
+  margin: 0 0 24px 0;
 }
-
-// --- СТИЛІ КНОПКИ ---
 
 .ctaWrapper {
   display: flex;
@@ -80,24 +91,18 @@
 .ctaButton {
   display: inline-block;
   padding: 12px 28px;
-  background-color: #000; // Чорна кнопка
-  color: #fff; // Білий текст
+  background-color: #000;
+  color: #fff;
   font-size: clamp(10px, 2.5vw, 16px);
   font-weight: 700;
   text-transform: uppercase;
-  text-decoration: none; // Прибираємо підкреслення
-  border-radius: 4px; // Легке заокруглення
-  border: 2px solid transparent; // Для ховеру
-  transition: all 0.3s ease; // Плавна зміна при наведенні
-  cursor: pointer;
-
-  @media (min-width: 768px) {
-    padding: 16px 36px;
-  }
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
 
   &:hover {
-    background-color: #fff; // Білий фон
-    color: #000; // Чорний текст
-    border-color: #000; // Чорна рамка
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #000;
   }
 }

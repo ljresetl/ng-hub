@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import styles from "./Foto.module.scss";
 
 const HERO_TEXT_1 = "Vaše digitální symfonie.";
@@ -13,33 +12,19 @@ const Foto: React.FC = () => {
       <div className={styles.container}>
         <div className={styles.houseCanvas}>
           
-          {/* МОБІЛЬНЕ ФОТО: завантажується тільки на малих екранах */}
-          <div className={styles.mobileImg}>
-            <Image 
-              src="/400M.avif" 
-              alt="NG Consulting Mobile" 
-              fill
-              priority
-              quality={80}
-              sizes="(max-width: 767px) 100vw, 1px"
-            />
-          </div>
-
-          {/* ДЕСКТОПНЕ ФОТО: завантажується тільки на великих екранах */}
-          <div className={styles.desktopImg}>
-            <Image 
-              src="/1024.avif" 
-              alt="NG Consulting Desktop" 
-              fill
-              priority
-              quality={85}
-              sizes="(min-width: 768px) 100vw, 1px"
-            />
+          {/* ОБОВ'ЯЗКОВО: Додаємо Header та Footer в DOM, щоб PageSpeed їх бачив */}
+          {/* ... твій Header ... */}
+          
+          <div className={styles.bricksWrapper}>
+            {/* Тільки 24 кубики — "золота середина" для PageSpeed */}
+            {[...Array(24)].map((_, i) => (
+              <div key={i} className={styles.brick} />
+            ))}
           </div>
 
           <div className={styles.textOverlay}>
             <div className={styles.textContainer}>
-              {/* Додано класи з анімацією появи */}
+              {/* Анімацію появи робимо через легкий CSS */}
               <h1 className={`${styles.line1} ${styles.animateFadeIn}`}>
                 {HERO_TEXT_1}
               </h1>
@@ -48,6 +33,8 @@ const Foto: React.FC = () => {
               </p>
             </div>
           </div>
+          
+          {/* ... твій Footer ... */}
         </div>
       </div>
     </section>

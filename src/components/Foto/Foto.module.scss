@@ -1,64 +1,28 @@
-/* Foto.module.scss - Mobile First & Performance Optimized */
-
-// 1. БАЗОВІ СТИЛІ = МОБІЛЬНІ (Смартфони)
 .hero {
   position: relative;
   width: 100%;
   background-color: #fff;
-  overflow: hidden;
-  // Оптимізація: браузер не перераховує все дерево елементів при зміні кубиків
-  contain: layout paint; 
 }
 
 .container {
   width: 100%;
-  margin: 0;
-  padding: 0;
   display: flex;
   justify-content: center;
 }
-.staticImg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-
 
 .houseCanvas {
   position: relative;
   width: 100%;
-  // Висота на мобільних (акуратна, не на весь екран)
-  aspect-ratio: 16 / 11; 
-  min-height: 200px;
-  display: flex;
-  flex-wrap: wrap;
+  aspect-ratio: 16 / 11; // Мобільна висота
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.02);
+  background-color: #eee;
 }
 
-.bricksWrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
+.heroImg {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  z-index: 2;
-}
-
-.brick {
-  position: relative;
-  background-repeat: no-repeat;
-  // Використовуємо GPU для плавності без навантаження на процесор (Fix Speed Index)
-  will-change: transform, opacity;
-  transform: translateZ(0); 
-  outline: 1px solid transparent;
-  backface-visibility: hidden;
+  object-fit: cover;
+  display: block;
 }
 
 .textOverlay {
@@ -69,9 +33,9 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; // Притискаємо до нижньої третини
+  justify-content: flex-end; 
   padding-bottom: 10%; 
-  z-index: 10;
+  z-index: 5;
   pointer-events: none;
   background: linear-gradient(to top, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 50%);
 }
@@ -81,66 +45,42 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
 }
 
 .line1, .line2 {
   width: 90%;
-  margin: 0 auto;
   text-align: center;
-  white-space: normal; // Дозволяємо перенос для вузьких екранів
 }
 
 .line1 {
-  // Дрібний акуратний шрифт для мобільних
   font-size: clamp(10px, 3.5vw, 12px);
   font-weight: 900;
   color: #111;
   text-transform: uppercase;
-  line-height: 1.1;
-  letter-spacing: 0.02em;
 }
 
 .line2 {
-  // Дуже дрібний підзаголовок
   font-size: clamp(8px, 2.5vw, 9px);
   font-weight: 500;
   color: #444;
   margin-top: 2px;
-  line-height: 1.2;
 }
 
-// 2. ДЛЯ ДЕСКТОПІВ (min-width: 768px)
+// Планшети та Десктопи
 @media (min-width: 768px) {
   .houseCanvas {
-    // Низька висота для десктопа (було 16/7, зробили 16/5)
-    aspect-ratio: 16 / 5; 
-    min-height: auto;
+    aspect-ratio: 16 / 5; // Низька висота для ПК
   }
 
   .textOverlay {
-    padding-bottom: 4%; // Текст трохи нижче на ПК
-  }
-
-  .line1, .line2 {
-    width: 100%;
-    white-space: nowrap; // На ПК слова в один рядок
+    padding-bottom: 4%;
   }
 
   .line1 {
-    // Читабельний розмір для великих екранів
     font-size: clamp(18px, 2.5vw, 32px);
   }
 
   .line2 {
     font-size: clamp(12px, 1.5vw, 18px);
-    margin-top: 0;
-  }
-}
-
-// Спеціальний фікс для Safari, щоб анімація не "сіпалася"
-@supports (-webkit-hyphens:none) {
-  .brick {
-    -webkit-transform: translate3d(0,0,0);
   }
 }

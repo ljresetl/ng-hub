@@ -2,13 +2,14 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: #fff;
-  border-bottom: 1px solid #eee;
+  background: rgba(255, 255, 255, 0.95); // Легка прозорість для ефекту скла
+  backdrop-filter: blur(10px); // Ефект розмиття фону
+  border-bottom: 1px solid #f0f0f0;
   padding-bottom: 0px;
 }
 
 .container {
-  height: 60px;
+  height: 70px; // Трохи збільшив для візуального простору
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -21,89 +22,108 @@
 }
 
 .logo {
-  font-weight: 700;
-  font-size: 18px;
-  color: #000;
+  font-weight: 800; // Робимо бренд помітнішим
+  font-size: 22px;
+  color: #1a1a1a; // Майже чорний для максимальної чіткості
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+
   span {
-    font-weight: 300;
+    font-weight: 400;
+    color: #0056b3; // Акцентний синій (висока контрастність для SEO/Accessibility)
+    margin-left: 2px;
+  }
+
+  &:hover {
+    opacity: 0.8;
   }
 }
 
 .nav {
-  // Мобільне меню (базовий стан)
   display: none;
 
   &.navOpen {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 60px;
+    top: 70px;
     left: 0;
     width: 100%;
     background: #fff;
-    padding: 20px;
-    gap: 15px;
+    padding: 30px 20px;
+    gap: 20px;
     border-bottom: 1px solid #eee;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.05);
   }
 
   a {
-    color: #333;
-    font-weight: 500;
-    font-size: 14px;
+    color: #444;
+    font-weight: 600;
+    font-size: 15px;
+    transition: color 0.2s;
+    
     &:hover {
-      color: #007bff;
+      color: #0056b3; // Колір при наведенні відповідає логотипу
     }
   }
 
-  // Десктоп та Планшет (тільки розширення)
   @media (min-width: 768px) {
     display: flex;
     position: static;
-    flex-direction: row; // Повертаємо в рядок
+    flex-direction: row;
     padding: 0;
     width: auto;
     border: none;
-    gap: 25px;
+    gap: 32px;
   }
 }
 
 .actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
 }
 
 .searchBtn svg {
-  width: 20px;
-  color: #333;
+  width: 22px;
+  color: #1a1a1a;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .burger {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
+  cursor: pointer;
 
   span {
     display: block;
-    width: 22px;
+    width: 24px;
     height: 2px;
-    background: #333;
-    transition: 0.3s;
+    background: #1a1a1a;
+    transition: all 0.3s ease;
   }
 
   @media (min-width: 768px) {
-    display: none; // Приховуємо на великих екранах
+    display: none;
   }
 }
 
 .burgerActive {
   span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
+    transform: translateY(8px) rotate(45deg);
   }
   span:nth-child(2) {
     opacity: 0;
   }
   span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+    transform: translateY(-8px) rotate(-45deg);
   }
 }

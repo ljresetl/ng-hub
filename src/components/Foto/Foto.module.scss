@@ -1,71 +1,155 @@
+/* Foto.module.scss - Mobile First & Performance Optimized */
+
+// 1. БАЗОВІ СТИЛІ = МОБІЛЬНІ (Смартфони)
 .hero {
   position: relative;
   width: 100%;
   background-color: #fff;
+  overflow: hidden;
+  // Оптимізація: браузер не перераховує все дерево елементів при рендері
+  contain: layout paint; 
+}
+
+.container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .houseCanvas {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 11;
+  // РЕЗЕРВУЄМО МІСЦЕ (CLS Fix): Важливо, щоб не було стрибків контенту
+  // Мобільний формат: вертикальний/квадратний
+  aspect-ratio: 1 / 1.1; // Можна змінити на 1/1 (квадрат) або 4/5 (вертикальний)
+  min-height: 250px;
   overflow: hidden;
-  // Важливо: резервуємо місце, щоб не було Layout Shift
-  min-height: 200px; 
+  background-color: #fdfdfd; // Легкий фон, поки вантажиться картинка
+}
+
+// Керування адаптивними зображеннями
+.mobileOnly {
+  display: block; // За замовчуванням (на мобільних) показуємо
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.desktopOnly {
+  display: none; // На мобільних ховаємо
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 .heroImg {
-  object-fit: cover;
-  // Допомагає браузеру не перераховувати шари
-  transform: translateZ(0); 
+  // Ці стилі автоматично застосуються до Image, якщо fill={true}
+  object-fit: cover; 
+  object-position: center; // Можна змінити на left, right, top, bottom
+  transform: translateZ(0); // Форсуємо використання GPU
 }
 
 .textOverlay {
   position: absolute;
-  inset: 0; // Замінює top/left/width/height: 100%
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding-bottom: 10%;
+  justify-content: flex-end; // Притискаємо до нижньої третини
+  padding-bottom: 12%; 
   z-index: 5;
-  pointer-events: none;
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
+  pointer-events: none; // Текст не заважає клікам
+  // М'який градієнт, щоб текст був читабельним на будь-якому фоні
+  background: linear-gradient(
+    to top, 
+    rgba(255, 255, 255, 0.35) 0%, 
+    rgba(255, 255, 255, 0) 60%
+  );
 }
 
 .textContainer {
   width: 100%;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
 }
 
 .line1, .line2 {
-  width: 90%;
+  width: 92%; // Трохи відступів від країв
   margin: 0 auto;
-  // CSS анімація замість JS анімації — це ключ до низького TBT
+  text-align: center;
+  white-space: normal; // Дозволяємо перенос для вузьких екранів
+  // CSS анімація (TBT Fix)
   opacity: 0;
-  animation: fadeIn 0.8s ease-out forwards;
+  animation: fadeInOut 0.8s ease-out forwards;
   will-change: opacity, transform;
 }
 
 .line1 {
-  font-size: clamp(10px, 3.5vw, 12px);
+  // Дрібний акуратний шрифт для мобільних
+  font-size: clamp(10px, 3.8vw, 12px);
   font-weight: 900;
+  color: #111;
   text-transform: uppercase;
-  animation-delay: 0.1s;
+  line-height: 1.1;
+  letter-spacing: 0.03em;
+  animation-delay: 0.2s;
 }
 
 .line2 {
-  font-size: clamp(8px, 2.5vw, 9px);
+  // Дуже дрібний підзаголовок
+  font-size: clamp(8px, 2.8vw, 9px);
   font-weight: 500;
+  color: #444;
   margin-top: 2px;
-  animation-delay: 0.3s;
+  line-height: 1.2;
+  animation-delay: 0.4s;
 }
 
-@keyframes fadeIn {
+// Проста CSS анімація
+@keyframes fadeInOut {
   from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+// Safari Fix для анімації
+@supports (-webkit-hyphens:none) {
+  .line1, .line2 { -webkit-animation: fadeInOut 0.8s ease-out forwards; }
+}
+
+// 2. ДЛЯ ДЕСКТОПІВ (min-width: 768px)
 @media (min-width: 768px) {
   .houseCanvas {
-    aspect-ratio: 16 / 5;
+    // Низька висота для десктопа (широкий банер)
+    aspect-ratio: 16 / 5; 
+    min-height: auto;
+  }
+
+  // Керування адаптивними зображеннями (перемикання)
+  .mobileOnly { display: none; }
+  .desktopOnly { display: block; }
+
+  .textOverlay {
+    padding-bottom: 4%; // Текст трохи нижче на ПК
+  }
+
+  .line1, .line2 {
+    width: 100%;
+    white-space: nowrap; // На ПК слова в один рядок
+  }
+
+  .line1 {
+    font-size: clamp(18px, 2.5vw, 32px);
+    letter-spacing: 0.02em;
+  }
+
+  .line2 {
+    font-size: clamp(12px, 1.5vw, 18px);
+    margin-top: 0;
   }
 }

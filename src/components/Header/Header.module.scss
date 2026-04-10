@@ -2,14 +2,14 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.95); // Легка прозорість для ефекту скла
-  backdrop-filter: blur(10px); // Ефект розмиття фону
+  background: rgba(255, 255, 255, 0.95); // Ефект скла
+  backdrop-filter: blur(10px); 
   border-bottom: 1px solid #f0f0f0;
   padding-bottom: 0px;
 }
 
 .container {
-  height: 70px; // Трохи збільшив для візуального простору
+  height: 70px; // Збільшено для простору
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -22,23 +22,33 @@
 }
 
 .logo {
-  font-weight: 800; // Робимо бренд помітнішим
-  font-size: 22px;
-  color: #1a1a1a; // Майже чорний для максимальної чіткості
+  font-weight: 800;
+  font-size: 20px; // Розмір "NG"
+  color: #1a1a1a;
   text-transform: uppercase;
   letter-spacing: -0.5px;
   text-decoration: none;
   display: flex;
-  align-items: center;
+  align-items: baseline; // Щоб текст стояв на одній лінії
+  line-height: 1;
 
   span {
     font-weight: 400;
-    color: #0056b3; // Акцентний синій (висока контрастність для SEO/Accessibility)
-    margin-left: 2px;
+    font-size: 14px; // Менший розмір для "CONSULTING"
+    color: #0056b3; // Акцентний синій для контрасту
+    margin-left: 6px;
+    letter-spacing: 1px; // Розрядка для преміального вигляду
   }
 
   &:hover {
     opacity: 0.8;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 24px;
+    span {
+      font-size: 16px;
+    }
   }
 }
 
@@ -64,9 +74,10 @@
     font-weight: 600;
     font-size: 15px;
     transition: color 0.2s;
-    
+    text-decoration: none;
+
     &:hover {
-      color: #0056b3; // Колір при наведенні відповідає логотипу
+      color: #0056b3;
     }
   }
 
@@ -91,6 +102,7 @@
   width: 22px;
   color: #1a1a1a;
   transition: transform 0.2s;
+  cursor: pointer;
 
   &:hover {
     transform: scale(1.1);

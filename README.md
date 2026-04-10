@@ -1,6 +1,6 @@
 🚀 Technická optimalizace a refresh webu NG Consulting
 Web: ngconsulting.cz
-Výsledek: Zvýšení skóre PageSpeed z „červené zóny“ na špičkových 92/100/100/100.
+Výsledek: Zvýšení skóre PageSpeed z „červené zóny“ na špičkových 94/100/100/100.
 💎 Provedené změny a vylepšení
 1. Hlavní obrazovka (Hero Section)
 Nový banner: Původní fotografie byla nahrazena optimalizovaným snímkem ve formátu AVIF pro bleskové načítání.
@@ -18,4 +18,4 @@ Optimalizace zdrojů: Odstraněny požadavky blokující vykreslování stránky
 Práce s písmy: Nastaveno korektní načítání přes next/font s nulovým Layout Shiftem (přeblikávání textu).
 Čistý kód: Úplná eliminace zbytečných těžkých knihoven ve prospěch nativních prohlížečových řešení (IntersectionObserver).
 📊 Výsledky měření
-
+![PageSpeed Insights](/Screenshot_20260411-003530.png)

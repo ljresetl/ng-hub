@@ -1,12 +1,14 @@
+@use "sass:math";
+
 .hero {
   position: relative;
   width: 100%;
   background-color: #fff;
-  // Шляхи до фото (мають лежати в public)
-  --hero-bg: url('/400M.avif'); // Мобільне
+  // Шляхи до твоїх нових фото
+  --hero-bg: url('/400M.avif');
 
   @media (min-width: 768px) {
-    --hero-bg: url('/1024.avif'); // Десктопне
+    --hero-bg: url('/1024.avif');
   }
 }
 
@@ -19,22 +21,18 @@
 .houseCanvas {
   position: relative;
   width: 100%;
-  // Мобільна пропорція
-  aspect-ratio: 16 / 11; 
+  aspect-ratio: 1 / 1.1; // Мобільна пропорція
   overflow: hidden;
 
   @media (min-width: 768px) {
-    // Десктопна пропорція
-    aspect-ratio: 16 / 5;
+    aspect-ratio: 16 / 5; // Десктопна пропорція
   }
 }
 
-// СІТКА КУБИКІВ:
 .bricksWrapper {
   position: absolute;
   inset: 0;
   display: grid;
-  // 6 стовпців, 4 рядки = 24 кубики
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 1fr);
   z-index: 1;
@@ -43,31 +41,31 @@
 .brick {
   background-image: var(--hero-bg);
   background-repeat: no-repeat;
-  
-  // Кожен кубик має правильну частину картинки
+  background-size: 600% 400%; // 6 колонок на 4 рядки
+  opacity: 0;
+  will-change: opacity, transform;
+
   @for $i from 0 through 23 {
-    $col: $i % 6;
-    $row: math.floor($i / 6);
     &:nth-child(#{$i + 1}) {
-      background-size: 600% 400%; // Кількість колонок * 100%
-      background-position: #{$col * 100 / (6 - 1)}% #{$row * 100 / (4 - 1)}%;
-      
-      // ЧИСТА CSS АНІМАЦІЯ ПОЯВИ
+      $col: $i % 6;
+      $row: math.floor(math.div($i, 6));
+
+      // Розрахунок позиції фону
+      background-position: 
+        #{math.div($col * 100, 5)}% 
+        #{math.div($row * 100, 3)}%;
+
       animation: brickFadeIn 0.5s ease-out forwards;
-      // Ефект "хвилі" або випадковості
-      animation-delay: #{$col * 0.08s + $row * 0.06s + random() * 0.1s + 1.2s};
-      opacity: 0; // Починаємо прихованими
-      transform: scale(0.9);
-      will-change: opacity, transform; // Оптимізація
+      // Затримка: 1.2с на завантаження + черга
+      animation-delay: #{1.2s + ($col * 0.08s) + ($row * 0.05s)};
     }
   }
 }
 
-// Ключові кадри анімації складання
 @keyframes brickFadeIn {
   0% {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.95);
   }
   100% {
     opacity: 1;
@@ -84,6 +82,7 @@
   padding-bottom: 12%;
   z-index: 5;
   background: linear-gradient(to top, rgba(255, 255, 255, 0.4), transparent 60%);
+  pointer-events: none;
 
   @media (min-width: 768px) { padding-bottom: 5%; }
 }
@@ -94,7 +93,6 @@
 }
 
 .line1, .line2 {
-  // Анімацію появи робимо через легкий CSS
   opacity: 0;
   animation: simpleFade 0.6s ease-out forwards;
 }
@@ -104,14 +102,14 @@
   font-weight: 900;
   text-transform: uppercase;
   color: #111;
-  animation-delay: 1.0s;
+  animation-delay: 1.8s; // Поява після складання кубиків
 }
 
 .line2 {
   font-size: clamp(8px, 3vw, 18px);
   font-weight: 500;
   color: #333;
-  animation-delay: 1.3s;
+  animation-delay: 2.1s;
 }
 
 @keyframes simpleFade {

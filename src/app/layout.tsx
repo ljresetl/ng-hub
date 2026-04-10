@@ -4,6 +4,10 @@ import '../styles/globals.scss';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 
+<link rel="preload" href="/1024.avif" as="image" fetchpriority="high" />
+<link rel="preload" href="/1024G.avif" as="image" fetchpriority="high" />
+  
+
 // Налаштування Montserrat для заголовків
 const montserrat = Montserrat({
   subsets: ["latin", "latin-ext"],

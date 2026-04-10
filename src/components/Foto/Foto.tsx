@@ -13,12 +13,13 @@ const Foto: React.FC = () => {
           {/* МОБІЛЬНЕ ФОТО: пріоритет №1 */}
           <div className={styles.mobileOnly}>
             <Image 
-              src="/1024 (3).avif" // Переконайся, що назва в public 1 в 1 така сама
+              src="/1024 (3).avif" 
               alt="NG Consulting Mobile"
               fill
-              priority // Змушує браузер качати фото негайно
+              priority // Next.js додасть preload
+              // @ts-ignore - щоб TS не сварився на специфічний атрибут
+              fetchPriority="high" // ПРЯМА вказівка для PageSpeed
               quality={85}
-              loading="eager"
               sizes="(max-width: 767px) 100vw, 1px"
               className={styles.bgImage}
             />
@@ -31,6 +32,8 @@ const Foto: React.FC = () => {
               alt="NG Consulting Desktop"
               fill
               priority
+              // @ts-ignore
+              fetchPriority="high"
               quality={90}
               sizes="(min-width: 768px) 100vw, 1px"
               className={styles.bgImage}

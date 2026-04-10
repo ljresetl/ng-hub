@@ -1,32 +1,76 @@
+// Foto.module.scss
 .hero {
+  padding: 0;
+  background-color: #fff;
+  overflow: hidden;
   width: 100%;
-  // padding: 20px 0; // Опціонально: відступи зверху/знизу
 }
 
 .container {
-  margin: 0 auto;
-  padding: 0;
-}
-
-.banner {
-  position: relative; // Обов'язково для fill у Image
   width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
 
-  // Задаємо висоту
-  height: 300px; // Висота на мобільних
+.houseCanvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgba(0, 0, 0, 0.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
 
-  overflow: hidden; // Щоб картинка не вилазила за кути
+.brick {
+  // bricks styles stay the same
+}
 
-  @media (min-width: 768px) {
-    height: 450px; // Висота на планшетах/десктопах
-  }
+// НОВЕ: Стилі для накладання тексту
+.textOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center; // Центруємо по горизонталі
+  align-items: center; // Центруємо по вертикалі
+  z-index: 5; // Текст поверх цеглинок
 
-  @media (min-width: 1024px) {
-    height: 650px; // Висота на великих екранах
+  // Легке затемнення фону, щоб текст краще читали (optional)
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+}
+
+// НОВЕ: Стиль самого заголовка
+.heroText {
+  font-size: clamp(24px, 4vw, 54px); // Адаптивний розмір
+  font-weight: 800;
+  text-align: center;
+  color: #000; // Чорний текст для білої тематики
+  line-height: 1.1;
+  max-width: 80%; // Щоб текст не розповзався на весь екран
+  font-family:
+    "Montserrat", sans-serif; // Використовуйте ваш корпоративний шрифт
+
+  span {
+    // Властивості для motion.span (already defined in TextAnimation.tsx style prop)
   }
 }
 
-.bannerImage {
-  object-fit: cover; // Картинка заповнює блок, зберігаючи пропорції (обрізається)
-  object-position: center; // Центрування картинки
+@media (max-width: 768px) {
+  .houseCanvas {
+    aspect-ratio: 16 / 10;
+  }
+  .heroText {
+    max-width: 95%; // Більше ширини на мобільних
+    line-height: 1.2;
+  }
 }

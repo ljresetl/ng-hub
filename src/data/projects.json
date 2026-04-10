@@ -82,39 +82,37 @@
     ]
   },
   {
-    "id": "webdevcompass",
-    "title": "webdevcompass.com",
-    "subtitle": "váš průvodce vývojem",
+    "id": "coming-soon-1",
+    "title": "vasemesto.cz",
+    "subtitle": "regionální portály",
+    "status": "coming-soon",
     "services": [
       {
-        "id": "dev-guide",
-        "iconName": "Laptop",
-        "iconSvg": "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='2' y='3' width='20' height='14' rx='2' ry='2'/><line x1='2' y1='20' x2='22' y2='20'/></svg>",
-        "title": "MODERNÍ WEB DEVELOPMENT",
+        "id": "placeholder-1",
+        "iconName": "Clock",
+        "iconSvg": "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><polyline points='12 6 12 12 16 14'/></svg>",
+        "title": "PROJEKT V PŘÍPRAVĚ",
         "features": [
-          "Konzultace architektury webu",
-          "Optimalizace výkonu a Core Web Vitals",
-          "Nasazení moderních technologií",
-          "Školení vývojových týmů"
+          "Moderní informační systém pro obce",
+          "Spuštění plánováno brzy"
         ]
       }
     ]
   },
   {
-    "id": "amondrex",
-    "title": "amondrexcf.com",
-    "subtitle": "charitativní fond pomoci armádě",
+    "id": "coming-soon-2",
+    "title": "Další projekt",
+    "subtitle": "již brzy",
+    "status": "coming-soon",
     "services": [
       {
-        "id": "military-aid",
-        "iconName": "ShieldCheck",
-        "iconSvg": "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/><path d='m9 12 2 2 4-4'/></svg>",
-        "title": "LOGISTIKA A PŘÍMÁ POMOC VOJSKU",
+        "id": "placeholder-2",
+        "iconName": "PlusCircle",
+        "iconSvg": "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><line x1='12' y1='8' x2='12' y2='16'/><line x1='8' y1='12' x2='16' y2='12'/></svg>",
+        "title": "PŘIPRAVUJEME",
         "features": [
-          "Zajištění taktického vybavení",
-          "Mezinárodní logistika pomoci",
-          "Transparentní financování sbírek",
-          "Efektivní distribuce přímo na frontu"
+          "Rozšiřujeme naše portfolio",
+          "Nové digitální řešení"
         ]
       }
     ]

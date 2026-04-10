@@ -1,105 +1,159 @@
 .references {
-  padding: 80px 0;
+  padding: 100px 0;
   background-color: #ffffff;
-  position: relative; // Для позиціонування canvas
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-// Повноекранний canvas для масштабного салюту
-.confettiCanvas {
-  position: fixed; // Завжди на екрані при скролі
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none; // Не заважає клікам
-  z-index: 9999; // Завжди поверх всього
-  background: transparent;
+  overflow: hidden;
 }
 
 .header {
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   text-align: center;
+
   h2 {
     font-size: 32px;
     font-weight: 900;
-    text-transform: uppercase;
+    font-family: var(--heading-font);
     color: #111;
+    text-transform: uppercase;
   }
+
   .line {
     width: 60px;
     height: 4px;
-    background: #00aeef; // Фірмовий блакитний
-    margin: 12px auto 0;
+    background: #00aeef;
+    margin: 15px auto 0;
+    border-radius: 2px;
   }
 }
 
-// Карусель
-.embla {
-  overflow: hidden;
-}
-.embla__container {
+.marqueeContainer {
   display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
-.embla__slide {
-  flex: 0 0 50%;
-  padding-left: 20px;
-  @media (min-width: 768px) {
-    flex: 0 0 33.33%;
-  }
-  @media (min-width: 1024px) {
-    flex: 0 0 20%;
+
+.marquee {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: 20px;
+  // Плавне зникнення по краях
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent
+  );
+
+  &:hover .marqueeGroup {
+    animation-play-state: paused;
   }
 }
 
-// Картка
+.marqueeGroup {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 100%;
+  animation: scroll-left 40s linear infinite;
+  padding: 15px 0; // Відступ для тіней, щоб не обрізалися
+}
+
+.reverse .marqueeGroup {
+  animation: scroll-right 40s linear infinite;
+}
+
+.logoSlide {
+  width: 260px;
+  flex-shrink: 0;
+}
+
 .logoCard {
-  display: block;
-  background: #f8f9fa;
-  padding: 30px;
-  border-radius: 20px;
-  text-decoration: none;
-  border: 1px solid #eee;
-  transition:
-    transform 0.3s ease,
-    border-color 0.3s ease;
-
-  &:hover {
-    transform: translateY(-5px);
-    background: #fff;
-    border-color: #00aeef;
-  }
-}
-
-.logoWrapper {
-  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  &.noImage .fallbackText {
-    display: block;
+  background: #ffffff;
+  height: 120px;
+  padding: 20px 30px;
+  border-radius: 16px;
+  text-decoration: none;
+
+  // Статична тонка рамка, щоб не смикалася
+  border: 1px solid #f2f2f2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  &:hover {
+    // Рамка стає ледь помітнішою, але основний фокус на тіні та тексті
+    border-color: rgba(0, 174, 239, 0.3);
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 12px 30px rgba(0, 174, 239, 0.12);
+
+    .brandName {
+      // Логотип стає кольоровим
+      color: #00aeef;
+      filter: drop-shadow(0 2px 4px rgba(0, 174, 239, 0.2));
+    }
+
+    .brandDot {
+      transform: scale(1.8);
+      background: #00aeef;
+      box-shadow: 0 0 8px rgba(0, 174, 239, 0.5);
+    }
   }
 }
 
-.logoImage {
-  max-width: 100%;
-  max-height: 100%;
-  filter: grayscale(100%);
-  opacity: 0.5;
-  transition: 0.3s;
-  .logoCard:hover & {
-    filter: grayscale(0%);
-    opacity: 1;
+.brandPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.brandName {
+  font-family: var(--heading-font);
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+
+  // Початковий стан — сірий (як на скріншоті)
+  color: #d8d8d8;
+  transition: all 0.4s ease;
+}
+
+.brandDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+// Анімації руху
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - 20px));
   }
 }
 
+@keyframes scroll-right {
+  from {
+    transform: translateX(calc(-100% - 20px));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+// Запасний варіант для прихованого тексту
 .fallbackText {
   display: none;
-  font-weight: 700;
-  color: #333;
 }

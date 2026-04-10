@@ -1,19 +1,31 @@
 .references {
-  padding: 100px 0;
+  padding: 60px 0; // База для мобілки
   background-color: #ffffff;
   overflow: hidden;
+
+  @media (min-width: 768px) {
+    padding: 100px 0;
+  }
 }
 
 .header {
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   text-align: center;
 
+  @media (min-width: 768px) {
+    margin-bottom: 60px;
+  }
+
   h2 {
-    font-size: 32px;
+    font-size: 24px; // Менший шрифт для мобілки
     font-weight: 900;
     font-family: var(--heading-font);
     color: #111;
     text-transform: uppercase;
+
+    @media (min-width: 768px) {
+      font-size: 32px;
+    }
   }
 
   .line {
@@ -28,7 +40,11 @@
 .marqueeContainer {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
+
+  @media (min-width: 768px) {
+    gap: 30px;
+  }
 }
 
 .marquee {
@@ -36,7 +52,6 @@
   overflow: hidden;
   user-select: none;
   gap: 20px;
-  // Плавне зникнення по краях
   mask-image: linear-gradient(
     to right,
     transparent,
@@ -45,8 +60,11 @@
     transparent
   );
 
-  &:hover .marqueeGroup {
-    animation-play-state: paused;
+  // Плеєр зупиняється тільки на десктопах з мишкою
+  @media (hover: hover) {
+    &:hover .marqueeGroup {
+      animation-play-state: paused;
+    }
   }
 }
 
@@ -57,7 +75,7 @@
   gap: 20px;
   min-width: 100%;
   animation: scroll-left 40s linear infinite;
-  padding: 15px 0; // Відступ для тіней, щоб не обрізалися
+  padding: 15px 0;
 }
 
 .reverse .marqueeGroup {
@@ -65,8 +83,12 @@
 }
 
 .logoSlide {
-  width: 260px;
+  width: 200px; // Трохи менші картки для мобілки
   flex-shrink: 0;
+
+  @media (min-width: 768px) {
+    width: 260px;
+  }
 }
 
 .logoCard {
@@ -74,33 +96,35 @@
   align-items: center;
   justify-content: center;
   background: #ffffff;
-  height: 120px;
-  padding: 20px 30px;
+  height: 100px; // Висота для мобілки
+  padding: 15px 20px;
   border-radius: 16px;
   text-decoration: none;
-
-  // Статична тонка рамка, щоб не смикалася
   border: 1px solid #f2f2f2;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-  &:hover {
-    // Рамка стає ледь помітнішою, але основний фокус на тіні та тексті
-    border-color: rgba(0, 174, 239, 0.3);
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 12px 30px rgba(0, 174, 239, 0.12);
+  @media (min-width: 768px) {
+    height: 120px;
+    padding: 20px 30px;
+  }
 
-    .brandName {
-      // Логотип стає кольоровим
-      color: #00aeef;
-      filter: drop-shadow(0 2px 4px rgba(0, 174, 239, 0.2));
-    }
+  @media (hover: hover) {
+    &:hover {
+      border-color: rgba(0, 174, 239, 0.3);
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 12px 30px rgba(0, 174, 239, 0.12);
 
-    .brandDot {
-      transform: scale(1.8);
-      background: #00aeef;
-      box-shadow: 0 0 8px rgba(0, 174, 239, 0.5);
+      .brandName {
+        color: #00aeef;
+        filter: drop-shadow(0 2px 4px rgba(0, 174, 239, 0.2));
+      }
+
+      .brandDot {
+        transform: scale(1.8);
+        background: #00aeef;
+        box-shadow: 0 0 8px rgba(0, 174, 239, 0.5);
+      }
     }
   }
 }
@@ -109,21 +133,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   text-align: center;
 }
 
 .brandName {
   font-family: var(--heading-font);
   font-weight: 800;
-  font-size: 22px;
+  font-size: 18px; // Компактніше на мобільних
   line-height: 1.1;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-
-  // Початковий стан — сірий (як на скріншоті)
   color: #d8d8d8;
   transition: all 0.4s ease;
+
+  @media (min-width: 768px) {
+    font-size: 22px;
+  }
 }
 
 .brandDot {
@@ -134,26 +160,16 @@
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-// Анімації руху
 @keyframes scroll-left {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(calc(-100% - 20px));
-  }
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% - 20px)); }
 }
 
 @keyframes scroll-right {
-  from {
-    transform: translateX(calc(-100% - 20px));
-  }
-  to {
-    transform: translateX(0);
-  }
+  from { transform: translateX(calc(-100% - 20px)); }
+  to { transform: translateX(0); }
 }
 
-// Запасний варіант для прихованого тексту
 .fallbackText {
   display: none;
 }

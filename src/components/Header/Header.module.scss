@@ -1,9 +1,9 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 1100; // Піднімаємо весь хедер вище за оверлей
+  z-index: 1100;
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px); 
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid #f0f0f0;
 }
 
@@ -15,51 +15,8 @@
   margin: 0 auto;
   padding: 0 20px;
   position: relative;
-  z-index: 1101; // Вміст всередині хедера ще вище
-}
-
-.nav {
-  display: none;
-
-  &.navOpen {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 70px; // Починається під хедером
-    left: 0;
-    width: 100%;
-    background: #fff;
-    padding: 30px 20px;
-    gap: 20px;
-    border-bottom: 1px solid #eee;
-    // ВАЖЛИВО: Меню має бути над оверлеєм
-    z-index: 1100; 
-  }
-
-  @media (min-width: 768px) {
-    display: flex;
-    position: static;
-    flex-direction: row;
-    padding: 0;
-    gap: 32px;
-  }
-}
-
-.overlay {
-  position: fixed;
-  top: 0; // Тепер можна від самого верху
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.4); 
-  // ТУТ МАГІЯ: z-index менший, ніж у хедера (1100)
-  z-index: 1050; 
-  backdrop-filter: blur(4px);
-}
-
-.actions {
-  position: relative;
-  z-index: 1102; // Кнопка бургера завжди найвища
+  z-index: 1101;
+  max-width: 1200px; // Рекомендую додати обмеження ширини
 }
 
 .logo {
@@ -68,7 +25,51 @@
   color: #1a1a1a;
   text-decoration: none;
   z-index: 1102;
-  span { font-weight: 400; font-size: 14px; color: #0056b3; margin-left: 6px; }
+  
+  span {
+    font-weight: 400;
+    font-size: 14px;
+    color: #0056b3;
+    margin-left: 6px;
+  }
+}
+
+.nav {
+  // Мобільний стан (приховано за замовчуванням)
+  display: none;
+
+  &.navOpen {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    padding: 30px 20px;
+    gap: 20px;
+    border-bottom: 1px solid #eee;
+    z-index: 1100;
+  }
+
+  // Десктопний стан
+  @media (min-width: 768px) {
+    display: flex !important; // Завжди показуємо на десктопі
+    position: static;
+    flex-direction: row;
+    padding: 0;
+    gap: 32px;
+    background: transparent;
+    border: none;
+    width: auto;
+  }
+}
+
+.actions {
+  position: relative;
+  z-index: 1102;
+  display: flex;
+  align-items: center;
 }
 
 .burger {
@@ -79,6 +80,7 @@
   background: none;
   border: none;
   padding: 10px;
+  z-index: 1105;
 
   span {
     display: block;
@@ -87,10 +89,37 @@
     background: #1a1a1a;
     transition: all 0.3s ease;
   }
+
+  // Ховаємо бургер на десктопі
+  @media (min-width: 768px) {
+    display: none;
+  }
 }
 
 .burgerActive {
-  span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-  span:nth-child(2) { opacity: 0; }
-  span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  span:nth-child(2) {
+    opacity: 0;
+  }
+  span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1050;
+  backdrop-filter: blur(4px);
+
+  // Ховаємо оверлей на десктопі, навіть якщо він активний в JS
+  @media (min-width: 768px) {
+    display: none !important;
+  }
 }

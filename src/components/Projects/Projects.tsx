@@ -14,27 +14,25 @@ const Projects: React.FC = () => {
     <section className={styles.projects} id="projects">
       <div className={styles.container}>
         
-        {/* Заголовок із лініями та Блискавкою */}
+        {/* Заголовок із лініями та Музичним символом */}
         <h2 className={styles.title}>Naše vybrané projekty</h2>
         <div className={styles.divider}>
           <span className={styles.line}></span>
           <div className={styles.starWrapper}>
-            {/* Варіант 1: Блискавка (Енергія та Швидкість) */}
+            {/* Скрипковий ключ — символ диригента та симфонії коду */}
             <svg 
               viewBox="0 0 24 24" 
-              fill="currentColor" 
-              className={styles.starIcon} 
-              xmlns="http://www.w3.org/2000/svg"
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="1.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              className={styles.starIcon}
             >
-              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              <path d="M9 18V5l12-2v13" />
+              <circle cx="6" cy="18" r="3" />
+              <circle cx="18" cy="16" r="3" />
             </svg>
-
-            {/* Варіант 2: Стрілка зростання (якщо захочеш змінити, просто замініть SVG вище на цей) */}
-            {/* <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={styles.starIcon}>
-              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-              <polyline points="17 6 23 6 23 12"></polyline>
-            </svg> 
-            */}
           </div>
           <span className={styles.line}></span>
         </div>

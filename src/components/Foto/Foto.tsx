@@ -13,7 +13,7 @@ const Foto: React.FC = () => {
           {/* МОБІЛЬНЕ ФОТО: пріоритет №1 */}
           <div className={styles.mobileOnly}>
             <Image 
-              src="/1024 (3).avif" 
+              src="/1775925937764.avif"
               alt="NG Consulting Mobile"
               fill
               priority // Next.js додасть preload

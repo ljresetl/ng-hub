@@ -14,20 +14,28 @@ const Projects: React.FC = () => {
     <section className={styles.projects} id="projects">
       <div className={styles.container}>
         
-        {/* Заголовок із лініями та чотирипроменевою зіркою */}
+        {/* Заголовок із лініями та Преміальним Діамантом */}
         <h2 className={styles.title}>Naše vybrané projekty</h2>
         
         <div className={styles.divider}>
           <span className={styles.line}></span>
           <div className={styles.starWrapper}>
-            {/* Сучасна мінімалістична "іскра" (Sparkle) */}
+            {/* Мінімалістичний геометричний діамант (Diamond) */}
             <svg 
               viewBox="0 0 24 24" 
-              fill="currentColor" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
               className={styles.starIcon}
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+              <path d="M6 3h12l4 6-10 12L2 9z" />
+              <path d="M11 3v18" />
+              <path d="M22 9H2" />
+              <path d="M18 3l-6 18" />
+              <path d="M6 3l6 18" />
             </svg>
           </div>
           <span className={styles.line}></span>
@@ -70,6 +78,11 @@ const Projects: React.FC = () => {
                 className={styles.link}
               >
                 Prozkoumat projekt
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={styles.linkIcon}>
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
               </a>
             </div>
           ))}

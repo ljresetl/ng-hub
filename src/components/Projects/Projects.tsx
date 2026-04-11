@@ -14,14 +14,27 @@ const Projects: React.FC = () => {
     <section className={styles.projects} id="projects">
       <div className={styles.container}>
         
-        {/* Заголовок із лініями та зірочкою */}
+        {/* Заголовок із лініями та Блискавкою */}
         <h2 className={styles.title}>Naše vybrané projekty</h2>
         <div className={styles.divider}>
           <span className={styles.line}></span>
           <div className={styles.starWrapper}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={styles.starIcon}>
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            {/* Варіант 1: Блискавка (Енергія та Швидкість) */}
+            <svg 
+              viewBox="0 0 24 24" 
+              fill="currentColor" 
+              className={styles.starIcon} 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
             </svg>
+
+            {/* Варіант 2: Стрілка зростання (якщо захочеш змінити, просто замініть SVG вище на цей) */}
+            {/* <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={styles.starIcon}>
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg> 
+            */}
           </div>
           <span className={styles.line}></span>
         </div>
@@ -37,7 +50,6 @@ const Projects: React.FC = () => {
                 {project.services.map((s) => (
                   <div key={s.id} className={styles.serviceItem}>
                     <div className={styles.serviceHeader}>
-                      {/* Відображення SVG іконки з JSON */}
                       {s.iconSvg && (
                         <div 
                           className={styles.serviceIcon} 
@@ -46,7 +58,6 @@ const Projects: React.FC = () => {
                       )}
                       <span className={styles.tag}>{s.title}</span>
                     </div>
-                    {/* Якщо в JSON є features, можна додати і їх */}
                     {s.features && (
                       <ul className={styles.features}>
                         {s.features.map((feature, idx) => (

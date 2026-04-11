@@ -17,21 +17,28 @@ export default function Header() {
     } else {
       document.body.style.overflow = 'unset';
     }
+    
+    // Очищення при розмонтуванні компонента
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
   }, [isOpen]);
 
   return (
     <>
       <header className={styles.header}>
         <div className={styles.container}>
-          <Link href="/" className={styles.logo} onClick={closeMenu}>
+          {/* Використовуємо replace для логотипу, щоб повернутися вгору без дублювання */}
+          <Link href="/#" className={styles.logo} onClick={closeMenu} replace>
             NG <span>Consulting</span>
           </Link>
 
           <nav className={`${styles.nav} ${isOpen ? styles.navOpen : ''}`}>
-            <Link href="#projects" onClick={closeMenu}>PROJEKTY</Link>
-            <Link href="#references" onClick={closeMenu}>REFERENCE</Link>
-            <Link href="#map" onClick={closeMenu}>KDE NÁS NAJDETE</Link>
-            <Link href="#kontakt" onClick={closeMenu}>KONTAKT</Link>
+            {/* Властивість replace замінює поточний хеш у URL замість додавання нового */}
+            <Link href="#projects" onClick={closeMenu} replace>PROJEKTY</Link>
+            <Link href="#references" onClick={closeMenu} replace>REFERENCE</Link>
+            <Link href="#map" onClick={closeMenu} replace>KDE NÁS NAJDETE</Link>
+            <Link href="#kontakt" onClick={closeMenu} replace>KONTAKT</Link>
           </nav>
 
           <div className={styles.actions}>

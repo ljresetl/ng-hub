@@ -1,14 +1,14 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 1020; // Базовий рівень для всього хедера
-  background: rgba(255, 255, 255, 0.95); // Ефект скла
+  z-index: 1000; // База
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px); 
   border-bottom: 1px solid #f0f0f0;
 }
 
 .container {
-  height: 70px; 
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,6 +29,8 @@
   display: flex;
   align-items: baseline;
   line-height: 1;
+  position: relative;
+  z-index: 1001; // Над оверлеєм
 
   span {
     font-weight: 400;
@@ -38,26 +40,20 @@
     letter-spacing: 1px;
   }
 
-  &:hover {
-    opacity: 0.8;
-  }
-
   @media (min-width: 768px) {
     font-size: 24px;
-    span {
-      font-size: 16px;
-    }
+    span { font-size: 16px; }
   }
 }
 
 .nav {
-  display: none; // Сховано для мобілок
+  display: none;
 
   &.navOpen {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 70px; // Рівно під лінією хедера
+    top: 70px;
     left: 0;
     width: 100%;
     background: #fff;
@@ -65,19 +61,17 @@
     gap: 20px;
     border-bottom: 1px solid #eee;
     box-shadow: 0 10px 15px rgba(0,0,0,0.05);
-    z-index: 1010; // Найвищий рівень, щоб посилання були над оверлеєм
+    z-index: 1002; // Вище за оверлей
   }
 
   a {
     color: #444;
     font-weight: 600;
     font-size: 15px;
-    transition: color 0.2s;
     text-decoration: none;
+    transition: color 0.2s;
 
-    &:hover {
-      color: #0056b3;
-    }
+    &:hover { color: #0056b3; }
   }
 
   @media (min-width: 768px) {
@@ -85,9 +79,8 @@
     position: static;
     flex-direction: row;
     padding: 0;
-    width: auto;
-    border: none;
     gap: 32px;
+    z-index: 1001;
   }
 }
 
@@ -97,8 +90,8 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.3); // Напівпрозорий фон
-  z-index: 1005; // Вище основного сайту, але нижче за меню navOpen
+  background: rgba(0, 0, 0, 0.3); 
+  z-index: 999; // НИЖЧЕ хедера і меню, але вище за контент сторінки
   backdrop-filter: blur(2px);
 }
 
@@ -106,21 +99,9 @@
   display: flex;
   align-items: center;
   gap: 15px;
-  z-index: 1011; // Кнопка бургер має бути завжди доступна для кліку
+  position: relative;
+  z-index: 1003; // Кнопка бургера завжди на самому верху
 }
-
-/* Пошук закоментовано для чистоти
-.searchBtn svg {
-  width: 22px;
-  color: #1a1a1a;
-  transition: transform 0.2s;
-  cursor: pointer;
-
-  &:hover {
-    transform: scale(1.1);
-  }
-}
-*/
 
 .burger {
   display: flex;
@@ -145,13 +126,7 @@
 }
 
 .burgerActive {
-  span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-  span:nth-child(2) {
-    opacity: 0;
-  }
-  span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
+  span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  span:nth-child(2) { opacity: 0; }
+  span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 }

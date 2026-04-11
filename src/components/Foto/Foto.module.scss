@@ -2,6 +2,7 @@
   position: relative;
   width: 100%;
   background-color: #fff;
+  padding-top: 10px;
 }
 
 .container {
@@ -16,7 +17,7 @@
   background-color: #f7f7f7;
 
   @media (min-width: 768px) {
-    aspect-ratio: 16 / 8;
+    aspect-ratio: 16 / 6;
   }
 }
 

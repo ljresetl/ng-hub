@@ -14,26 +14,30 @@ const Projects: React.FC = () => {
     <section className={styles.projects} id="projects">
       <div className={styles.container}>
         
-        {/* Заголовок із лініями та чотирипроменевою зіркою */}
+        {/* Заголовок із лініями та ПРЕМІАЛЬНИМ ДІАМАНТОМ замість зірки */}
         <h2 className={styles.title}>Naše vybrané projekty</h2>
-        
         <div className={styles.divider}>
           <span className={styles.line}></span>
           <div className={styles.starWrapper}>
-            {/* Сучасна мінімалістична "іскра" (Sparkle) */}
+            {/* Тільки тут замінено на діамант */}
             <svg 
               viewBox="0 0 24 24" 
-              fill="currentColor" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="1.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
               className={styles.starIcon}
-              xmlns="http://www.w3.org/2000/svg"
             >
-              <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+              <path d="M6 3h12l4 6-10 12L2 9z" />
+              <path d="M11 3v18" />
+              <path d="M22 9H2" />
             </svg>
           </div>
           <span className={styles.line}></span>
         </div>
 
-        {/* Сітка карток */}
+        {/* Сітка карток — тут все як у твоєму оригінальному коді */}
         <div className={styles.grid}>
           {visibleProjects.map((project) => (
             <div key={project.id} className={styles.card}>
@@ -44,6 +48,7 @@ const Projects: React.FC = () => {
                 {project.services.map((s) => (
                   <div key={s.id} className={styles.serviceItem}>
                     <div className={styles.serviceHeader}>
+                      {/* Відображення SVG іконки з JSON (ТВОЯ ЛОГІКА) */}
                       {s.iconSvg && (
                         <div 
                           className={styles.serviceIcon} 

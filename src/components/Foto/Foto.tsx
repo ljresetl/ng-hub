@@ -28,7 +28,7 @@ const Foto: React.FC = () => {
           {/* ДЕСКТОПНЕ ФОТО */}
           <div className={styles.desktopOnly}>
             <Image 
-              src="/1775925937764.png/" 
+              src="/1775925937764.avif" 
               alt="NG Consulting Desktop"
               fill
               priority

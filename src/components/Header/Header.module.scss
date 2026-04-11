@@ -1,7 +1,7 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 1000; 
+  z-index: 1100; // Піднімаємо весь хедер вище за оверлей
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px); 
   border-bottom: 1px solid #f0f0f0;
@@ -15,7 +15,7 @@
   margin: 0 auto;
   padding: 0 20px;
   position: relative;
-  z-index: 1001; // Вміст хедера завжди над усім
+  z-index: 1101; // Вміст всередині хедера ще вище
 }
 
 .nav {
@@ -25,14 +25,15 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 70px; // Чітко під хедером
+    top: 70px; // Починається під хедером
     left: 0;
     width: 100%;
     background: #fff;
     padding: 30px 20px;
     gap: 20px;
     border-bottom: 1px solid #eee;
-    z-index: 1001; 
+    // ВАЖЛИВО: Меню має бути над оверлеєм
+    z-index: 1100; 
   }
 
   @media (min-width: 768px) {
@@ -46,18 +47,28 @@
 
 .overlay {
   position: fixed;
-  top: 270px; // ВАЖЛИВО: оверлей починається ПІСЛЯ хедера
+  top: 0; // Тепер можна від самого верху
   left: 0;
-  width: 100%;
-  height: calc(100vh - 70px); // Займає весь екран, крім хедера
+  width: 100vw;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.4); 
-  z-index: 999; // Нижче хедера, але вище контенту сайту
+  // ТУТ МАГІЯ: z-index менший, ніж у хедера (1100)
+  z-index: 1050; 
   backdrop-filter: blur(4px);
 }
 
 .actions {
   position: relative;
-  z-index: 1002; // Кнопка бургера завжди доступна
+  z-index: 1102; // Кнопка бургера завжди найвища
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 20px;
+  color: #1a1a1a;
+  text-decoration: none;
+  z-index: 1102;
+  span { font-weight: 400; font-size: 14px; color: #0056b3; margin-left: 6px; }
 }
 
 .burger {
@@ -67,7 +78,7 @@
   cursor: pointer;
   background: none;
   border: none;
-  padding: 10px; // Більша зона для кліку
+  padding: 10px;
 
   span {
     display: block;
@@ -76,23 +87,10 @@
     background: #1a1a1a;
     transition: all 0.3s ease;
   }
-
-  @media (min-width: 768px) {
-    display: none;
-  }
 }
 
 .burgerActive {
   span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
   span:nth-child(2) { opacity: 0; }
   span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-}
-
-// Решта стилів (logo, a, etc.) без змін
-.logo {
-  font-weight: 800;
-  font-size: 20px;
-  color: #1a1a1a;
-  text-decoration: none;
-  span { font-weight: 400; font-size: 14px; color: #0056b3; margin-left: 6px; }
 }

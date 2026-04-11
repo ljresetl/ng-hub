@@ -1,4 +1,4 @@
-[![PageSpeed Performance](/public/Screenshot_20260411-005139.png)](https://ngconsulting.cz)
+[![PageSpeed Performance](/public/Screenshot_20260411-202418.png)](https://ngconsulting.cz)
 
 🚀 Technická optimalizace a refresh webu NG Consulting
 Web: ngconsulting.cz

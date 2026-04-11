@@ -1,7 +1,8 @@
 // 1. ЗМІННІ ТА НАЛАШТУВАННЯ ШРИФТІВ
 :root {
-  --heading-font: var(--font-montserrat), sans-serif;
-  --body-font: var(--font-inter), sans-serif;
+  // Додаємо системні шрифти як фолбек для стабільності LCP
+  --heading-font: var(--font-montserrat), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --body-font: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --text-color: #1a1a1a;
   --bg-color: #ffffff;
 }
@@ -13,19 +14,23 @@
   padding: 0;
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
+html {
+  // Плавна прокрутка до секцій (наприклад, до "Projects")
+  scroll-behavior: smooth; 
+  // Зупиняємо стрибки при завантаженні
+  text-size-adjust: 100%;
 }
 
 body {
   font-family: var(--body-font);
   color: var(--text-color);
   background-color: var(--bg-color);
+  line-height: 1.5; // Базова висота рядка для читабельності
+  
+  // Покращене рендерингу тексту
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility; 
 
   &.modal-open {
     overflow: hidden;
@@ -33,60 +38,32 @@ body {
 }
 
 // 3. ТИПОГРАФІКА
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--heading-font);
   font-weight: 800;
   letter-spacing: -0.02em;
+  line-height: 1.2; // Заголовки мають бути щільнішими
   margin: 0;
-}
-
-p {
-  margin: 0;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-ul {
-  list-style: none;
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-  font-family: inherit;
 }
 
 // 4. КОМПОНЕНТНА СІТКА (LAYOUT)
 .container {
   padding: 0 20px;
+  width: 100%;
+  max-width: 1440px; // Обмеження для дуже великих моніторів, щоб текст не розповзався
+  margin: 0 auto;
+}
+
+// 5. ОПТИМІЗАЦІЯ ЗОБРАЖЕНЬ (Важливо для швидкості!)
+img {
   max-width: 100%;
-  margin: 0 auto; // Центрування, якщо з'явиться max-width у пікселях
+  height: auto;
+  display: block; // Прибираємо зайві відступи знизу
 }
 
-section {
-  padding: 30px 0;
-
-  @media (min-width: 768px) {
-    padding: 50px 0;
-  }
-
-  @media (min-width: 1024px) {
-    padding: 70px 0;
-  }
-}
-
-// 5. СПЕЦІАЛЬНІ КЛАСИ
 .heroText {
   font-family: var(--heading-font);
   font-weight: 900;
-  // Тут можна додати text-transform: uppercase; якщо хочеться ще більше потужності
+  // Якщо хочеш пафосу диригента:
+  text-transform: uppercase;
 }

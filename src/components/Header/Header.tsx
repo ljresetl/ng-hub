@@ -27,6 +27,15 @@ export default function Header() {
           </nav>
 
           <div className={styles.actions}>
+            {/* Пошук закоментовано для чистоти
+            <button className={styles.searchBtn} aria-label="Search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </button>
+            */}
+
             <button 
               className={`${styles.burger} ${isOpen ? styles.burgerActive : ''}`} 
               onClick={toggleMenu}
@@ -38,7 +47,7 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Шар для закриття при натисканні поза межами (Overlay) */}
+      {/* Оверлей з'являється тільки при відкритому меню */}
       {isOpen && <div className={styles.overlay} onClick={closeMenu} />}
     </>
   );

@@ -88,4 +88,4 @@ const Projects: React.FC = () => {
   );
 };
 
-export default Projects; тут свгчку краще заміни на діамант воно краще Я думаю буде виглядати
+export default Projects;

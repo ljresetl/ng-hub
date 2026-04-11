@@ -11,39 +11,35 @@ export default function Header() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className={styles.header}>
-      <div className={styles.container}>
-        <Link href="/" className={styles.logo} onClick={closeMenu}>
-          NG <span>Consulting</span>
-        </Link>
+    <>
+      <header className={styles.header}>
+        <div className={styles.container}>
+          <Link href="/" className={styles.logo} onClick={closeMenu}>
+            NG <span>Consulting</span>
+          </Link>
 
-        {/* Навігація (спільна для десктопа і мобілки) */}
-        <nav className={`${styles.nav} ${isOpen ? styles.navOpen : ''}`}>
-          <Link href="#projects" onClick={closeMenu}>PROJEKTY</Link>
-          <Link href="#references" onClick={closeMenu}>REFERENCE</Link>
-          <Link href="#map" onClick={closeMenu}>KDE NÁS NAJDETE</Link>
-          <Link href="#kontakt" onClick={closeMenu}>KONTAKT</Link>
-        </nav>
+          {/* Навігація */}
+          <nav className={`${styles.nav} ${isOpen ? styles.navOpen : ''}`}>
+            <Link href="#projects" onClick={closeMenu}>PROJEKTY</Link>
+            <Link href="#references" onClick={closeMenu}>REFERENCE</Link>
+            <Link href="#map" onClick={closeMenu}>KDE NÁS NAJDETE</Link>
+            <Link href="#kontakt" onClick={closeMenu}>KONTAKT</Link>
+          </nav>
 
-        <div className={styles.actions}>
-          {/* Пошук закоментовано, оскільки на даному етапі він не потрібен
-          <button className={styles.searchBtn} aria-label="Search">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-          </button>
-          */}
-
-          <button 
-            className={`${styles.burger} ${isOpen ? styles.burgerActive : ''}`} 
-            onClick={toggleMenu}
-            aria-label="Menu"
-          >
-            <span></span><span></span><span></span>
-          </button>
+          <div className={styles.actions}>
+            <button 
+              className={`${styles.burger} ${isOpen ? styles.burgerActive : ''}`} 
+              onClick={toggleMenu}
+              aria-label="Menu"
+            >
+              <span></span><span></span><span></span>
+            </button>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* Шар для закриття при натисканні поза межами (Overlay) */}
+      {isOpen && <div className={styles.overlay} onClick={closeMenu} />}
+    </>
   );
 }

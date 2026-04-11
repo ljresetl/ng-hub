@@ -14,7 +14,7 @@ const Projects: React.FC = () => {
     <section className={styles.projects} id="projects">
       <div className={styles.container}>
         
-        {/* Заголовок із лініями та Преміальним Діамантом */}
+        {/* ЗАГОЛОВОК ІЗ ЛІНІЯМИ ТА ТІЛЬКИ ОДНИМ ПРЕМІАЛЬНИМ ДІАМАНТОМ */}
         <h2 className={styles.title}>Naše vybrané projekty</h2>
         
         <div className={styles.divider}>
@@ -52,6 +52,7 @@ const Projects: React.FC = () => {
                 {project.services.map((s) => (
                   <div key={s.id} className={styles.serviceItem}>
                     <div className={styles.serviceHeader}>
+                      {/* ТУТ ПОВЕРНУТО ОРИГІНАЛЬНЕ SVG З JSON (без діаманта) */}
                       {s.iconSvg && (
                         <div 
                           className={styles.serviceIcon} 

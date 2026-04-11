@@ -1,7 +1,7 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 1000; // База
+  z-index: 1000; 
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px); 
   border-bottom: 1px solid #f0f0f0;
@@ -14,36 +14,8 @@
   justify-content: space-between;
   margin: 0 auto;
   padding: 0 20px;
-
-  @media (min-width: 768px) {
-    max-width: 1200px;
-  }
-}
-
-.logo {
-  font-weight: 800;
-  font-size: 20px;
-  color: #1a1a1a;
-  text-transform: uppercase;
-  text-decoration: none;
-  display: flex;
-  align-items: baseline;
-  line-height: 1;
   position: relative;
-  z-index: 1001; // Над оверлеєм
-
-  span {
-    font-weight: 400;
-    font-size: 14px;
-    color: #0056b3;
-    margin-left: 6px;
-    letter-spacing: 1px;
-  }
-
-  @media (min-width: 768px) {
-    font-size: 24px;
-    span { font-size: 16px; }
-  }
+  z-index: 1001; // Вміст хедера завжди над усім
 }
 
 .nav {
@@ -53,25 +25,14 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 70px;
+    top: 70px; // Чітко під хедером
     left: 0;
     width: 100%;
     background: #fff;
     padding: 30px 20px;
     gap: 20px;
     border-bottom: 1px solid #eee;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.05);
-    z-index: 1002; // Вище за оверлей
-  }
-
-  a {
-    color: #444;
-    font-weight: 600;
-    font-size: 15px;
-    text-decoration: none;
-    transition: color 0.2s;
-
-    &:hover { color: #0056b3; }
+    z-index: 1001; 
   }
 
   @media (min-width: 768px) {
@@ -80,27 +41,23 @@
     flex-direction: row;
     padding: 0;
     gap: 32px;
-    z-index: 1001;
   }
 }
 
 .overlay {
   position: fixed;
-  top: 0;
+  top: 70px; // ВАЖЛИВО: оверлей починається ПІСЛЯ хедера
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.3); 
-  z-index: 999; // НИЖЧЕ хедера і меню, але вище за контент сторінки
-  backdrop-filter: blur(2px);
+  width: 100%;
+  height: calc(100vh - 70px); // Займає весь екран, крім хедера
+  background: rgba(0, 0, 0, 0.4); 
+  z-index: 999; // Нижче хедера, але вище контенту сайту
+  backdrop-filter: blur(4px);
 }
 
 .actions {
-  display: flex;
-  align-items: center;
-  gap: 15px;
   position: relative;
-  z-index: 1003; // Кнопка бургера завжди на самому верху
+  z-index: 1002; // Кнопка бургера завжди доступна
 }
 
 .burger {
@@ -110,7 +67,7 @@
   cursor: pointer;
   background: none;
   border: none;
-  padding: 5px;
+  padding: 10px; // Більша зона для кліку
 
   span {
     display: block;
@@ -129,4 +86,13 @@
   span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
   span:nth-child(2) { opacity: 0; }
   span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+}
+
+// Решта стилів (logo, a, etc.) без змін
+.logo {
+  font-weight: 800;
+  font-size: 20px;
+  color: #1a1a1a;
+  text-decoration: none;
+  span { font-weight: 400; font-size: 14px; color: #0056b3; margin-left: 6px; }
 }

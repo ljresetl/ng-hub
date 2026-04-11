@@ -3,7 +3,7 @@
   top: 0;
   z-index: 1100;
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); 
   border-bottom: 1px solid #f0f0f0;
 }
 
@@ -12,26 +12,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-width: 1200px; // Додав для кращого вигляду на великих екранах
   margin: 0 auto;
   padding: 0 20px;
-  position: relative;
-  z-index: 1101;
-  max-width: 1200px; // Рекомендую додати обмеження ширини
-}
-
-.logo {
-  font-weight: 800;
-  font-size: 20px;
-  color: #1a1a1a;
-  text-decoration: none;
-  z-index: 1102;
-  
-  span {
-    font-weight: 400;
-    font-size: 14px;
-    color: #0056b3;
-    margin-left: 6px;
-  }
 }
 
 .nav {
@@ -42,19 +25,19 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 70px;
+    top: 70px; 
     left: 0;
     width: 100%;
     background: #fff;
     padding: 30px 20px;
     gap: 20px;
     border-bottom: 1px solid #eee;
-    z-index: 1100;
+    z-index: 1100; 
   }
 
   // Десктопний стан
   @media (min-width: 768px) {
-    display: flex !important; // Завжди показуємо на десктопі
+    display: flex !important; // Гарантуємо відображення на десктопі
     position: static;
     flex-direction: row;
     padding: 0;
@@ -63,13 +46,17 @@
     border: none;
     width: auto;
   }
-}
 
-.actions {
-  position: relative;
-  z-index: 1102;
-  display: flex;
-  align-items: center;
+  a {
+    text-decoration: none;
+    color: #1a1a1a;
+    font-weight: 500;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #0056b3;
+    }
+  }
 }
 
 .burger {
@@ -80,7 +67,12 @@
   background: none;
   border: none;
   padding: 10px;
-  z-index: 1105;
+  z-index: 1102;
+
+  // ХОВАЄМО БУРГЕР НА ДЕСКТОПІ
+  @media (min-width: 768px) {
+    display: none;
+  }
 
   span {
     display: block;
@@ -88,23 +80,6 @@
     height: 2px;
     background: #1a1a1a;
     transition: all 0.3s ease;
-  }
-
-  // Ховаємо бургер на десктопі
-  @media (min-width: 768px) {
-    display: none;
-  }
-}
-
-.burgerActive {
-  span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-  span:nth-child(2) {
-    opacity: 0;
-  }
-  span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
   }
 }
 
@@ -114,12 +89,25 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 1050;
+  background: rgba(0, 0, 0, 0.4); 
+  z-index: 1050; 
   backdrop-filter: blur(4px);
 
-  // Ховаємо оверлей на десктопі, навіть якщо він активний в JS
+  // ХОВАЄМО ОВЕРЛЕЙ НА ДЕСКТОПІ (якщо забули закрити меню)
   @media (min-width: 768px) {
-    display: none !important;
+    display: none;
+  }
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 20px;
+  color: #1a1a1a;
+  text-decoration: none;
+  span { 
+    font-weight: 400; 
+    font-size: 14px; 
+    color: #0056b3; 
+    margin-left: 6px; 
   }
 }

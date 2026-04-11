@@ -52,6 +52,18 @@
   }
 }
 
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.2); // Легке затемнення, щоб було видно, що меню активне
+  z-index: 999; // Має бути на 1 менше ніж у .header, але більше ніж у решти контенту
+  backdrop-filter: blur(2px); // Додає солідності
+}
+
+
 .nav {
   display: none;
 

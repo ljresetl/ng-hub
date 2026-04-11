@@ -14,24 +14,20 @@ const Projects: React.FC = () => {
     <section className={styles.projects} id="projects">
       <div className={styles.container}>
         
-        {/* Заголовок із лініями та Музичним символом */}
+        {/* Заголовок із лініями та чотирипроменевою зіркою */}
         <h2 className={styles.title}>Naše vybrané projekty</h2>
+        
         <div className={styles.divider}>
           <span className={styles.line}></span>
           <div className={styles.starWrapper}>
-            {/* Скрипковий ключ — символ диригента та симфонії коду */}
+            {/* Сучасна мінімалістична "іскра" (Sparkle) */}
             <svg 
               viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="1.5" 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
+              fill="currentColor" 
               className={styles.starIcon}
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <path d="M9 18V5l12-2v13" />
-              <circle cx="6" cy="18" r="3" />
-              <circle cx="18" cy="16" r="3" />
+              <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
             </svg>
           </div>
           <span className={styles.line}></span>

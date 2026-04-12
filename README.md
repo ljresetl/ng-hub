@@ -40,7 +40,9 @@ Projekt je navržen s důrazem na maximální jednoduchost aktualizace dat:
 - 
 📊 Výsledky měření
 
+
 ![PageSpeed Score](public/Screenshot_20260412-041926.png)
+![Pagepeed Score](public/Screenshot_20260412-041856.png)
 ## ✅ Realizace
 Projekt byl úspěšně optimalizován a nasazen. Na výsledky se můžete podívat přímo v mém portfoliu nebo na živém webu.
 

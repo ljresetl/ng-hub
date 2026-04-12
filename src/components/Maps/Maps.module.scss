@@ -40,6 +40,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 20px 0;
+  position: relative; // Додано для позиціонування елементів соцмереж
 
   @media (min-width: 768px) {
     width: 400px;
@@ -47,17 +48,134 @@
   }
 }
 
+// --- БЛОК ДІЙ (Кнопка + Соцмережі) ---
+.actionsRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 20px;
+  margin-top: 10px;
+  position: relative;
+}
+
+.directionsBtn {
+  display: block;
+  text-align: center;
+  background-color: #0066cc;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease;
+  margin: 0; // Прибрано margin auto, бо тепер ми в дії actionsRow
+  flex: 1; // Займає весь доступний простір
+  max-width: 250px;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: #0052a3;
+    }
+  }
+}
+
+// --- КНОПКА-КВІТКА СОЦМЕРЕЖ ---
+.socialWrapper {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.mainSocialBtn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #333;
+  padding: 0;
+
+  &:hover {
+    background: #e8e8e8;
+    color: #0066cc;
+  }
+}
+
+.socialCircle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 130px; 
+  height: 130px;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+  z-index: -1;
+}
+
+// Стан коли соцмережі відкриті
+.socialWrapper.active {
+  .socialCircle {
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+  }
+
+  .mainSocialBtn {
+    background: #000;
+    color: #fff;
+    transform: rotate(45deg);
+  }
+}
+
+.socialIcon {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  background: #000;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 800;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, background 0.2s ease;
+
+  &:hover {
+    background: #0066cc;
+    transform: scale(1.1);
+  }
+
+  // Позиції пелюсток квітки (розташування по колу)
+  &:nth-child(1) { top: -10px; left: 50%; transform: translateX(-50%); } // Вгору
+  &:nth-child(2) { bottom: 10px; left: -10px; } // Зліва знизу
+  &:nth-child(3) { bottom: 10px; right: -10px; } // Справа знизу
+}
+
+// --- ІНШІ СТИЛІ (БЕЗ ЗМІН) ---
 .brand {
   margin-bottom: 25px;
   h3 {
     padding-left: 20px;
     font-size: 24px;
     margin-bottom: 5px;
-    color: #1a1a1a; // Темніший для кращого контрасту
+    color: #1a1a1a;
   }
   p {
     padding-left: 20px;
-    color: #4d4d4d; // Посилено контраст (було #666)
+    color: #4d4d4d;
     font-size: 14px;
     font-weight: 500;
   }
@@ -70,49 +188,32 @@
 .item {
   padding-left: 20px;
   margin-bottom: 20px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
+  &:last-child { margin-bottom: 0; }
 
   .label {
     display: block;
     font-weight: 700;
     font-size: 13px;
     text-transform: uppercase;
-    color: #595959; // Посилено контраст (було #999)
+    color: #595959;
     margin-bottom: 5px;
     letter-spacing: 0.5px;
   }
 
   p {
     margin: 0;
-    color: #222; // Темніший для кращого контрасту
+    color: #222;
     line-height: 1.5;
     font-weight: 500;
   }
 }
 
-.directionsBtn {
-  display: block;
-  text-align: center;
-  background-color: #0066cc; // Більш насичений синій для контрасту (WCAG AA)
-  color: #fff;
-  padding: 15px 25px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.3s ease;
-  margin: 0 auto 10px;
-  width: 80%;
-
-  @media (min-width: 768px) {
-    width: 70%;
-  }
-
-  @media (hover: hover) {
-    &:hover {
-      background-color: #0052a3;
-    }
-  }
+.loader {
+  width: 100%;
+  height: 100%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
 }

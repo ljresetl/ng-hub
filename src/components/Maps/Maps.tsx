@@ -4,23 +4,18 @@ import React, { useState, useEffect, useRef } from "react";
 import styles from "./Maps.module.scss";
 
 const Maps: React.FC = () => {
-  // Твоя адреса
   const address = "Hanychovská 575/33, 460 07 Liberec, Czechia";
   const encodedAddress = encodeURIComponent(address);
-
-  // Формат карти, який працює БЕЗ ключів і точно показує адресу
-  const mapEmbedUrl = `https://www.google.com/maps/embed/v1/place?key=ЗАМІНИ_НА_КЛЮЧ_АБО_ВИКОРИСТОВУЙ_НИЖЧЕ`;
   
-  // Якщо ключа немає, використовуємо цей стабільний формат:
+  // Виправлені посилання (прибрав помилкові домени з твого прикладу)
   const noKeyMapUrl = `https://maps.google.com/maps?q=${encodedAddress}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
-  
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`;
 
   const [inView, setInView] = useState(false);
+  const [isSocialOpen, setIsSocialOpen] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Вбудований браузерний спостерігач (заміна бібліотеці)
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -30,18 +25,13 @@ const Maps: React.FC = () => {
       },
       { rootMargin: "300px" }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
   return (
     <section className={styles.mapsSection} id="map" ref={sectionRef}>
       <div className={styles.container}>
-        
         <div className={styles.mapWrapper}>
           {inView ? (
             <iframe
@@ -55,13 +45,7 @@ const Maps: React.FC = () => {
               title="NG Consulting Office"
             ></iframe>
           ) : (
-            <div style={{ 
-              width: "100%", height: "100%", background: "#f0f0f0",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              borderRadius: "12px", color: "#666" 
-            }}>
-              Načítání mapy...
-            </div>
+            <div className={styles.loader}>Načítání mapy...</div>
           )}
         </div>
 
@@ -80,7 +64,6 @@ const Maps: React.FC = () => {
             <div className={styles.item}>
               <span className={styles.label}>Provozní doba:</span>
               <p>Po – Pá: 08:00 – 16:00</p>
-              <p>So – Ne: Zavřeno</p>
             </div>
 
             <div className={styles.item}>
@@ -89,16 +72,33 @@ const Maps: React.FC = () => {
             </div>
           </div>
 
-          <a 
-            href={directionsUrl} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className={styles.directionsBtn}
-          >
-            Naplánovat trasu
-          </a>
-        </div>
+          <div className={styles.actionsRow}>
+            <a href={directionsUrl} target="_blank" rel="noopener noreferrer" className={styles.directionsBtn}>
+              Naplánovat trasu
+            </a>
 
+            {/* КНОПКА-КВІТКА СОЦМЕРЕЖ */}
+            <div 
+              className={`${styles.socialWrapper} ${isSocialOpen ? styles.active : ""}`}
+              onMouseEnter={() => setIsSocialOpen(true)}
+              onMouseLeave={() => setIsSocialOpen(false)}
+              onClick={() => setIsSocialOpen(!isSocialOpen)}
+            >
+              <button className={styles.mainSocialBtn} aria-label="Social networks">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
+                   <circle cx="12" cy="12" r="5" />
+                   <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" />
+                </svg>
+              </button>
+
+              <div className={styles.socialCircle}>
+                <a href="https://instagram.com" className={styles.socialIcon} target="_blank" rel="noreferrer">IG</a>
+                <a href="https://linkedin.com" className={styles.socialIcon} target="_blank" rel="noreferrer">IN</a>
+                <a href="https://facebook.com" className={styles.socialIcon} target="_blank" rel="noreferrer">FB</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

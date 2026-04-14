@@ -10,12 +10,12 @@ const Footer: React.FC = () => {
         <p className={styles.text}>
           CREATED BY{" "}
           <a 
-            href="https://ngstranky.cz" 
+            href="https://webdevcompass.com" 
             target="_blank" 
             rel="noopener noreferrer" 
             className={styles.link}
           >
-            NGSTRÁNKY.CZ
+            webdevcompass.com
           </a>
         </p>
       </div>

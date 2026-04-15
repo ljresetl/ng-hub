@@ -6,24 +6,26 @@ import styles from "./Kontakt.module.scss";
 
 const Contact: React.FC = () => {
   return (
-    <section className={styles.contact} id="kontakt">
+    /* Додаємо reveal на всю секцію для загальної появи */
+    <section className={`${styles.contact} reveal`} id="kontakt">
       <div className={`container ${styles.container}`}>
         <header className={styles.header}>
-          <h2>KONTAKT</h2>
-          <div className={styles.divider}>
+          {/* Заголовок та опис випливають окремо */}
+          <h2 className="reveal">KONTAKT</h2>
+          <div className={`${styles.divider} reveal`}>
             <span className={styles.line}></span>
             <span className={styles.icon}>〰</span>
             <span className={styles.line}></span>
           </div>
-          <p>
+          <p className="reveal">
             Poradíme Vám a navrhneme nejlepší řešení při realizaci www stránek, internetových obchodů,
             optimalizaci pro vyhledávání (SEO), realizaci IT kurzů a školení.
           </p>
         </header>
 
         <div className={styles.content}>
-          {/* ЛІВА ЧАСТИНА: СУЧАСНА ФОРМА */}
-          <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
+          {/* ЛІВА ЧАСТИНА: Форма з'являється як цілісний об'єкт */}
+          <form className={`${styles.form} reveal`} onSubmit={(e) => e.preventDefault()}>
             <div className={styles.inputGroup}>
               <input type="text" id="name" placeholder=" " required />
               <label htmlFor="name">Vaše jméno (vyžadováno)</label>
@@ -54,9 +56,9 @@ const Contact: React.FC = () => {
             </button>
           </form>
 
-          {/* ПРАВА ЧАСТИНА: ІНФОРМАЦІЯ */}
+          {/* ПРАВА ЧАСТИНА: Кожен блок інформації випливає окремо */}
           <div className={styles.info}>
-            <div className={styles.infoBlock}>
+            <div className={`${styles.infoBlock} reveal`}>
               <div className={styles.infoTitle}>
                 <Home className={styles.mainIcon} />
                 <h3>PROVOZOVNA</h3>
@@ -77,7 +79,7 @@ const Contact: React.FC = () => {
               </div>
             </div>
 
-            <div className={styles.infoBlock}>
+            <div className={`${styles.infoBlock} reveal`}>
               <div className={styles.infoTitle}>
                 <Wallet className={styles.mainIcon} />
                 <h3>FAKTURAČNÍ ÚDAJE</h3>

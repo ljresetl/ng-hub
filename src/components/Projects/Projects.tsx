@@ -14,12 +14,12 @@ const Projects: React.FC = () => {
     <section className={styles.projects} id="projects">
       <div className={styles.container}>
         
-        {/* Заголовок із лініями та ПРЕМІАЛЬНИМ ДІАМАНТОМ замість зірки */}
-        <h2 className={styles.title}>Naše vybrané projekty</h2>
-        <div className={styles.divider}>
+        {/* Заголовок стає динамічним */}
+        <h2 className={`${styles.title} reveal`}>Naše vybrané projekty</h2>
+        
+        <div className={`${styles.divider} reveal`}>
           <span className={styles.line}></span>
           <div className={styles.starWrapper}>
-            {/* Тільки тут замінено на діамант */}
             <svg 
               viewBox="0 0 24 24" 
               fill="none" 
@@ -37,10 +37,10 @@ const Projects: React.FC = () => {
           <span className={styles.line}></span>
         </div>
 
-        {/* Сітка карток — тут все як у твоєму оригінальному коді */}
         <div className={styles.grid}>
           {visibleProjects.map((project) => (
-            <div key={project.id} className={styles.card}>
+            /* Кожна картка тепер має клас reveal і буде з'являтися при скролі індивідуально */
+            <div key={project.id} className={`${styles.card} reveal`}>
               <h3 className={styles.cardTitle}>{project.title}</h3>
               <p className={styles.cardSubtitle}>{project.subtitle}</p>
               
@@ -48,7 +48,6 @@ const Projects: React.FC = () => {
                 {project.services.map((s) => (
                   <div key={s.id} className={styles.serviceItem}>
                     <div className={styles.serviceHeader}>
-                      {/* Відображення SVG іконки з JSON (ТВОЯ ЛОГІКА) */}
                       {s.iconSvg && (
                         <div 
                           className={styles.serviceIcon} 
@@ -80,9 +79,9 @@ const Projects: React.FC = () => {
           ))}
         </div>
 
-        {/* Кнопка "Zobrazit další" */}
         {visibleCount < projectsData.length && (
-          <div className={styles.btnWrapper}>
+          /* Кнопка теж з'являється плавно */
+          <div className={`${styles.btnWrapper} reveal`}>
             <button className={styles.loadMore} onClick={showMore}>
               Zobrazit další
             </button>

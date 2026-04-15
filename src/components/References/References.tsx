@@ -37,14 +37,17 @@ const References: React.FC = () => {
   const secondRow = referencesData.slice(Math.ceil(referencesData.length / 2));
 
   return (
-    <section className={styles.references} id="references">
+    /* Додаємо reveal на всю секцію, щоб вона плавно з'явилася при скролі */
+    <section className={`${styles.references} reveal`} id="references">
       <div className={styles.container}>
         <header className={styles.header}>
-          <h2>Vybrané reference</h2>
-          <div className={styles.line}></div>
+          {/* Окремі класи reveal для заголовка та лінії, щоб вони випливали красиво */}
+          <h2 className="reveal">Vybrané reference</h2>
+          <div className={`${styles.line} reveal`}></div>
         </header>
 
-        <div className={styles.marqueeContainer}>
+        {/* Додаємо reveal на контейнер з логотипами */}
+        <div className={`${styles.marqueeContainer} reveal`}>
           <MarqueeRow items={firstRow} direction="left" />
           <MarqueeRow items={secondRow} direction="right" />
         </div>

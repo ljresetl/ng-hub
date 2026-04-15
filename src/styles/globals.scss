@@ -58,19 +58,21 @@ img {
 
 // 6. СУЧАСНА АНІМАЦІЯ ПРИ СКРОЛІ (Scroll-Driven)
 .reveal {
-  // Початковий стан
+  // Початковий стан: трохи менший зсув для плавності
   opacity: 0;
-  transform: translateY(30px) scale(0.98);
+  transform: translateY(20px) scale(0.99);
 
-  // Налаштування анімації (працюватиме у Chrome/Edge/Opera)
+  // Налаштування анімації
   @supports (animation-timeline: view()) {
     animation: reveal-anim linear forwards;
     animation-timeline: view();
-    animation-range: entry 5% cover 25%;
+    
+    // МИ ТУТ: Розтягнули діапазон до 45%. 
+    // Тепер анімація триває довше під час скролу.
+    animation-range: entry 5% cover 45%;
   }
 
-  // Фолбек для браузерів, що не підтримують (наприклад, Safari)
-  // Елементи просто будуть видимі без анімації, щоб не "зникати"
+  // Фолбек для Safari/старих браузерів
   @supports not (animation-timeline: view()) {
     opacity: 1;
     transform: none;

@@ -8,8 +8,8 @@ const Foto: React.FC = () => {
   return (
     <section className={styles.hero}>
       <div className={styles.container}>
-        {/* Додаємо reveal до всього контейнера, щоб він плавно з'явився */}
-        <div className={`${styles.houseCanvas} reveal`}>
+        {/* Головний контейнер просто з'являється */}
+        <div className={styles.houseCanvas}>
           
           <Image 
             src="/1775925937764.avif"
@@ -25,14 +25,14 @@ const Foto: React.FC = () => {
 
           <div className={styles.textOverlay}>
             <div className={styles.textContainer}>
-              {/* Додаємо reveal до заголовка та підзаголовка */}
-              <h1 className={`${styles.title} reveal`}>
+              {/* Додаємо клас entrance для анімації при завантаженні */}
+              <h1 className={`${styles.title} ${styles.entrance}`}>
                 Vaše digitální symfonie.
               </h1>
-              <p className={`${styles.subtitle} reveal`}>
+              <p className={`${styles.subtitle} ${styles.entrance}`}>
                 My dirigujeme – vy si vychutnáváte výsledek.
               </p>
-              <div className={`${styles.ctaWrapper} reveal`}>
+              <div className={`${styles.ctaWrapper} ${styles.entrance}`}>
                 <a href="#kontakt" className={styles.ctaButton}>
                   Způsobit revoluci
                 </a>
